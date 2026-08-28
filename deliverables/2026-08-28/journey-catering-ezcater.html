@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journey — Catering to EZCater</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#fafaf7; color:#181817; font-family:'DM Sans','Helvetica Neue',Arial,sans-serif; padding:2rem 1.5rem 3rem; }
+  .wrap { max-width:800px; margin:0 auto; }
+  .eyebrow { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#7e7e76; margin:0 0 0.5rem; }
+  h1 { font-family:'Cormorant Garamond',Garamond,serif; font-weight:600; font-size:2rem; margin:0 0 0.25rem; }
+  .sub { color:#4c4c47; font-size:0.85rem; margin:0 0 2rem; }
+  .colophon { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; color:#7e7e76; border-top:1px solid rgba(24,24,23,0.12); margin-top:2rem; padding-top:0.75rem; text-transform:uppercase; }
+  svg { width:100%; height:auto; display:block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Phase 1 · Key Journey 2 of 3 · Internal Draft</p>
+  <h1>Catering → EZCater</h1>
+  <p class="sub">Story first, then a direct handoff to the correct per-location EZCater store — never the generic marketplace</p>
+
+  <svg viewBox="0 0 760 624" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fog-journey-catering-title fog-journey-catering-desc">
+    <title id="fog-journey-catering-title">Catering to EZCater journey</title>
+    <desc id="fog-journey-catering-desc">Flowchart: an event planner reads the catering story, selects a location, and is routed to that location's direct EZCater store; locations without EZCater fall back to a proposed catering inquiry.</desc>
+    <rect width="100%" height="100%" fill="#fafaf7"/>
+    <defs>
+      <marker id="fjc-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+        <polygon points="0 0, 8 3, 0 6" fill="#4c4c47"/>
+      </marker>
+      <marker id="fjc-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+        <polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/>
+      </marker>
+    </defs>
+
+    <!-- connectors first -->
+    <path d="M380,72 V100" fill="none" stroke="#4c4c47" stroke-width="1" marker-end="url(#fjc-arrow)"/>
+    <path d="M380,152 V180" fill="none" stroke="#4c4c47" stroke-width="1" marker-end="url(#fjc-arrow)"/>
+    <path d="M380,232 V260" fill="none" stroke="#4c4c47" stroke-width="1" marker-end="url(#fjc-arrow)"/>
+    <!-- YES → EZCater -->
+    <path d="M456,304 H556" fill="none" stroke="#2e5aa8" stroke-width="1" marker-end="url(#fjc-arrow-link)"/>
+    <!-- NO → inquiry fallback -->
+    <path d="M380,344 V396" fill="none" stroke="#4c4c47" stroke-width="1" marker-end="url(#fjc-arrow)"/>
+    <!-- inquiry → End (top) -->
+    <path d="M380,448 V492" fill="none" stroke="#4c4c47" stroke-width="1" marker-end="url(#fjc-arrow)"/>
+    <!-- EZCater → End (right edge) -->
+    <path d="M632,328 V508 Q632,516 624,516 H468" fill="none" stroke="#4c4c47" stroke-width="1" marker-end="url(#fjc-arrow)"/>
+
+    <!-- arrow labels -->
+    <rect x="490" y="284" width="32" height="12" rx="2" fill="#fafaf7"/>
+    <text x="506" y="293" fill="#7e7e76" font-size="8" font-family="'JetBrains Mono',monospace" text-anchor="middle" letter-spacing="0.06em">YES</text>
+    <rect x="392" y="360" width="24" height="12" rx="2" fill="#fafaf7"/>
+    <text x="404" y="369" fill="#7e7e76" font-size="8" font-family="'JetBrains Mono',monospace" text-anchor="middle" letter-spacing="0.06em">NO</text>
+
+    <!-- START oval -->
+    <rect x="288" y="32" width="184" height="40" rx="20" fill="#fafaf7"/>
+    <rect x="288" y="32" width="184" height="40" rx="20" fill="rgba(76,76,71,0.10)" stroke="#7e7e76" stroke-width="1"/>
+    <text x="380" y="56" fill="#181817" font-size="12" font-weight="600" font-family="'DM Sans',sans-serif" text-anchor="middle">Planning an event</text>
+
+    <!-- Catering story (focal) -->
+    <rect x="296" y="100" width="168" height="52" rx="6" fill="#fafaf7"/>
+    <rect x="296" y="100" width="168" height="52" rx="6" fill="rgba(36,154,71,0.08)" stroke="#249a47" stroke-width="1.2"/>
+    <text x="380" y="122" fill="#181817" font-size="12" font-weight="600" font-family="'DM Sans',sans-serif" text-anchor="middle">Catering story</text>
+    <text x="380" y="140" fill="#4c4c47" font-size="9" font-family="'JetBrains Mono',monospace" text-anchor="middle">/catering · trays · office · events</text>
+
+    <!-- Select location -->
+    <rect x="296" y="180" width="168" height="52" rx="6" fill="#fafaf7"/>
+    <rect x="296" y="180" width="168" height="52" rx="6" fill="#ffffff" stroke="#181817" stroke-width="1"/>
+    <text x="380" y="202" fill="#181817" font-size="12" font-weight="600" font-family="'DM Sans',sans-serif" text-anchor="middle">Select location</text>
+    <text x="380" y="220" fill="#4c4c47" font-size="9" font-family="'JetBrains Mono',monospace" text-anchor="middle">CMS · per-store EZCater URL</text>
+
+    <!-- Diamond -->
+    <polygon points="380,260 460,304 380,348 300,304" fill="#fafaf7"/>
+    <polygon points="380,260 460,304 380,348 300,304" fill="#ffffff" stroke="#181817" stroke-width="1"/>
+    <text x="380" y="298" fill="#181817" font-size="12" font-weight="600" font-family="'DM Sans',sans-serif" text-anchor="middle">Store on</text>
+    <text x="380" y="314" fill="#181817" font-size="12" font-weight="600" font-family="'DM Sans',sans-serif" text-anchor="middle">EZCater?</text>
+
+    <!-- EZCater (external) -->
+    <rect x="560" y="280" width="144" height="48" rx="6" fill="#fafaf7"/>
+    <rect x="560" y="280" width="144" height="48" rx="6" fill="rgba(24,24,23,0.03)" stroke="rgba(24,24,23,0.30)" stroke-width="1"/>
+    <text x="632" y="300" fill="#181817" font-size="12" font-weight="600" font-family="'DM Sans',sans-serif" text-anchor="middle">EZCater direct</text>
+    <text x="632" y="316" fill="#4c4c47" font-size="9" font-family="'JetBrains Mono',monospace" text-anchor="middle">ezcater.com/…/pvt/[store]</text>
+
+    <!-- Inquiry fallback (proposed) -->
+    <rect x="296" y="400" width="168" height="48" rx="6" fill="#fafaf7"/>
+    <rect x="296" y="400" width="168" height="48" rx="6" fill="rgba(24,24,23,0.02)" stroke="rgba(24,24,23,0.20)" stroke-width="0.8" stroke-dasharray="4,3"/>
+    <text x="380" y="420" fill="#181817" font-size="12" font-weight="600" font-family="'DM Sans',sans-serif" text-anchor="middle">Catering inquiry</text>
+    <text x="380" y="436" fill="#4c4c47" font-size="9" font-family="'JetBrains Mono',monospace" text-anchor="middle">proposed fallback · 4/9 on EZ</text>
+
+    <!-- END oval -->
+    <rect x="296" y="496" width="168" height="40" rx="20" fill="#fafaf7"/>
+    <rect x="296" y="496" width="168" height="40" rx="20" fill="rgba(76,76,71,0.10)" stroke="#7e7e76" stroke-width="1"/>
+    <text x="380" y="520" fill="#181817" font-size="12" font-weight="600" font-family="'DM Sans',sans-serif" text-anchor="middle">Catering booked</text>
+
+    <!-- legend -->
+    <line x1="32" y1="568" x2="728" y2="568" stroke="rgba(24,24,23,0.10)" stroke-width="0.8"/>
+    <text x="32" y="588" fill="#4c4c47" font-size="8" font-family="'JetBrains Mono',monospace" letter-spacing="0.14em">LEGEND</text>
+    <rect x="104" y="580" width="16" height="8" rx="4" fill="rgba(76,76,71,0.10)" stroke="#7e7e76" stroke-width="1"/>
+    <text x="128" y="588" fill="#4c4c47" font-size="8" font-family="'JetBrains Mono',monospace">START / END</text>
+    <rect x="232" y="580" width="12" height="8" rx="2" fill="rgba(36,154,71,0.08)" stroke="#249a47" stroke-width="1"/>
+    <text x="252" y="588" fill="#4c4c47" font-size="8" font-family="'JetBrains Mono',monospace">KEY PAGE</text>
+    <rect x="356" y="580" width="12" height="8" rx="2" fill="rgba(24,24,23,0.03)" stroke="rgba(24,24,23,0.30)" stroke-width="1"/>
+    <text x="376" y="588" fill="#4c4c47" font-size="8" font-family="'JetBrains Mono',monospace">EXTERNAL</text>
+    <rect x="472" y="580" width="12" height="8" rx="2" fill="rgba(24,24,23,0.02)" stroke="rgba(24,24,23,0.20)" stroke-width="0.8" stroke-dasharray="3,2"/>
+    <text x="492" y="588" fill="#4c4c47" font-size="8" font-family="'JetBrains Mono',monospace">PROPOSED — NEEDS CLIENT CONFIRMATION</text>
+  </svg>
+
+  <p class="colophon">Field of Greens · journey 2/3 · 2026-08-17 · EZCater store coverage per current-site audit</p>
+</div>
+</body>
+</html>
