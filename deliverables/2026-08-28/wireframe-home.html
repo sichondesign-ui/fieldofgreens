@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe v2 — Home · 1024 desktop + 320 mobile · Field of Greens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* Structural wireframe at true canvas sizes — visual design lives in the style guide. */
+  :root{
+    --paper:#fafaf7; --ink:#181817; --muted:#4c4c47; --soft:#7e7e76; --rule:rgba(24,24,23,0.12);
+    --green:#249a47; --green-tint:rgba(36,154,71,0.08); --ext:#2e5aa8; --ext-tint:rgba(46,90,168,0.07);
+    --display:'Cormorant Garamond',Garamond,'Palatino Linotype',Palatino,serif;
+    --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+    --mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;}
+  body{background:var(--paper);font-family:var(--body);color:var(--ink);padding:48px 24px 96px;}
+  .wrap{max-width:1100px;margin:0 auto;}
+  .eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:8px;}
+  .wrap>h1{font-family:var(--display);font-weight:600;font-size:34px;line-height:1.1;margin-bottom:8px;letter-spacing:-.01em;}
+  .note{max-width:820px;font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:40px;}
+  .frame-label{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin:56px 0 12px;display:flex;align-items:center;gap:12px;}
+  .frame-label::after{content:"";flex:1;height:1px;background:var(--rule);}
+  .frame-label b{color:var(--ink);font-weight:600;}
+
+  /* badges + placeholders */
+  .b{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;padding:1px 5px;vertical-align:1px;font-style:normal;}
+  .b-wix{border:1px solid var(--green);color:var(--green);background:var(--green-tint);}
+  .b-ext{border:1px solid var(--ext);color:var(--ext);background:var(--ext-tint);}
+  .b-new{background:var(--green);color:#fff;}
+  .img{background:repeating-linear-gradient(45deg,#e7e5df,#e7e5df 10px,#efede8 10px,#efede8 20px);border:1px solid rgba(24,24,23,0.3);display:flex;align-items:center;justify-content:center;color:var(--soft);font-family:var(--mono);font-size:10px;text-align:center;padding:8px;line-height:1.7;letter-spacing:.04em;}
+  .bx{background:#eceae4;border:1px solid rgba(24,24,23,0.3);display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:var(--mono);font-size:10px;text-align:center;padding:8px;letter-spacing:.04em;}
+  .tag{position:absolute;top:8px;right:10px;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--soft);text-transform:uppercase;background:var(--paper);border:1px solid var(--rule);padding:2px 7px;border-radius:2px;z-index:3;}
+  .miss{color:#a03d2d;font-family:var(--mono);font-size:9.5px;margin-top:8px;letter-spacing:.02em;}
+
+  /* ============ DESKTOP FRAME — 1024 ============ */
+  .desktop{width:1024px;background:#fff;border:1.5px solid var(--ink);margin:0 auto;}
+  .desktop section{position:relative;border-bottom:1px dashed rgba(24,24,23,0.25);}
+  .d-strip{background:var(--ink);color:#fff;font-family:var(--mono);font-size:10px;text-align:center;padding:10px;letter-spacing:.06em;height:36px;}
+  .d-nav{display:flex;justify-content:space-between;align-items:center;height:72px;padding:0 48px;border-bottom:1px solid rgba(24,24,23,0.25);}
+  .d-nav .links{display:flex;gap:36px;font-size:14px;font-weight:600;color:var(--muted);}
+  .d-btn{display:inline-block;background:var(--ink);color:#fff;text-align:center;padding:14px 28px;font-size:14px;font-weight:600;letter-spacing:.02em;}
+  .d-btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--ink);}
+  .d-btn.green{background:var(--green);}
+
+  .d-hero{display:grid;grid-template-columns:448px 1fr;min-height:480px;}
+  .d-hero .txt{padding:72px 48px 56px;display:flex;flex-direction:column;justify-content:center;}
+  .d-hero h2{font-family:var(--display);font-weight:600;font-size:52px;line-height:1.05;letter-spacing:-.01em;margin:10px 0 16px;}
+  .d-hero p{font-size:16px;color:var(--soft);line-height:1.6;max-width:340px;}
+  .d-hero .ctas{display:flex;gap:12px;margin-top:28px;}
+  .kick{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);}
+
+  .d-pad{padding:56px 48px;}
+  h3.d-h{font-family:var(--display);font-weight:600;font-size:32px;letter-spacing:-.005em;margin-bottom:24px;}
+  .d-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .card .img{height:172px;}
+  .card .nm{font-size:15px;font-weight:600;margin-top:10px;}
+  .card .pr{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:3px;}
+
+  .d-split{display:grid;grid-template-columns:1fr 1fr;min-height:400px;}
+  .d-split .txt{padding:64px 48px;display:flex;flex-direction:column;justify-content:center;}
+  .d-split h3{font-family:var(--display);font-weight:600;font-size:36px;line-height:1.1;margin:10px 0 14px;}
+  .d-split p{font-size:15px;color:var(--soft);line-height:1.65;max-width:380px;}
+
+  .d-loc{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .d-loc .bx{height:120px;flex-direction:column;gap:6px;}
+
+  .d-ig{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;}
+  .d-ig .img{aspect-ratio:1;font-size:9px;}
+
+  .d-vip{background:var(--green-tint);}
+  .d-vip .inner{display:grid;grid-template-columns:1fr 460px;gap:48px;align-items:center;}
+  .field{display:flex;gap:8px;}
+  .field .in{flex:1;border:1px solid rgba(24,24,23,0.35);background:#fff;padding:14px;font-family:var(--mono);font-size:10px;color:var(--soft);}
+  .field .go{background:var(--ink);color:#fff;padding:14px 22px;font-size:13px;font-weight:600;display:flex;align-items:center;}
+
+  .d-quiet{text-align:center;padding:48px;}
+  .d-quiet p{font-family:var(--display);font-style:italic;font-size:22px;color:var(--muted);margin-bottom:18px;}
+
+  .d-footer{background:#f2f1ec;padding:48px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:32px;font-size:13px;color:var(--muted);line-height:2;}
+  .d-footer .h{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;}
+  .d-legal{background:#f2f1ec;border-top:1px solid var(--rule);padding:14px 48px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--soft);text-transform:uppercase;display:flex;justify-content:space-between;}
+
+  /* ============ MOBILE FRAME — 320 ============ */
+  .mobile{width:320px;background:#fff;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;margin:0 auto;}
+  .mobile section{position:relative;border-bottom:1px dashed rgba(24,24,23,0.25);padding:20px 16px;}
+  .mobile .tag{top:6px;right:6px;font-size:7px;padding:1px 5px;}
+  .m-strip{background:var(--ink);color:#fff;font-family:var(--mono);font-size:8.5px;text-align:center;padding:8px 10px;letter-spacing:.04em;}
+  .m-nav{display:flex;justify-content:space-between;align-items:center;height:56px;padding:0 14px;border-bottom:1px solid rgba(24,24,23,0.25);}
+  .m-btn{display:block;background:var(--ink);color:#fff;text-align:center;padding:13px;font-size:13px;font-weight:600;margin-top:12px;letter-spacing:.02em;}
+  .m-btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--ink);}
+  .mobile h2{font-family:var(--display);font-weight:600;font-size:26px;line-height:1.1;margin-bottom:8px;letter-spacing:-.005em;}
+  .mobile p.ph{font-size:12px;color:var(--soft);line-height:1.55;}
+  .m-row{display:flex;gap:8px;margin-top:8px;}
+  .m-row>*{flex:1;}
+  .m-ig{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:8px;}
+  .m-ig .img{aspect-ratio:1;padding:4px;font-size:7.5px;}
+  .m-scroll{display:flex;gap:10px;overflow:hidden;margin-top:8px;}
+  .m-scroll .bx{flex:0 0 200px;height:96px;flex-direction:column;gap:4px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Phase 1 · Wireframe v2 · Internal Draft · Supersedes v1 (2026-08-27 am)</p>
+  <h1>Home — desktop 1024 + mobile 320</h1>
+  <p class="note"><strong>True canvas sizes, structure only</strong> — grayscale placeholders; color/photography decisions live in the style guide. Section order identical across breakpoints (§1–9 + footer). Includes the kickoff (8/21) additions: Instagram feed (§7), VIP signup (§8). Badges mark Wix-native vs. third-party per sitemap v3. [MISSING] = content the client owes. Type: Cormorant Garamond / DM Sans / JetBrains Mono.</p>
+
+  <!-- ═══════════════════ DESKTOP 1024 ═══════════════════ -->
+  <p class="frame-label"><b>Desktop</b> · 1024 px canvas · 48 px margins · 12-col grid</p>
+  <div class="desktop">
+    <div class="d-strip">ANNOUNCEMENT STRIP · 36PX — SEASONAL/PROMO USE · OPTIONAL — NOT A PERMANENT LICENSING BANNER</div>
+
+    <div class="d-nav">
+      <div class="bx" style="width:132px;height:36px;">LOGO · SEAL</div>
+      <div class="links"><span>Menu</span><span>Locations</span><span>Catering</span><span>About</span></div>
+      <span class="d-btn green" style="padding:12px 22px;font-size:13px;">ORDER ONLINE</span>
+    </div>
+
+    <section>
+      <span class="tag">1 · Hero · split 448/576 <span class="b b-wix">WIX VIDEO</span></span>
+      <div class="d-hero">
+        <div class="txt">
+          <span class="kick">FRESH · LOCAL · SINCE 2003</span>
+          <h2>Value proposition headline sits here</h2>
+          <p>One sentence. Fresh · local · scratch-made. Copy TBD. No carousel — one hero, one job.</p>
+          <div class="ctas">
+            <span class="d-btn">ORDER ONLINE</span>
+            <span class="d-btn ghost">VIEW MENU</span>
+          </div>
+        </div>
+        <div class="img" style="border-width:0 0 0 1px;">HERO IMAGE / MUTED VIDEO LOOP<br>3:2 CROP — NO TRUE-WIDE SHOTS IN LIBRARY<br>STATIC FALLBACK REQUIRED</div>
+      </div>
+    </section>
+
+    <section class="d-pad">
+      <span class="tag">2 · Signature menu · 4-col</span>
+      <h3 class="d-h">Signature items</h3>
+      <div class="d-grid4">
+        <div class="card"><div class="img">ITEM · SET A</div><div class="nm">Item name</div><div class="pr">$ —.—</div></div>
+        <div class="card"><div class="img">ITEM · SET A</div><div class="nm">Item name</div><div class="pr">$ —.—</div></div>
+        <div class="card"><div class="img">ITEM · SET A</div><div class="nm">Item name</div><div class="pr">$ —.—</div></div>
+        <div class="card"><div class="img">ITEM · SET A</div><div class="nm">Item name</div><div class="pr">$ —.—</div></div>
+      </div>
+      <p class="miss">[MISSING] which items are “signature” + prices</p>
+      <div style="margin-top:20px;"><span class="d-btn ghost">FULL MENU</span></div>
+    </section>
+
+    <section>
+      <span class="tag">3 · Story · split 50/50</span>
+      <div class="d-split">
+        <div class="img" style="border-width:0 1px 0 0;">MURAL / INTERIOR — SET B<br>“EVERYTHING IS GOING TO BE OK”</div>
+        <div class="txt">
+          <span class="kick">SINCE 2003 · WEST PALM BEACH</span>
+          <h3>Brand / hometown story</h3>
+          <p>Scratch cooking, hometown Florida, the mantra. Draft from current About copy; client approves. → /about</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="tag">4 · Lifestyle · full-bleed band</span>
+      <div class="img" style="height:320px;border-width:0;">LIFESTYLE IMAGE — ONE HUMAN MOMENT, NOT A TILE WALL (SET A/B)</div>
+    </section>
+
+    <section class="d-pad">
+      <span class="tag">5 · Locations · CMS-fed <span class="b b-wix">WIX CMS</span></span>
+      <h3 class="d-h">Find your Field of Greens</h3>
+      <div class="d-loc">
+        <div class="bx">STORE CARD<br>NAME · CITY · STATUS<br>ORDER →</div>
+        <div class="bx">STORE CARD</div>
+        <div class="bx">STORE CARD</div>
+        <div class="bx">STORE CARD ×9→14+</div>
+      </div>
+      <div style="margin-top:20px;"><span class="d-btn ghost">ALL LOCATIONS</span></div>
+    </section>
+
+    <section>
+      <span class="tag">6 · Catering · split <span class="b b-ext">EZCATER</span></span>
+      <div class="d-split" style="min-height:360px;">
+        <div class="txt">
+          <span class="kick">LETTUCE CATER YOUR NEXT EVENT</span>
+          <h3>Catering</h3>
+          <p>Story teaser → /catering (expanded page per kickoff). Copy-first until a catering shoot exists.</p>
+          <div class="ctas" style="margin-top:24px;"><span class="d-btn ghost">EXPLORE CATERING</span></div>
+        </div>
+        <div class="img" style="border-width:0 0 0 1px;">CATERING IMAGE — PROXY SHOTS FOR NOW (GAP FLAGGED)</div>
+      </div>
+    </section>
+
+    <section class="d-pad">
+      <span class="tag">7 · Instagram · 6-col <span class="b b-new">NEW</span> <span class="b b-ext">EXT · IG</span></span>
+      <h3 class="d-h">@ilovefog</h3>
+      <div class="d-ig">
+        <div class="img">UGC</div><div class="img">UGC</div><div class="img">UGC</div>
+        <div class="img">UGC</div><div class="img">UGC</div><div class="img">UGC</div>
+      </div>
+      <p class="ph" style="font-size:12px;color:var(--soft);margin-top:12px;">Wix Instagram Feed app — 6 tiles → profile. Requires client IG business-account auth.</p>
+      <p class="miss">[MISSING] IG account authorization</p>
+    </section>
+
+    <section class="d-vip">
+      <span class="tag">8 · VIP signup <span class="b b-new">NEW</span> <span class="b b-ext">MAILCHIMP</span></span>
+      <div class="d-pad inner">
+        <div>
+          <h3 class="d-h" style="margin-bottom:8px;">Join the VIP list</h3>
+          <p style="font-size:14px;color:var(--soft);line-height:1.6;">Free [ITEM — TBD] on your birthday. Email + birthday → Mailchimp audience; automation lives in Mailchimp. Band repeats in global footer.</p>
+          <p class="miss">[MISSING] offer terms · Mailchimp account access</p>
+        </div>
+        <div class="field">
+          <div class="in">EMAIL</div>
+          <div class="in" style="flex:0 0 110px;">BIRTHDAY</div>
+          <div class="go">JOIN</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="d-quiet">
+      <span class="tag">9 · Licensing · quiet by design</span>
+      <p>Own a Field of Greens — we’re growing across Florida and beyond.</p>
+      <span class="d-btn ghost">LICENSING OPPORTUNITIES</span>
+    </section>
+
+    <div class="d-footer">
+      <div><div class="bx" style="width:120px;height:34px;margin-bottom:12px;">LOGO</div>Where Greens Come True™</div>
+      <div><div class="h">Visit</div>Menu<br>Locations<br>Catering<br>About</div>
+      <div><div class="h">Company</div>Licensing<br>Careers<br>Gift Cards<br>Contact</div>
+      <div><div class="h">VIP list <span class="b b-ext">MAILCHIMP</span></div><div class="field" style="margin-top:8px;"><div class="in">EMAIL</div><div class="go" style="padding:10px 14px;font-size:11px;">JOIN</div></div></div>
+    </div>
+    <div class="d-legal"><span>© FIELD OF GREENS · EST. 2003 · WEST PALM BEACH FL</span><span>PRIVACY · TERMS · ACCESSIBILITY</span></div>
+  </div>
+
+  <!-- ═══════════════════ MOBILE 320 ═══════════════════ -->
+  <p class="frame-label"><b>Mobile</b> · 320 px canvas · 16 px margins · same section order</p>
+  <div class="mobile">
+    <div class="m-strip">ANNOUNCEMENT STRIP · OPTIONAL</div>
+
+    <div class="m-nav">
+      <div class="bx" style="width:84px;height:28px;">LOGO</div>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <div class="bx" style="width:72px;height:28px;background:var(--green-tint);border-color:var(--green);color:var(--green);font-size:8.5px;">ORDER</div>
+        <div class="bx" style="width:36px;height:28px;">☰</div>
+      </div>
+    </div>
+
+    <section>
+      <span class="tag">1 · Hero <span class="b b-wix">WIX VIDEO</span></span>
+      <div class="img" style="height:192px;">HERO — 3:2 CROP<br>MUTED LOOP OPT.</div>
+      <h2 style="margin-top:14px;">Value proposition headline</h2>
+      <p class="ph">One sentence. Fresh · local · scratch-made. Copy TBD.</p>
+      <a class="m-btn">ORDER ONLINE → store picker</a>
+      <a class="m-btn ghost">VIEW MENU</a>
+    </section>
+
+    <section>
+      <span class="tag">2 · Signature · 2×2</span>
+      <h2>Signature items</h2>
+      <div class="m-row"><div class="img" style="height:132px;">ITEM · SET A</div><div class="img" style="height:132px;">ITEM</div></div>
+      <div class="m-row"><div class="img" style="height:132px;">ITEM</div><div class="img" style="height:132px;">ITEM</div></div>
+      <p class="miss">[MISSING] signature picks + prices</p>
+      <a class="m-btn ghost">FULL MENU</a>
+    </section>
+
+    <section>
+      <span class="tag">3 · Story</span>
+      <h2>Brand / hometown story</h2>
+      <div class="img" style="height:160px;">MURAL / INTERIOR (SET B)</div>
+      <p class="ph" style="margin-top:10px;">Since 2003 in West Palm Beach… “Everything is going to be OK.” → /about</p>
+    </section>
+
+    <section>
+      <span class="tag">4 · Lifestyle</span>
+      <div class="img" style="height:180px;">LIFESTYLE — ONE HUMAN MOMENT</div>
+    </section>
+
+    <section>
+      <span class="tag">5 · Locations <span class="b b-wix">WIX CMS</span></span>
+      <h2>Find your store</h2>
+      <div class="m-scroll">
+        <div class="bx">STORE CARD<br>NAME · CITY · ORDER</div>
+        <div class="bx">STORE CARD ×9→14+ →</div>
+      </div>
+      <a class="m-btn ghost">ALL LOCATIONS</a>
+    </section>
+
+    <section>
+      <span class="tag">6 · Catering <span class="b b-ext">EZCATER</span></span>
+      <h2>Catering</h2>
+      <div class="img" style="height:132px;">CATERING — PROXY SHOT (GAP)</div>
+      <p class="ph" style="margin-top:8px;">Story teaser → /catering</p>
+      <a class="m-btn ghost">EXPLORE CATERING</a>
+    </section>
+
+    <section>
+      <span class="tag">7 · IG <span class="b b-new">NEW</span> <span class="b b-ext">IG</span></span>
+      <h2>@ilovefog</h2>
+      <div class="m-ig">
+        <div class="img">UGC</div><div class="img">UGC</div><div class="img">UGC</div>
+        <div class="img">UGC</div><div class="img">UGC</div><div class="img">UGC</div>
+      </div>
+      <p class="miss">[MISSING] IG account auth</p>
+    </section>
+
+    <section style="background:var(--green-tint);">
+      <span class="tag">8 · VIP <span class="b b-new">NEW</span> <span class="b b-ext">MAILCHIMP</span></span>
+      <h2>Join the VIP list</h2>
+      <p class="ph">Free [ITEM — TBD] on your birthday.</p>
+      <div class="field" style="margin-top:10px;"><div class="in" style="padding:11px;">EMAIL</div><div class="go" style="padding:11px 14px;font-size:11px;">JOIN</div></div>
+      <div class="field" style="margin-top:6px;"><div class="in" style="padding:11px;">BIRTHDAY</div></div>
+      <p class="miss">[MISSING] offer terms · Mailchimp access</p>
+    </section>
+
+    <section>
+      <span class="tag">9 · Licensing (quiet)</span>
+      <h2>Own a Field of Greens</h2>
+      <p class="ph">One line, quiet by design — claims from FTK deck only.</p>
+      <a class="m-btn ghost">LICENSING OPPORTUNITIES</a>
+    </section>
+
+    <section style="background:#f2f1ec;border-bottom:none;">
+      <span class="tag">Footer</span>
+      <p class="ph">Menu · Locations · Catering · About · Licensing · Careers · Gift Cards · Contact · Social · Privacy / Terms / Accessibility<br>+ VIP signup band <span class="b b-ext">MAILCHIMP</span></p>
+    </section>
+  </div>
+</div>
+</body>
+</html>

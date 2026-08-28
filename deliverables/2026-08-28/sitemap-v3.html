@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field of Greens — Sitemap v3 (final proposal)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fafaf7; --paper2:#f0f0ea; --ink:#181817; --muted:#4c4c47; --soft:#7e7e76;
+  --rule:rgba(24,24,23,0.12); --rule-solid:#c8c8c0;
+  --green:#249a47; --green-tint:rgba(36,154,71,0.08);
+  --ext:#2e5aa8; --ext-tint:rgba(46,90,168,0.07);
+  --display:'Cormorant Garamond',Garamond,'Palatino Linotype',Palatino,serif; --body:'DM Sans','Helvetica Neue',Arial,sans-serif; --mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);padding:3rem 1.5rem 4rem;font-size:15px;line-height:1.55;}
+.wrap{max-width:1080px;margin:0 auto;}
+
+/* ---------- type roles ---------- */
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin:0 0 .75rem;}
+h1{font-family:var(--display);font-weight:600;font-size:2.6rem;line-height:1.08;margin:0 0 .5rem;letter-spacing:-.01em;}
+h2{font-family:var(--display);font-weight:600;font-size:1.65rem;margin:3.5rem 0 .35rem;letter-spacing:-.005em;}
+h2 + .h2sub{color:var(--muted);font-size:.85rem;margin:0 0 1.25rem;max-width:760px;}
+.sub{color:var(--muted);font-size:.95rem;margin:0 0 1.5rem;max-width:820px;}
+.aside{font-family:var(--display);font-style:italic;font-size:1.05rem;color:var(--muted);border-top:1px solid var(--rule);margin-top:3rem;padding-top:1.25rem;max-width:860px;}
+.colophon{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--soft);border-top:1px solid var(--rule);margin-top:2.5rem;padding-top:.75rem;text-transform:uppercase;line-height:1.8;}
+
+/* ---------- badges ---------- */
+.b{display:inline-block;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;padding:2px 6px;line-height:1.4;white-space:nowrap;vertical-align:middle;}
+.b-wix{border:1px solid var(--green);color:var(--green);background:var(--green-tint);}
+.b-ext{border:1px solid var(--ext);color:var(--ext);background:var(--ext-tint);}
+.b-new{background:var(--green);color:#fff;border:1px solid var(--green);}
+.b-open{border:1px dashed var(--soft);color:var(--soft);background:transparent;}
+
+/* ---------- legend ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;align-items:center;border:1px solid var(--rule);border-radius:6px;padding:.8rem 1rem;margin:1.25rem 0 0;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.legend .sw{display:inline-block;width:13px;height:9px;border-radius:2px;margin-right:6px;vertical-align:-1px;}
+
+/* ---------- zones ---------- */
+.zone{border-top:1px solid var(--rule);margin-top:2.75rem;padding-top:.9rem;}
+.zone-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin:0 0 1rem;}
+.zone-label b{color:var(--ink);font-weight:600;}
+
+/* ---------- tree ---------- */
+.root-row{display:flex;justify-content:center;margin-bottom:0;}
+.spine{width:1px;height:26px;background:var(--muted);margin:0 auto;}
+.bus{height:1px;background:var(--muted);margin:0 11.5%;position:relative;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.grid4 .col{display:flex;flex-direction:column;gap:0;}
+.drop{width:1px;height:22px;background:var(--muted);margin:0 auto;}
+.drop.dash{background:none;border-left:1px dashed var(--soft);}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+
+/* ---------- node cards ---------- */
+.node{background:#fff;border:1px solid var(--ink);border-radius:6px;padding:.85rem .95rem .9rem;position:relative;}
+.node.root{max-width:520px;width:100%;}
+.node.cms{background:rgba(24,24,23,0.035);border-color:var(--muted);}
+.node.form{background:rgba(76,76,71,0.08);border-color:var(--soft);}
+.node.pattern{background:rgba(24,24,23,0.02);border:1px dashed rgba(24,24,23,0.35);}
+.node.focal{background:var(--green-tint);border:1.3px solid var(--green);}
+.node.pending{background:rgba(24,24,23,0.02);border:1px dashed rgba(24,24,23,0.25);color:var(--muted);}
+.node .nm{font-family:var(--body);font-weight:700;font-size:.95rem;letter-spacing:-.01em;display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;}
+.node .rt{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px;}
+.node .badges{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;}
+.node ul.sec{margin:.65rem 0 0;padding:0;list-style:none;border-top:1px solid var(--rule);}
+.node ul.sec li{font-size:.78rem;color:var(--muted);padding:.4rem 0;border-bottom:1px solid var(--rule);line-height:1.45;}
+.node ul.sec li:last-child{border-bottom:none;padding-bottom:0;}
+.node ul.sec li b{color:var(--ink);font-weight:600;}
+.node ul.sec li .b{font-size:7.5px;padding:1px 4px;margin-left:2px;}
+.node ul.sec li .ix{font-family:var(--mono);font-size:9px;color:var(--soft);display:block;margin-top:1px;}
+.node .foot{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;color:var(--soft);margin-top:.6rem;text-transform:uppercase;}
+
+/* ---------- integration registry ---------- */
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:.25rem;}
+th{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);text-align:left;font-weight:500;padding:.5rem .7rem;border-bottom:1px solid var(--rule-solid);}
+td{padding:.7rem;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5;background:#fff;}
+td.mono{font-family:var(--mono);font-size:10px;color:var(--muted);white-space:nowrap;}
+td .why{color:var(--muted);}
+td .call{font-weight:600;}
+tr.flag td{background:var(--green-tint);}
+tr.extflag td{background:var(--ext-tint);}
+
+/* ---------- wix split ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.25rem;}
+.split .panel{border-radius:6px;padding:1rem 1.1rem;}
+.split .panel.in{background:#fff;border:1.3px solid var(--green);}
+.split .panel.out{background:#fff;border:1.3px solid var(--ext);}
+.split .panel h3{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin:0 0 .6rem;}
+.split .panel.in h3{color:var(--green);}
+.split .panel.out h3{color:var(--ext);}
+.split .panel ul{margin:0;padding:0;list-style:none;}
+.split .panel li{font-size:.8rem;color:var(--muted);padding:.35rem 0;border-bottom:1px solid var(--rule);line-height:1.45;}
+.split .panel li:last-child{border-bottom:none;}
+.split .panel li b{color:var(--ink);font-weight:600;}
+.split .note{grid-column:1/-1;font-size:.78rem;color:var(--muted);border:1px dashed rgba(24,24,23,0.25);border-radius:6px;padding:.7rem .9rem;}
+
+/* ---------- reconciliation ---------- */
+.recon{display:flex;border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-top:.25rem;}
+.recon>div{padding:.85rem 1rem;border-right:1px solid var(--rule);}
+.recon>div:last-child{border-right:none;}
+.recon .n{font-family:var(--mono);font-size:22px;font-weight:600;}
+.recon .l{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-top:3px;line-height:1.7;}
+.recon .keep{background:#fff;flex:1.1;}
+.recon .fold{background:var(--green-tint);flex:1.3;}
+.recon .dec{background:rgba(24,24,23,0.02);flex:1;}
+.recon .ret{background:rgba(24,24,23,0.05);flex:.8;}
+
+ul.open{font-size:.82rem;color:var(--muted);line-height:1.75;margin:.5rem 0 0;padding-left:1.1rem;}
+ul.open li b{color:var(--ink);font-weight:600;}
+
+@media (max-width:840px){
+  .grid4,.grid3,.grid2,.split{grid-template-columns:1fr;}
+  .bus{display:none;}
+  .drop{display:none;}
+  .spine{display:none;}
+  .recon{flex-direction:column;}
+  .recon>div{border-right:none;border-bottom:1px solid var(--rule);}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Phase 1 · Information Architecture · Final Proposal · Supersedes v2 (2026-08-20)</p>
+  <h1>Field of Greens — Sitemap v3</h1>
+  <p class="sub">The consumer spine — Menu, Locations, Catering, About — carries the site; ordering is the single focal conversion; licensing keeps its deliberate quiet room. v3 folds in what v2 predates: the <strong>2026-08-21 kickoff requests</strong> (VIP/loyalty signup, Instagram feed, expanded catering, more video) and the <strong>2026-08-25 competitive review</strong> (file 13). Every node is annotated with its sections and interactions, badged for the third-party integrations it touches, and marked <strong>Wix-native vs. external</strong> so the Wix Studio ceiling stays visible.</p>
+
+  <div class="legend">
+    <span><i class="sw" style="background:#fff;border:1px solid var(--ink);"></i>Page</span>
+    <span><i class="sw" style="background:rgba(24,24,23,0.035);border:1px solid var(--muted);"></i>CMS-driven</span>
+    <span><i class="sw" style="background:rgba(76,76,71,0.08);border:1px solid var(--soft);"></i>Form</span>
+    <span><i class="sw" style="background:var(--green-tint);border:1.3px solid var(--green);"></i>Focal conversion</span>
+    <span><i class="sw" style="background:rgba(24,24,23,0.02);border:1px dashed rgba(24,24,23,0.35);"></i>Pattern / pending</span>
+    <span><span class="b b-wix">WIX</span> native</span>
+    <span><span class="b b-ext">EXT</span> third-party</span>
+    <span><span class="b b-new">NEW</span> kickoff 8/21</span>
+    <span><span class="b b-open">Confirm</span> client input</span>
+  </div>
+
+  <!-- ══════════════ ZONE: GLOBAL PATTERNS ══════════════ -->
+  <div class="zone">
+    <p class="zone-label"><b>Site-wide patterns</b> — chrome and conversions, not pages</p>
+    <div class="grid2">
+      <div class="node focal">
+        <div class="nm">Order Online — the primary conversion <span class="b b-wix">Wix Lightbox</span></div>
+        <div class="rt">persistent header CTA → store picker → hand-off</div>
+        <ul class="sec">
+          <li><b>Picker overlay</b> — choose store (CMS-fed), then pickup or delivery
+            <span class="ix">interaction: lightbox · 2 taps max · remembers last store (session)</span></li>
+          <li><b>Pickup</b> → Toast per-store URL <span class="b b-ext">EXT · Toast</span>
+            <span class="ix">order.toasttab.com/online/… · outbound, new tab</span></li>
+          <li><b>Delivery</b> → UberEats per-store URL <span class="b b-ext">EXT · UberEats</span>
+            <span class="ix">ubereats.com/store/… · outbound, new tab</span></li>
+          <li><b>/order fallback page</b> — stable URL for Google Business Profile links <span class="b b-wix">WIX</span></li>
+        </ul>
+        <div class="foot">Never a custom cart — checkout stays external by scope design</div>
+      </div>
+      <div class="col" style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="node">
+          <div class="nm">VIP / loyalty signup <span class="b b-new">NEW</span> <span class="b b-ext">EXT · Mailchimp</span></div>
+          <div class="rt">footer band on every page + home section 8</div>
+          <ul class="sec">
+            <li><b>Email + birthday capture</b> → Mailchimp audience; free-item birthday offer
+              <span class="ix">interaction: inline form → success state · automation lives in Mailchimp</span></li>
+            <li><span class="b b-open">Confirm</span> Mailchimp account access, offer terms, welcome flow owner</li>
+          </ul>
+        </div>
+        <div class="node pattern">
+          <div class="nm">Announcement strip <span class="b b-wix">WIX</span></div>
+          <div class="rt">optional · seasonal/promo use — not a permanent licensing banner</div>
+        </div>
+        <div class="node pattern">
+          <div class="nm">Global header + footer <span class="b b-wix">WIX</span></div>
+          <div class="rt">nav: Menu · Locations · Catering · About + Order CTA · footer carries utility + licensing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ ZONE: CONSUMER TREE ══════════════ -->
+  <div class="zone">
+    <p class="zone-label"><b>Consumer site</b> — primary navigation</p>
+
+    <div class="root-row">
+      <div class="node root">
+        <div class="nm">Home <span class="b b-wix">WIX</span></div>
+        <div class="rt">/ · rebuilt — image-led, one job per section</div>
+        <ul class="sec">
+          <li><b>1 · Hero</b> — one headline, dual CTA (Order / Menu) · optional muted video loop <span class="b b-wix">Wix Video</span>
+            <span class="ix">ref: Pura Vida / 3 Natives image-led calm · no true-wide shots in library — 3:2 or split layout · motion capped per perf rules</span></li>
+          <li><b>2 · Signature items</b> ×4, Set A photography → /menu</li>
+          <li><b>3 · Story band</b> — 2003 · WPB · “Everything is going to be OK” → /about</li>
+          <li><b>4 · Lifestyle moment</b> — one human image, not a tile wall</li>
+          <li><b>5 · Locations scroller</b> — CMS-fed cards ×9→14+ → /locations <span class="b b-wix">WIX CMS</span></li>
+          <li><b>6 · Catering teaser</b> → /catering</li>
+          <li><b>7 · Instagram feed</b> — 6–8 UGC tiles <span class="b b-new">NEW</span> <span class="b b-ext">EXT · Instagram</span>
+            <span class="ix">Wix Instagram Feed app · requires client IG business-account auth</span></li>
+          <li><b>8 · VIP signup band</b> <span class="b b-ext">EXT · Mailchimp</span></li>
+          <li><b>9 · Licensing teaser</b> — one quiet line → /licensing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="spine"></div>
+    <div class="bus"></div>
+
+    <div class="grid4">
+      <div class="col">
+        <div class="drop"></div>
+        <div class="node">
+          <div class="nm">Menu <span class="b b-wix">WIX CMS</span></div>
+          <div class="rt">/menu · single page · absorbs 9 doorway URLs</div>
+          <ul class="sec">
+            <li><b>Sticky category chips</b> → in-page anchors ×8
+              <span class="ix">interaction: scroll-spy highlight · juices pending <span class="b b-open">Confirm</span></span></li>
+            <li><b>Dietary tags + filter</b> GF / Vegan
+              <span class="ix">ref: Sweetgreen menu-UX ceiling · vet Wix repeater filter capacity at build</span></li>
+            <li><b>Item rows</b> — name · desc · <b>price (mandatory)</b>; signature items photo-first</li>
+            <li><b>Sticky bottom Order bar</b> (mobile) → picker <span class="b b-wix">Lightbox</span></li>
+          </ul>
+          <div class="foot">CMS: MenuItems — name · category · desc · price · tags · featured · sort</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="drop"></div>
+        <div class="node">
+          <div class="nm">Locations <span class="b b-wix">WIX CMS</span></div>
+          <div class="rt">/locations · index</div>
+          <ul class="sec">
+            <li><b>Store cards</b> — CMS-fed, grouped open / coming soon
+              <span class="ix">interaction: status filter · card → detail page</span></li>
+            <li><b>Modeled for 14+</b> — status + venue-type fields (inline · office · airport)
+              <span class="ix">ref: Bolay per-location architecture — the scalable pattern FOG needs</span></li>
+          </ul>
+        </div>
+        <div class="drop"></div>
+        <div class="node cms">
+          <div class="nm">Location detail</div>
+          <div class="rt">/locations/[slug] · dynamic template ×9→14+</div>
+          <ul class="sec">
+            <li><b>Address · hours · phone</b> + directions <span class="b b-ext">EXT · Google Maps</span></li>
+            <li><b>Order buttons</b> <span class="b b-ext">Toast</span> <span class="b b-ext">UberEats</span> · catering <span class="b b-ext">EZCater</span></li>
+            <li><b>Short local intro + gallery</b> — absorbs 80 doorway URLs via 301</li>
+          </ul>
+          <div class="foot">New store = a CMS entry, not a build task</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="drop"></div>
+        <div class="node">
+          <div class="nm">Catering <span class="b b-new">Expanded</span></div>
+          <div class="rt">/catering · fleshed-out per kickoff · absorbs 5 doorway URLs</div>
+          <ul class="sec">
+            <li><b>1 · Use cases</b> — office · events · schools</li>
+            <li><b>2 · How it works</b> — 3 steps</li>
+            <li><b>3 · Menu highlights / packages</b> — placeholder until client data</li>
+            <li><b>4 · Per-store EZCater buttons</b> <span class="b b-ext">EXT · EZCater</span>
+              <span class="ix">4 store URLs verified · 4–5 missing — never invented <span class="b b-open">Confirm</span></span></li>
+            <li><b>5 · Inquiry fallback form</b> <span class="b b-wix">WIX Form</span>
+              <span class="ix">for events EZCater doesn’t fit · recipient TBD</span></li>
+          </ul>
+          <div class="foot">Copy-first until a catering shoot exists (zero true catering shots in library)</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="drop"></div>
+        <div class="node">
+          <div class="nm">About <span class="b b-wix">WIX</span></div>
+          <div class="rt">/about · story kept · absorbs gallery + greenmarket</div>
+          <ul class="sec">
+            <li><b>Story</b> — 2003 · West Palm Beach · scratch cooking · mantra mural
+              <span class="ix">ref: Mendocino Farms — heritage mark modernized, not discarded</span></li>
+            <li><b>Seal + “Everything Is Going To Be OK”</b> as brand devices</li>
+            <li><b>Gallery band</b> — folds in old gallery/greenmarket pages</li>
+            <li><b>Growth passage</b> — quiet route → /licensing</li>
+            <li><b>Careers + contact links</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ ZONE: INVESTOR ══════════════ -->
+  <div class="zone">
+    <p class="zone-label"><b>Investor-facing — quiet by design</b> · footer + about entry · not primary nav · the FTK deck links here</p>
+    <div class="grid2">
+      <div class="node">
+        <div class="nm">Licensing <span class="b b-wix">WIX</span></div>
+        <div class="rt">/licensing · replaces one-line stub · claims per FTK deck only</div>
+        <ul class="sec">
+          <li><b>1 · Positioning</b> — proof-first narrative, mirrors deck wireframe v3</li>
+          <li><b>2 · Momentum band</b> — 9 stores + pipeline · deck-approved claims only
+            <span class="ix">unit economics stay in the deck — the page qualifies and routes</span></li>
+          <li><b>3 · Formats</b> — inline · office tower · airport</li>
+          <li><b>4 · Process</b> — inquire → qualify → deck → territory
+            <span class="ix">ref: Crisp &amp; Green ownership merchandising — structure without volume</span></li>
+          <li><b>SEO note</b> — metadata targets “franchise” searches; on-page language stays “licensing” <span class="b b-open">Confirm legal term</span></li>
+        </ul>
+      </div>
+      <div class="node form">
+        <div class="nm">Inquiry form <span class="b b-wix">WIX Form</span></div>
+        <div class="rt">on /licensing · name · email · phone · market · message</div>
+        <ul class="sec">
+          <li><b>Routing</b> — FTK (Francis Kasper) vs. Dan Morris (FOG VP) <span class="b b-open">Confirm w/ David</span></li>
+          <li><b>Qualification fields</b> only if FTK explicitly requests them</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ ZONE: UTILITY ══════════════ -->
+  <div class="zone">
+    <p class="zone-label"><b>Utility tier</b> — footer + direct entry</p>
+    <div class="grid4">
+      <div class="node">
+        <div class="nm">Gift Cards</div>
+        <div class="rt">/gift-cards · carried</div>
+        <ul class="sec"><li>Provider unknown — Toast gift cards or current vendor <span class="b b-open">Confirm</span> <span class="b b-ext">EXT · TBD</span></li></ul>
+      </div>
+      <div class="node">
+        <div class="nm">Careers</div>
+        <div class="rt">/careers · carried</div>
+        <ul class="sec"><li>Application via Wix form unless an ATS exists <span class="b b-wix">WIX Form</span> <span class="b b-open">Confirm</span></li></ul>
+      </div>
+      <div class="node">
+        <div class="nm">Contact</div>
+        <div class="rt">/contact · surfaced from about hub</div>
+        <ul class="sec"><li>Form + store directory <span class="b b-wix">WIX Form</span></li></ul>
+      </div>
+      <div class="node">
+        <div class="nm">Privacy · Terms · Accessibility</div>
+        <div class="rt">NEW — absent from all 168 current URLs</div>
+        <ul class="sec"><li>Legal copy supplied/approved by client — drafting out of scope <span class="b b-open">Client</span></li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ ZONE: NOT CARRIED ══════════════ -->
+  <div class="zone">
+    <p class="zone-label"><b>Not carried forward</b> — client sign-off needed</p>
+    <div class="grid4">
+      <div class="node pending"><div class="nm">Blog ×51</div><div class="rt">IG reposts → 301 to /about · no new blog</div></div>
+      <div class="node pending"><div class="nm">Gallery · Greenmarket</div><div class="rt">fold into /about</div></div>
+      <div class="node pending"><div class="nm">Clearlake ×2</div><div class="rt">may be the future One Clearlake store — hold, don’t 410</div></div>
+      <div class="node pending"><div class="nm">Thank-you ×2</div><div class="rt">retire — forms rebuilt with inline success states</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ INTEGRATION REGISTRY ══════════════ -->
+  <h2>Third-party integration registry</h2>
+  <p class="h2sub">Every external system the build touches — where it appears, how it’s implemented inside Wix Studio, and what we still need from the client. Outbound-link integrations carry no embed risk; app/embed integrations need auth and a build-time vet.</p>
+  <table>
+    <thead><tr><th style="width:14%">System</th><th style="width:16%">Role</th><th style="width:22%">Surfaces</th><th style="width:26%">Implementation in Wix</th><th style="width:22%">Status / needs</th></tr></thead>
+    <tbody>
+      <tr class="flag">
+        <td class="mono">TOAST</td>
+        <td><span class="call">Pickup checkout</span></td>
+        <td>Order picker · location pages · /order</td>
+        <td>Outbound per-store links, new tab — no embed</td>
+        <td><span class="why">2 store URLs verified in audit — need all 8–9 + Avenir</span> <span class="b b-open">Confirm</span></td>
+      </tr>
+      <tr class="flag">
+        <td class="mono">UBEREATS</td>
+        <td><span class="call">Delivery checkout</span></td>
+        <td>Order picker · location pages · /order</td>
+        <td>Outbound per-store links, new tab — no embed</td>
+        <td><span class="why">7 store URLs recovered — verify + fill gaps</span> <span class="b b-open">Confirm</span></td>
+      </tr>
+      <tr class="flag">
+        <td class="mono">EZCATER</td>
+        <td><span class="call">Catering orders</span></td>
+        <td>/catering per-store buttons · location pages</td>
+        <td>Outbound per-store links — route direct to FOG stores, never the marketplace search (the original complaint)</td>
+        <td><span class="why">4 URLs verified · 4–5 missing — never invented</span> <span class="b b-open">Confirm</span></td>
+      </tr>
+      <tr class="extflag">
+        <td class="mono">MAILCHIMP</td>
+        <td><span class="call">VIP list · birthday offer</span> <span class="b b-new">NEW</span></td>
+        <td>Footer band sitewide · home section 8</td>
+        <td>Wix–Mailchimp integration or embedded form; welcome/birthday automation lives in Mailchimp</td>
+        <td><span class="why">Account access · offer terms · flow owner</span> <span class="b b-open">Confirm</span></td>
+      </tr>
+      <tr class="extflag">
+        <td class="mono">INSTAGRAM</td>
+        <td><span class="call">UGC feed</span> <span class="b b-new">NEW</span></td>
+        <td>Home section 7</td>
+        <td>Wix Instagram Feed app — requires IG business-account authorization; vet app quality at build</td>
+        <td><span class="why">Client IG login/auth session</span> <span class="b b-open">Confirm</span></td>
+      </tr>
+      <tr>
+        <td class="mono">GOOGLE MAPS</td>
+        <td>Directions</td>
+        <td>Location detail pages</td>
+        <td>Outbound directions URLs (embed optional, adds weight)</td>
+        <td><span class="why">Build-time — addresses already on file</span></td>
+      </tr>
+      <tr>
+        <td class="mono">GA4 + GSC</td>
+        <td>Analytics · search</td>
+        <td>Sitewide</td>
+        <td>Wix integrations panel — new property; Search Console re-verify at DNS cutover</td>
+        <td><span class="why">Existing analytics access unknown — ask Jacob</span> <span class="b b-open">Confirm</span></td>
+      </tr>
+      <tr>
+        <td class="mono">GIFT CARDS</td>
+        <td>Gift card sales</td>
+        <td>/gift-cards</td>
+        <td>Outbound or embed — depends on provider</td>
+        <td><span class="why">Provider unidentified (Toast? current vendor?)</span> <span class="b b-open">Confirm</span></td>
+      </tr>
+      <tr>
+        <td class="mono">CAREERS</td>
+        <td>Applications</td>
+        <td>/careers</td>
+        <td>Wix form by default</td>
+        <td><span class="why">Confirm whether an ATS exists</span> <span class="b b-open">Confirm</span></td>
+      </tr>
+      <tr>
+        <td class="mono">META PIXEL</td>
+        <td>Ads measurement</td>
+        <td>Sitewide</td>
+        <td>Wix integrations panel</td>
+        <td><span class="why">Only if requested — parked</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══════════════ WIX SPLIT ══════════════ -->
+  <h2>What lives in Wix — and what doesn’t</h2>
+  <p class="h2sub">The scope boundary, drawn explicitly. Everything left of the line is a Wix Studio build task Jacob can maintain; everything right is an external account the client controls.</p>
+  <div class="split">
+    <div class="panel in">
+      <h3>Built in Wix Studio</h3>
+      <ul>
+        <li><b>~14 pages</b> — home, menu, locations index, catering, about, licensing, order, gift cards, careers, contact, privacy, terms, accessibility (+404)</li>
+        <li><b>Locations CMS</b> — dynamic /locations/[slug] template, 14+ rows, status + venue-type fields</li>
+        <li><b>MenuItems CMS</b> — categories, prices, dietary tags, featured flags</li>
+        <li><b>Forms ×3–4</b> — licensing, catering, contact, careers (+ inline success states)</li>
+        <li><b>Order-picker lightbox</b> — store select → Toast/UberEats hand-off</li>
+        <li><b>301 redirects</b> — all 168 legacy URLs via Wix URL Redirect Manager</li>
+        <li><b>SEO controls</b> — meta, OG, structured data for stores (LocalBusiness)</li>
+        <li><b>Announcement strip · sticky header · hero video · image optimization</b></li>
+      </ul>
+    </div>
+    <div class="panel out">
+      <h3>Handled outside Wix</h3>
+      <ul>
+        <li><b>Checkout</b> — Toast (pickup) · UberEats (delivery) — outbound only</li>
+        <li><b>Catering commerce</b> — EZCater per-store stores</li>
+        <li><b>Email / CRM + automations</b> — Mailchimp (VIP list, birthday offer)</li>
+        <li><b>UGC</b> — Instagram (feed app needs client auth)</li>
+        <li><b>Analytics</b> — GA4 + Search Console (Google accounts)</li>
+        <li><b>Gift cards</b> — provider TBD</li>
+        <li><b>Domain / DNS</b> — registrar transfer away from Serpcom at launch</li>
+      </ul>
+    </div>
+    <div class="note"><strong>Hard boundary:</strong> no custom ordering, cart, checkout, payments, delivery logistics, or order management — existing third-party ordering and EZCater remain external, per scope. Wix Studio is the capability ceiling: any pattern borrowed from the competitive set (Sweetgreen-grade filters, custom interactions) gets vetted against what Wix + Jacob’s maintenance capacity can sustain before it’s promised.</div>
+  </div>
+
+  <!-- ══════════════ RECONCILIATION ══════════════ -->
+  <h2>Where the current site goes — all 168 URLs reconciled</h2>
+  <p class="h2sub">Unchanged from v2 — carried so the redirect-map deliverable has one source. Full URL-by-URL mapping happens at build phase.</p>
+  <div class="recon">
+    <div class="keep"><div class="n">16</div><div class="l">Kept as pages (re-pathed) — home · menu · locations index · 8 stores · catering · about · gift cards · careers · contact</div></div>
+    <div class="fold"><div class="n">95</div><div class="l">Folded into stronger pages — 80 location doorways · 9 menu doorways · 5 catering doorways · franchise stub → /licensing</div></div>
+    <div class="dec"><div class="n">55</div><div class="l">Client decision — blog ×51 · gallery · greenmarket · clearlake ×2 (may be the upcoming One Clearlake store)</div></div>
+    <div class="ret"><div class="n">2</div><div class="l">Retired — thank-you confirmations</div></div>
+  </div>
+
+  <!-- ══════════════ CHANGE LOG ══════════════ -->
+  <h2>What changed since v2 — and the evidence</h2>
+  <p class="h2sub">v2’s eight decisions (quiet licensing · CMS built for 14+ · doorway absorption · single menu page · ordering as pattern · copy-first catering · utility + legal tier · kill list) all carry forward. v3 adds and amends:</p>
+  <table>
+    <thead><tr><th style="width:5%">#</th><th style="width:26%">Change</th><th style="width:34%">Driven by</th><th style="width:35%">The call</th></tr></thead>
+    <tbody>
+      <tr class="flag"><td class="mono">C1</td><td><strong>VIP / loyalty signup added</strong></td><td>Kickoff 8/21 — birthday capture, free-item offer, Mailchimp</td><td>Global footer band + home section 8. Data and automations live in Mailchimp; Wix only renders the form.</td></tr>
+      <tr class="flag"><td class="mono">C2</td><td><strong>Instagram feed added to home</strong></td><td>Kickoff 8/21 — brand presence is largely UGC reposts</td><td>Home section 7 via Wix IG Feed app. Cheaper and more honest than rebuilding a blog — replaces the 51 IG-repost blog posts functionally.</td></tr>
+      <tr class="flag"><td class="mono">C3</td><td><strong>Catering expanded from routing stub to full page</strong></td><td>Kickoff 8/21 “fleshed-out catering” + zero catering photography</td><td>Use cases → how it works → packages → per-store EZCater → Wix inquiry fallback form. Copy-first until a shoot exists; flips photo-led without re-architecture.</td></tr>
+      <tr><td class="mono">C4</td><td><strong>Menu gains dietary filter posture</strong></td><td>File 13 — Sweetgreen as the menu-UX usability ceiling</td><td>GF/Vegan tags become filterable, not just badges — if Wix repeater filtering sustains it. Chips + anchors carried from v2.</td></tr>
+      <tr><td class="mono">C5</td><td><strong>Licensing page gets a proof-first section structure</strong></td><td>File 13 — Crisp &amp; Green ownership merchandising · deck wireframe v3 narrative</td><td>Positioning → momentum → formats → process → form. Housing stays quiet (v2 D1 unchanged); volume unchanged, structure improved.</td></tr>
+      <tr><td class="mono">C6</td><td><strong>Hero: image-led with optional video loop</strong></td><td>Kickoff — “Atari to PS5,” more video/interactivity · perf rules cap motion</td><td>Muted autoplay loop via Wix Video, static-image fallback; one hero, dual CTA, no carousel (the current site’s “cluster” starts here).</td></tr>
+      <tr><td class="mono">C7</td><td><strong>Type system locked</strong></td><td>Deck wireframe v3 already runs it; this file adopts it</td><td>Cormorant Garamond (display) · DM Sans (body) · JetBrains Mono (data, routes, labels, badges). Supersedes the interim Instrument Serif / Open Sans / Geist Mono set in earlier UX artifacts.</td></tr>
+      <tr><td class="mono">C8</td><td><strong>Every node badged Wix-native vs external</strong></td><td>File 13 watch-out — “Wix Studio is the ceiling”</td><td>Green = Wix build task, blue = external hand-off, dashed = pending client input. The integration registry above is the single list of external dependencies.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ══════════════ OPEN QUESTIONS ══════════════ -->
+  <h2>Open questions this sitemap deliberately does not resolve</h2>
+  <ul class="open">
+    <li><b>Licensing lead recipient</b> — FTK (Francis Kasper) vs. Dan Morris (FOG VP). Form routing blocked until David confirms.</li>
+    <li><b>Franchise vs. licensing</b> — kickoff said “franchise” throughout; FTK deck says licensing. Reconfirm the legally accurate term before any public copy ships.</li>
+    <li><b>Mailchimp</b> — account access, audience setup, birthday-offer terms, automation owner.</li>
+    <li><b>Instagram</b> — business-account auth for the feed app.</li>
+    <li><b>Gift-card provider</b> — Toast, current vendor, or other.</li>
+    <li><b>Ordering URLs</b> — complete Toast/UberEats/EZCater per-store lists, incl. Avenir and pipeline stores.</li>
+    <li><b>Menu data</b> — prices (mandatory), juices category, per-location differences (determines whether /menu stays one page).</li>
+    <li><b>Clearlake</b> — old URLs = future One Clearlake store pages, or dead location?</li>
+    <li><b>Serpcom handoff</b> — DNS/hosting/domain control before launch planning; Google Business Profile link targets (sets redirect priority).</li>
+    <li><b>Careers</b> — existing ATS or Wix form.</li>
+  </ul>
+
+  <p class="aside">v2 drew the reconciliation — every old URL answered for. v3 finishes the argument: the same consumer spine now carries the three things the kickoff added (VIP, Instagram, real catering), every section and interaction is placed, and the build’s external dependencies are named in one registry with their asks attached. Nothing in this structure invents a price, an address, an ordering URL, or a licensing claim — placeholders and CMS fields only, per project rules.</p>
+  <p class="colophon">Field of Greens · sitemap v3 · 2026-08-27 · supersedes v2 (08-20) · sources: file 11 audit (168 URLs) · kickoff notes 08-21 (file 00) · design research 08-25 (file 13) · FTK licensing deck · type: cormorant garamond / dm sans / jetbrains mono · internal — not client-facing until deposit received</p>
+</div>
+</body>
+</html>

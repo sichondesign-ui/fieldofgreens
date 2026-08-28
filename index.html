@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sichon Design × Field of Greens — Project Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161616; --dark:#2E2E2E; --mid:#5F5F5F; --faint:#9A9A9A;
+    --line:#E2E2E0; --wash:#F4F4F2; --paper:#FFFFFF;
+    --red:#CE1417; --green:#309942;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 40px}
+  a{color:inherit}
+
+  /* ── Header (dark surface) ──────────────── */
+  .topbar{background:var(--ink)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:30px;padding-bottom:30px;gap:28px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:22px}
+  .brand a, footer .sig a{display:block;line-height:0}
+  .brand a:hover img, footer .sig a:hover img{opacity:.75}
+  .brand img.sichon{height:44px;width:auto;display:block}
+  .brand .x{font-family:'Cormorant Garamond',serif;font-size:22px;color:#6E6E6E;font-style:italic}
+  .brand img.fog{height:20px;width:auto;display:block}
+  .topbar .meta{display:flex;gap:36px;flex-wrap:wrap}
+  .topbar .meta div{font-size:12px;color:#8B8B8B}
+  .topbar .meta b{display:block;font-size:13px;color:var(--paper);font-weight:500;margin-top:2px}
+
+  /* ── Hero (continues dark surface) ──────── */
+  .hero{background:var(--ink);padding:44px 0 72px}
+  .kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#E5484D;font-weight:700}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:52px;line-height:1.08;color:var(--paper);margin:16px 0 0;max-width:760px}
+  .hero h1 em{font-style:italic}
+
+  /* ── Release blocks ─────────────────────── */
+  .release{padding:56px 0;border-bottom:1px solid var(--line)}
+  .rel-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:8px}
+  .rel-head h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;color:var(--ink)}
+  .rel-head h2 em{font-style:italic}
+  .rel-date{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--mid);text-transform:uppercase}
+  .rel-note{max-width:720px;color:var(--mid);margin-bottom:32px}
+  .badge-latest{display:inline-block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--paper);background:var(--red);padding:4px 10px;border-radius:2px;vertical-align:middle;margin-left:10px}
+
+  .group-lbl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:30px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+  .card{position:relative;border:1px solid var(--line);background:var(--paper);padding:22px 24px 20px;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease}
+  .card:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 24px rgba(22,22,22,.07)}
+  .card .type{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);display:flex;justify-content:space-between;align-items:center}
+  .card .type .ext{color:var(--red)}
+  .card h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;line-height:1.2;color:var(--ink)}
+  .card p{font-size:13px;color:var(--mid);line-height:1.55}
+  .card .open{margin-top:auto;padding-top:12px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+  .card:hover .open{color:var(--red)}
+
+  footer{border-top:1px solid var(--line);padding:36px 0 72px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer .sig{display:flex;align-items:center;gap:14px}
+  footer img{height:26px;width:auto;opacity:.9}
+  footer .fine{font-size:12px;color:var(--faint)}
+
+  @media(max-width:760px){
+    .wrap{padding:0 22px}
+    .hero h1{font-size:38px}
+    .brand{gap:14px}
+    .brand img.sichon{height:34px}
+    .brand img.fog{height:15px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <a href="mailto:sichondesign@gmail.com" title="Email Sichon Design"><img class="sichon" src="assets/sichon-design-logo.png" alt="Sichon Design Inc"></a>
+      <span class="x">×</span>
+      <img class="fog" src="assets/fog-wordmark.svg" alt="Field of Greens">
+    </div>
+    <div class="meta">
+      <div>Client<b>Field of Greens · FTK Hospitality Advisory</b></div>
+      <div>Studio<b>Sichon Design Inc</b></div>
+      <div>Latest release<b>August 28, 2026</b></div>
+      <div>Deliverables to date<b>7</b></div>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Client Project Dashboard</div>
+    <h1>Field of Greens — website &amp; licensing <em>deliverables.</em></h1>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     RELEASE ARCHIVE — newest first.
+     To add a release: copy a <section class="release"> block, paste it
+     directly BELOW this comment, point links at a new dated folder
+     (deliverables/YYYY-MM-DD/), and move the "Latest" badge up.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<section class="release" id="r2026-08-28">
+  <div class="wrap">
+    <div class="rel-head">
+      <h2>Release 01 — Foundations <em>&amp; the deck.</em><span class="badge-latest">Latest</span></h2>
+      <div class="rel-date">2026 · 08 · 28</div>
+    </div>
+    <p class="rel-note">First deliverable set: the rebuilt licensing deck (live in Figma, with an annotated before/after), the proposed site architecture, sample wireframes for the homepage and menu experience, and the three third-party integration journeys that shape the build.</p>
+
+    <div class="group-lbl">Licensing Deck</div>
+    <div class="cards">
+      <a class="card" href="https://www.figma.com/slides/eKajvMORKftnWj8lV5ziva" target="_blank" rel="noopener">
+        <div class="type"><span>Figma Slides</span><span class="ext">External ↗</span></div>
+        <h3>Licensing Deck — Wireframe v3</h3>
+        <p>The 12-slide grayscale deck rebuilt as native, editable Figma slides — presenter notes included. This is the working file.</p>
+        <div class="open">Open in Figma →</div>
+      </a>
+      <a class="card" href="deliverables/2026-08-28/licensing-deck-before-after.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Document</span><span>v1 · 08-28</span></div>
+        <h3>Deck — Before &amp; After</h3>
+        <p>Slide-by-slide comparison of the original pptx against the rebuild, with straightforward rationale for every change.</p>
+        <div class="open">View document →</div>
+      </a>
+    </div>
+
+    <div class="group-lbl">Site Architecture &amp; Wireframes</div>
+    <div class="cards">
+      <a class="card" href="deliverables/2026-08-28/sitemap-v3.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Document</span><span>v3 · 08-28</span></div>
+        <h3>Proposed Site Map</h3>
+        <p>The recommended information architecture for the new Field of Greens site.</p>
+        <div class="open">View document →</div>
+      </a>
+      <a class="card" href="deliverables/2026-08-28/wireframe-home.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Wireframe</span><span>v1 · 08-28</span></div>
+        <h3>Homepage Wireframe</h3>
+        <p>Sample structure and content hierarchy for the new homepage.</p>
+        <div class="open">View wireframe →</div>
+      </a>
+      <a class="card" href="deliverables/2026-08-28/journey-menu-order.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Wireframe</span><span>v1 · 08-28</span></div>
+        <h3>Menu Page &amp; Ordering</h3>
+        <p>Sample menu page experience and how it hands off to online ordering.</p>
+        <div class="open">View wireframe →</div>
+      </a>
+    </div>
+
+    <div class="group-lbl">Third-Party Integration Journeys</div>
+    <div class="cards">
+      <a class="card" href="deliverables/2026-08-28/journey-licensing-inquiry.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Flow</span><span>v1 · 08-28</span></div>
+        <h3>Licensing Inquiry Flow</h3>
+        <p>How a licensing prospect moves from the site into the inquiry pipeline.</p>
+        <div class="open">View flow →</div>
+      </a>
+      <a class="card" href="deliverables/2026-08-28/journey-catering-ezcater.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Flow</span><span>v1 · 08-28</span></div>
+        <h3>Catering via ezCater</h3>
+        <p>The catering journey and where ezCater takes over from the site.</p>
+        <div class="open">View flow →</div>
+      </a>
+      <a class="card" href="deliverables/2026-08-28/journey-menu-order.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Flow</span><span>v1 · 08-28</span></div>
+        <h3>Menu → Order Handoff</h3>
+        <p>The ordering integration journey, from menu browsing to checkout.</p>
+        <div class="open">View flow →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ END RELEASE ARCHIVE ═══ -->
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px">
+    <div class="sig">
+      <a href="mailto:sichondesign@gmail.com" title="Email Sichon Design"><img src="assets/sichon-design-logo.png" alt="Sichon Design Inc"></a>
+      <span class="fine">Prepared by Sichon Design Inc for Field of Greens.</span>
+    </div>
+    <span class="fine">Updated Aug 28, 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
