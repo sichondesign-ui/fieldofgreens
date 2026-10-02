@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field of Greens — Licensing · Hi-Fi Design v1.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF7;
+  --oat:#F3F0E9;
+  --oat-2:#EBE7DD;
+  --ink:#1A1A17;
+  --muted:#54544D;
+  --soft:#8A8A80;
+  --hairline:rgba(26,26,23,0.12);
+  --green:#2C9646;
+  --green-deep:#14381F;
+  --green-tint:rgba(44,150,70,0.08);
+  --display:'Cormorant Garamond',Garamond,'Palatino Linotype',Palatino,serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+.container{max-width:1200px;margin:0 auto;padding:0 48px;}
+.kicker{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--green);}
+h1,h2{font-family:var(--display);font-weight:500;letter-spacing:-.01em;color:var(--ink);}
+/* v1.1 cascade: button convention — 12px · caps · 8% tracking · 6px radius (homepage/menu v2) */
+.btn{display:inline-block;font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:15px 28px;transition:all .2s ease;cursor:pointer;border:1px solid transparent;border-radius:6px;text-align:center;white-space:nowrap;}
+.btn.solid{background:var(--green);color:#fff;}
+.btn.solid:hover{background:#237a39;}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink);}
+.btn.ghost:hover{background:var(--ink);color:#fff;}
+.btn.light{background:transparent;color:#fff;border-color:rgba(255,255,255,.6);}
+.btn.light:hover{background:#fff;color:var(--green-deep);}
+.textlink{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);border-bottom:1px solid var(--green);padding-bottom:3px;}
+
+
+nav.site{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--hairline);} /* v1.1 cascade: solid — no frost (W7 cleared) */
+.nav-inner{padding:0 40px;height:80px; /* v2.26: full-width nav — frames the viewport, content stays contained */display:flex;align-items:center;justify-content:space-between;gap:32px;} /* v1.1 cascade: 80px */
+.nav-brand{display:flex;align-items:center;gap:14px;}
+.nav-brand img.seal{height:58px;width:58px;} /* v1.1 cascade */
+.nav-brand img.wordmark{height:20px;width:auto;}
+.nav-links{display:flex;gap:32px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;} /* v1.1 cascade */
+.nav-links a{color:var(--muted);padding:6px 0;border-bottom:2px solid transparent;transition:color .2s;}
+.nav-links a:hover{color:var(--ink);border-bottom-color:var(--green);}
+.nav-cta{font-size:12px;padding:13px 24px;} /* v1.1 cascade */
+/* v1.1 cascade: mobile hamburger — visual affordance only; Wix native mobile menu in build */
+.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:24px;height:24px;flex:0 0 auto;}
+.burger span{display:block;height:2px;background:var(--ink);border-radius:1px;}
+/* v2.25 cascade: nav as 3-col grid — links sit on the true page centerline (space-between read as uneven).
+   Explicit column placement so the layout holds when .nav-links is display:none on mobile */
+.nav-inner{display:grid;grid-template-columns:1fr auto 1fr;}
+.nav-brand{grid-column:1;justify-self:start;}
+.nav-links{grid-column:2;justify-self:center;}
+.nav-inner > div:last-child{grid-column:3;justify-self:end;}
+
+/* hero — investor register · v1.2: photo background (seal-on-facade) under deep-green overlay (W27-class native) */
+.hero{position:relative;background:url("assets/menu-spread-wide.jpg") center 55% / cover no-repeat;color:#fff;}
+.hero::before{content:'';position:absolute;inset:0;background:rgba(17,42,24,.82);}
+.hero > .container{position:relative;z-index:1;}
+.hero .inner{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:72px;align-items:center;padding:104px 0;}
+.hero .kicker{color:rgba(255,255,255,.75);}
+.hero h1{color:#fff;font-size:clamp(42px,5vw,66px);line-height:1.05;margin:20px 0 18px;}
+.hero h1 em{font-style:italic;}
+.hero p{font-size:17px;color:rgba(255,255,255,.75);max-width:480px;line-height:1.7;}
+.hero .ctas{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;}
+.hero .sealcol{display:flex;justify-content:center;}
+.hero .sealcol img{width:min(260px,60%);opacity:.95;}
+
+/* momentum band */
+.section{padding:104px 0;}
+.mom{border-bottom:1px solid var(--hairline);}
+.mom .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline);border:1px solid var(--hairline);margin-top:44px;}
+.mom .cell{background:var(--paper);padding:44px 40px;}
+.mom .num{font-family:var(--display);font-weight:500;font-size:clamp(44px,4.6vw,64px);line-height:1;color:var(--green);}
+.mom .num em{font-style:italic;font-size:.5em;color:var(--ink);}
+.mom .lb{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-top:14px;}
+.mom .d{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.6;}
+.sechead{max-width:640px;}
+.sechead h2{font-size:clamp(32px,3.6vw,46px);line-height:1.08;margin-top:14px;}
+.sechead p{font-size:16px;color:var(--muted);margin-top:16px;line-height:1.7;}
+
+/* press */
+.press{border-bottom:1px solid var(--hairline);}
+.press .inner{display:flex;align-items:baseline;gap:40px;padding:34px 0;flex-wrap:wrap;}
+.press .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);flex:0 0 auto;}
+.press .names{display:flex;gap:36px;flex-wrap:wrap;align-items:baseline;}
+.press .names span{font-family:var(--display);font-style:italic;font-size:19px;color:var(--muted);white-space:nowrap;}
+
+/* formats */
+.formats{background:var(--oat);border-bottom:1px solid var(--hairline);}
+.formats .inner{padding:96px 0;}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;}
+.fcard{background:var(--paper);border:1px solid var(--hairline);}
+.fcard .ph{aspect-ratio:16/10;overflow:hidden;background:var(--oat-2);}
+.fcard .ph img{width:100%;height:100%;object-fit:cover;}
+.fcard .cp{padding:28px 30px 32px;}
+.fcard h3{font-family:var(--display);font-weight:600;font-size:24px;}
+.fcard p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:8px;}
+.fcard .m{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-top:16px;display:block;}
+
+/* process */
+.process .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:44px;}
+.pstep{border-top:2px solid var(--ink);padding-top:22px;}
+.pstep .n{font-family:var(--display);font-style:italic;font-size:30px;color:var(--green);}
+.pstep h3{font-family:var(--display);font-weight:600;font-size:23px;margin:10px 0 6px;} /* v2.31 cascade */
+.pstep p{font-size:13.5px;color:var(--muted);line-height:1.6;}
+.scarcity{margin-top:48px;border:1px solid var(--ink);padding:26px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.scarcity p{font-family:var(--display);font-style:italic;font-size:20px;color:var(--ink);}
+
+/* form */
+/* v1.2: location photo bg (seal-on-facade — logo kept visible left, under the copy; form sits over the quieter half) */
+.inquiry{position:relative;background:url("assets/inquiry-facade.jpg") center 62% / cover no-repeat;color:#fff;} /* v1.2c: ab-119 (Sichon-specified) — color seal on facade, foliage foreground */
+.inquiry::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(17,42,24,.82) 30%,rgba(17,42,24,.66) 52%,rgba(17,42,24,.9) 72%);}
+.inquiry > .container{position:relative;z-index:1;}
+.inquiry .inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;padding:96px 0;}
+.inquiry .kicker{color:rgba(255,255,255,.75);}
+.inquiry h2{color:#fff;font-size:clamp(30px,3.2vw,42px);line-height:1.08;margin:14px 0 12px;}
+.inquiry .lede{font-size:15.5px;color:rgba(255,255,255,.72);max-width:420px;line-height:1.7;}
+.inquiry form{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.inquiry input,.inquiry textarea{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.06);padding:15px 16px;font-family:var(--body);font-size:14px;color:#fff;outline:none;width:100%;}
+.inquiry input::placeholder,.inquiry textarea::placeholder{color:rgba(255,255,255,.5);}
+.inquiry input:focus,.inquiry textarea:focus{border-color:#fff;}
+.inquiry .full{grid-column:1/-1;}
+.inquiry textarea{min-height:110px;resize:vertical;}
+.inquiry .btn{grid-column:1/-1;background:#fff;color:var(--green-deep);}
+.inquiry .btn:hover{background:var(--oat);}
+.inquiry small{grid-column:1/-1;font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.5;}
+
+/* footer */
+footer{background:var(--paper);padding:80px 0 0;}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:48px;padding-bottom:64px;}
+.foot-grid .h{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:16px;}
+.foot-grid a{display:block;font-size:14.5px;color:var(--muted);padding:5px 0;}
+.foot-grid a:hover{color:var(--ink);}
+.foot-brand img{height:132px;margin-bottom:20px;} /* v1.1 cascade */
+.foot-brand p{font-family:var(--display);font-style:italic;font-size:19px;color:var(--muted);}
+/* v2.32 cascade: social icons — real client URLs (allowed live-link exception, see cascade log) */
+.foot-vip .social{display:flex;gap:16px;margin-top:24px;} /* v2.32c: moved under VIP signup */
+.foot-vip .social a{color:var(--muted);transition:color .2s;}
+.foot-vip .social a:hover{color:var(--green);}
+.foot-vip .social svg{width:40px;height:40px;display:block;fill:currentColor;} /* v2.32b: 40px */
+.foot-vip .row{display:flex;gap:8px;margin-top:4px;}
+.foot-vip input{flex:1;border:1px solid rgba(26,26,23,.3);background:transparent;padding:12px 14px;font-size:13px;font-family:var(--body);outline:none;min-width:0;}
+.foot-vip .btn{padding:12px 20px;font-size:12px;}
+.legal{border-top:1px solid var(--hairline);padding:22px 0;display:flex;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);flex-wrap:wrap;}
+.legal a{color:var(--soft);}
+.legal a:hover{color:var(--ink);}
+
+
+/* ---------- responsive ----------
+   SYSTEM (identical across all templates — see cascade-log.html):
+   · Breakpoints: desktop >960 · tablet 561-960 · mobile ≤560
+   · Nav, 3 tiers: desktop seal+wordmark+links · tablet seal+links (no wordmark) · mobile seal+burger (64px bar, sticky offset 65px)
+   · Fixed/parallax bgs → scroll ≤960 · hover-only → always visible ≤960 · decorative layers scale down */
+@media (max-width:960px){
+  .container{padding:0 28px;}
+  .nav-inner{padding:0 28px;gap:24px;}
+  .nav-brand img.wordmark{display:none;} /* v1.1 cascade: tablet drops wordmark, keeps links */
+  .nav-links{gap:22px;}
+  .nav-cta{padding:11px 16px;}
+  .hero .inner{grid-template-columns:1fr;gap:44px;padding:72px 0;}
+  .hero .sealcol{display:none;}
+  .section{padding:72px 0;}
+  .mom .grid{grid-template-columns:1fr;}
+  .fgrid{grid-template-columns:1fr;}
+  .formats .inner{padding:64px 0;}
+  .process .steps{grid-template-columns:1fr 1fr;}
+  .inquiry .inner{grid-template-columns:1fr;gap:40px;padding:64px 0;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:560px){
+  /* v1.1 cascade: mobile nav */
+  .nav-inner{padding:0 20px;height:64px;gap:16px;}
+  .nav-brand img.seal{height:44px;width:44px;}
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  .foot-brand img{height:104px;}
+  .process .steps{grid-template-columns:1fr;}
+  .inquiry form{grid-template-columns:1fr;}
+  .hero .ctas .btn{width:100%;}
+  .foot-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- Comp status strip — not part of the page design -->
+
+<!-- Global nav — note: licensing reached via footer/About, not primary nav (quiet by design). No announcement strip on this page. -->
+<nav class="site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="homepage-hifi.html">
+      <img class="seal" src="assets/FieldOfGreens_FullSeal_color.svg" alt="Field of Greens seal">
+      <img class="wordmark" src="assets/Wordmark.svg" alt="Field of Greens">
+    </a>
+    <div class="nav-links">
+      <a href="#">Locations</a>
+      <a href="menu-hifi.html">Menu</a>
+      <a href="#">Catering</a>
+      <a href="#">About</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;">
+      <a class="btn solid nav-cta" href="#">Order Online</a>
+      <a class="burger" href="#" aria-label="Open menu"><span></span><span></span><span></span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- §1 · Positioning -->
+<header class="hero">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <span class="kicker">Territory Licensing</span>
+        <h1>Own the next <em>Field of Greens</em> market.</h1>
+        <p>Since 2003, we've built a scratch-made brand that Palm Beach County lines up for. Now, select territories are opening to experienced operators.</p>
+        <div class="ctas">
+          <a class="btn light" href="#inquire">Inquire About a Territory</a>
+        </div>
+      </div>
+      <div class="sealcol"><img src="assets/FieldOfGreens_FullSeal_white.svg" alt=""></div>
+    </div>
+  </div>
+</header>
+
+<!-- §2 · Momentum band — deck-approved claims only; unit economics stay in the deck -->
+<section class="section mom">
+  <div class="container">
+    <div class="sechead">
+      <span class="kicker">The Momentum</span>
+      <h2>A brand that's earned its expansion.</h2>
+      <p>Every Field of Greens runs on the same promise — everything made from scratch, every morning. It's why the stores keep coming.</p>
+    </div>
+    <div class="grid">
+      <div class="cell">
+        <div class="num">9</div>
+        <div class="lb">Locations open or opening</div>
+        <div class="d">Across Palm Beach County — with more announced behind them.</div>
+      </div>
+      <div class="cell">
+        <div class="num">2003</div>
+        <div class="lb">Founded · West Palm Beach</div>
+        <div class="d">Two decades of scratch cooking, one county deep before going wide.</div>
+      </div>
+      <div class="cell">
+        <div class="num"><em>Now</em></div>
+        <div class="lb">Licensing select territories</div>
+        <div class="d">Territory licenses for experienced multi-unit operators.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §2b · Press proof band -->
+<section class="press">
+  <div class="container">
+    <div class="inner">
+      <span class="lbl">As seen in</span>
+      <div class="names">
+        <span>Avenir Magazine</span>
+        <span>Palm Beach Illustrated</span>
+        <span>Hometown News</span>
+        <span>The Palm Beach Post</span>
+        <span>The Wellington Edit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §3 · Formats -->
+<section class="formats">
+  <div class="container">
+    <div class="inner">
+      <div class="sechead">
+        <span class="kicker">Where It Works</span>
+        <h2>A format for every strong market.</h2>
+      </div>
+      <div class="fgrid">
+        <div class="fcard">
+          <div class="ph"><img src="assets/licensing-suburban-aerial.jpg" alt="Aerial view of a suburban neighborhood"></div>
+          <div class="cp">
+            <h3>Neighborhood &amp; suburban</h3>
+            <p>The home format — daily breakfast-and-lunch traffic, patio seating, community presence.</p>
+            <span class="m">The proven core</span>
+          </div>
+        </div>
+        <div class="fcard">
+          <div class="ph"><img src="assets/licensing-office-towers.jpg" alt="Office towers against a clear sky"></div>
+          <div class="cp">
+            <h3>Office towers</h3>
+            <p>Compact, weekday-driven service for captive lunch audiences.</p>
+            <span class="m">In the pipeline now</span>
+          </div>
+        </div>
+        <div class="fcard">
+          <div class="ph"><img src="assets/licensing-airport-traveler.jpg" alt="Traveler walking through an airport concourse"></div>
+          <div class="cp">
+            <h3>Airports &amp; campuses</h3>
+            <p>High-throughput formats where fresh, fast and recognizable wins.</p>
+            <span class="m">Target territories</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §4 · Process -->
+<section class="section process">
+  <div class="container">
+    <div class="sechead">
+      <span class="kicker">The Path</span>
+      <h2>From inquiry to opening day.</h2>
+    </div>
+    <div class="steps">
+      <div class="pstep">
+        <span class="n">1</span>
+        <h3>Inquire</h3>
+        <p>Tell us about you and the market you know best.</p>
+      </div>
+      <div class="pstep">
+        <span class="n">2</span>
+        <h3>Qualify</h3>
+        <p>A conversation about experience, capital and fit.</p>
+      </div>
+      <div class="pstep">
+        <span class="n">3</span>
+        <h3>Review</h3>
+        <p>Full licensing details, terms and economics — shared directly.</p>
+      </div>
+      <div class="pstep">
+        <span class="n">4</span>
+        <h3>Secure your territory</h3>
+        <p>Agreement, site work, training — and support from day one.</p>
+      </div>
+    </div>
+    <div class="scarcity">
+      <p>Territories are awarded on a first-qualified basis.</p>
+      <a class="btn ghost" href="#inquire">Start the Conversation</a>
+    </div>
+  </div>
+</section>
+
+<!-- §5 · Inquiry form -->
+<section class="inquiry" id="inquire">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <span class="kicker">Let's Talk</span>
+        <h2>Tell us about your market.</h2>
+        <p class="lede">Share a few details and the licensing team will follow up with next steps and the full opportunity overview.</p>
+      </div>
+      <form onsubmit="return false;">
+        <input type="text" placeholder="Name" aria-label="Name">
+        <input type="email" placeholder="Email" aria-label="Email">
+        <input type="tel" placeholder="Phone" aria-label="Phone">
+        <input type="text" placeholder="City / State" aria-label="City and state">
+        <input type="text" class="full" placeholder="Market of interest" aria-label="Market of interest">
+        <textarea class="full" placeholder="Your operating background, and anything else we should know" aria-label="Message"></textarea>
+        <button class="btn" type="submit">Send Inquiry</button>
+        <small>Inquiries go to the Field of Greens licensing team. No obligation either way.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/FieldOfGreens_FullSeal_color.svg" alt="Field of Greens">
+        <p>Where greens come true.™</p>
+      </div>
+      <div>
+        <div class="h">Visit</div>
+        <a href="menu-hifi.html">Menu</a>
+        <a href="#">Locations</a>
+        <a href="#">Catering</a>
+        <a href="#">About</a>
+      </div>
+      <div>
+        <div class="h">Company</div>
+        <a href="#">Careers</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Contact</a>
+        <a href="#">Licensing Opportunities</a>
+      </div>
+      <div class="foot-vip">
+        <div class="h">Join the VIP list</div>
+        <div class="row">
+          <input type="email" placeholder="Email address" aria-label="Email address">
+          <button class="btn solid" type="button">Join</button>
+        </div>
+
+        <div class="social">
+          <a href="https://www.instagram.com/ilovefog/" aria-label="Field of Greens on Instagram"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg></a>
+          <a href="https://www.facebook.com/FieldOfGreensFL/" aria-label="Field of Greens on Facebook"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Field of Greens · West Palm Beach, FL</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a></span>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>

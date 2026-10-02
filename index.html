@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sichon Design × Field of Greens — Project Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#161616; --dark:#2E2E2E; --mid:#5F5F5F; --faint:#9A9A9A;
@@ -42,7 +42,7 @@
   .rel-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:8px}
   .rel-head h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;color:var(--ink)}
   .rel-head h2 em{font-style:italic}
-  .rel-date{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--mid);text-transform:uppercase}
+  .rel-date{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--mid);text-transform:uppercase}
   .rel-note{max-width:720px;color:var(--mid);margin-bottom:32px}
   .badge-latest{display:inline-block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--paper);background:var(--red);padding:4px 10px;border-radius:2px;vertical-align:middle;margin-left:10px}
 
@@ -50,7 +50,7 @@
   .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
   .card{position:relative;border:1px solid var(--line);background:var(--paper);padding:22px 24px 20px;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease}
   .card:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 24px rgba(22,22,22,.07)}
-  .card .type{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);display:flex;justify-content:space-between;align-items:center}
+  .card .type{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);display:flex;justify-content:space-between;align-items:center}
   .card .type .ext{color:var(--red)}
   .card h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;line-height:1.2;color:var(--ink)}
   .card p{font-size:13px;color:var(--mid);line-height:1.55}
@@ -83,8 +83,8 @@
     <div class="meta">
       <div>Client<b>Field of Greens · FTK Hospitality Advisory</b></div>
       <div>Studio<b>Sichon Design Inc</b></div>
-      <div>Latest release<b>August 28, 2026</b></div>
-      <div>Deliverables to date<b>7</b></div>
+      <div>Latest release<b>October 2, 2026</b></div>
+      <div>Deliverables to date<b>13</b></div>
     </div>
   </div>
 </div>
@@ -103,10 +103,68 @@
      (deliverables/YYYY-MM-DD/), and move the "Latest" badge up.
      ═══════════════════════════════════════════════════════════════ -->
 
+<section class="release" id="r2026-10-02">
+  <div class="wrap">
+    <div class="rel-head">
+      <h2>Release 02 — Brand, deck <em>&amp; the design round.</em><span class="badge-latest">Latest</span></h2>
+      <div class="rel-date">2026 · 10 · 02</div>
+    </div>
+    <p class="rel-note">Second deliverable set: the finished licensing deck in Figma, the Version 3 brand guidelines, and the first high-fidelity website designs — Homepage, Menu, and the Location Detail template — plus the Licensing Opportunities page. The website designs are fully browsable: pages in this set link to each other, and every design carries a small note of intent — the Wix Studio build may vary in minor detail.</p>
+
+    <div class="group-lbl">Licensing Deck</div>
+    <div class="cards">
+      <a class="card" href="https://www.figma.com/deck/eKajvMORKftnWj8lV5ziva" target="_blank" rel="noopener">
+        <div class="type"><span>Figma Deck</span><span class="ext">External ↗</span></div>
+        <h3>Licensing Deck</h3>
+        <p>The designed licensing presentation, live in Figma — open in any browser, presenter notes included.</p>
+        <div class="open">Open in Figma →</div>
+      </a>
+    </div>
+
+    <div class="group-lbl">Brand</div>
+    <div class="cards">
+      <a class="card" href="deliverables/2026-10-02/style-guide-v3.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Document</span><span>v3 · 10-02</span></div>
+        <h3>Brand Guidelines — Version 3</h3>
+        <p>The consolidated brand system: logo usage, the canonical green, typography, voice, and application rules for the new site.</p>
+        <div class="open">View guidelines →</div>
+      </a>
+    </div>
+
+    <div class="group-lbl">Website Design — Round 1</div>
+    <div class="cards">
+      <a class="card" href="deliverables/2026-10-02/homepage-hifi.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Design</span><span>10-02</span></div>
+        <h3>Homepage</h3>
+        <p>The full homepage experience — hero, menu categories, locations, catering, VIP signup, and Instagram.</p>
+        <div class="open">View design →</div>
+      </a>
+      <a class="card" href="deliverables/2026-10-02/menu-hifi.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Design</span><span>10-02</span></div>
+        <h3>Menu Page</h3>
+        <p>The complete menu with the chalkboard signature section, category navigation, and ordering handoffs.</p>
+        <div class="open">View design →</div>
+      </a>
+      <a class="card" href="deliverables/2026-10-02/location-detail-hifi.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Design</span><span>10-02</span></div>
+        <h3>Location Detail</h3>
+        <p>The per-store page template — shown with Boynton Beach — covering ordering, hours, directions, and nearby stores.</p>
+        <div class="open">View design →</div>
+      </a>
+      <a class="card" href="deliverables/2026-10-02/licensing-hifi.html" target="_blank" rel="noopener">
+        <div class="type"><span>HTML Design</span><span>10-02</span></div>
+        <h3>Licensing Inquiries</h3>
+        <p>The Licensing Opportunities page — story, momentum, formats, and the inquiry path for prospective operators.</p>
+        <div class="open">View design →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="release" id="r2026-08-28">
   <div class="wrap">
     <div class="rel-head">
-      <h2>Release 01 — Foundations <em>&amp; the deck.</em><span class="badge-latest">Latest</span></h2>
+      <h2>Release 01 — Foundations <em>&amp; the deck.</em></h2>
       <div class="rel-date">2026 · 08 · 28</div>
     </div>
     <p class="rel-note">First deliverable set: the rebuilt licensing deck (live in Figma, with an annotated before/after), the proposed site architecture, sample wireframes for the homepage and menu experience, and the three third-party integration journeys that shape the build.</p>
@@ -181,7 +239,7 @@
       <a href="mailto:sichondesign@gmail.com" title="Email Sichon Design"><img src="assets/sichon-design-logo.png" alt="Sichon Design Inc"></a>
       <span class="fine">Prepared by Sichon Design Inc for Field of Greens.</span>
     </div>
-    <span class="fine">Updated Aug 28, 2026</span>
+    <span class="fine">Updated Oct 2, 2026</span>
   </div>
 </footer>
 

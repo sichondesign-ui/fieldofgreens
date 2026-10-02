@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field of Greens — Location Detail (CMS Template) · Hi-Fi Design v1.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF7;
+  --oat:#F3F0E9;
+  --oat-2:#EBE7DD;
+  --ink:#1A1A17;
+  --muted:#54544D;
+  --soft:#8A8A80;
+  --hairline:rgba(26,26,23,0.12);
+  --green:#2C9646;
+  --green-deep:#14381F;
+  --green-tint:rgba(44,150,70,0.08);
+  --display:'Cormorant Garamond',Garamond,'Palatino Linotype',Palatino,serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+.container{max-width:1200px;margin:0 auto;padding:0 48px;}
+.kicker{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--green);}
+h1,h2{font-family:var(--display);font-weight:500;letter-spacing:-.01em;color:var(--ink);}
+/* v1.1 cascade: button convention — 12px · caps · 8% tracking · 6px radius (homepage/menu v2) */
+.btn{display:inline-block;font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:15px 28px;transition:all .2s ease;cursor:pointer;border:1px solid transparent;border-radius:6px;text-align:center;white-space:nowrap;}
+.btn.solid{background:var(--green);color:#fff;}
+.btn.solid:hover{background:#237a39;}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink);}
+.btn.ghost:hover{background:var(--ink);color:#fff;}
+.textlink{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);border-bottom:1px solid var(--green);padding-bottom:3px;}
+.textlink:hover{color:#237a39;}
+.badge{display:inline-block;font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);border:1px solid var(--green);border-radius:2px;padding:1px 6px;vertical-align:3px;}
+.badge.grey{color:var(--soft);border-color:var(--soft);}
+
+.announce{background:var(--green-deep);color:rgba(255,255,255,.92);text-align:center;padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+.announce b{color:#fff;font-weight:500;}
+
+nav.site{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--hairline);} /* v1.1 cascade: solid — no frost (W7 cleared) */
+.nav-inner{padding:0 40px;height:80px; /* v2.26: full-width nav — frames the viewport, content stays contained */display:flex;align-items:center;justify-content:space-between;gap:32px;} /* v1.1 cascade: 80px */
+.nav-brand{display:flex;align-items:center;gap:14px;}
+.nav-brand img.seal{height:58px;width:58px;} /* v1.1 cascade */
+.nav-brand img.wordmark{height:20px;width:auto;}
+.nav-links{display:flex;gap:32px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;} /* v1.1 cascade */
+.nav-links a{color:var(--muted);padding:6px 0;border-bottom:2px solid transparent;transition:color .2s;}
+.nav-links a:hover{color:var(--ink);border-bottom-color:var(--green);}
+.nav-links a.current{color:var(--ink);border-bottom-color:var(--green);}
+.nav-cta{font-size:12px;padding:13px 24px;} /* v1.1 cascade */
+/* v1.1 cascade: mobile hamburger — visual affordance only; Wix native mobile menu in build */
+.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:24px;height:24px;flex:0 0 auto;}
+.burger span{display:block;height:2px;background:var(--ink);border-radius:1px;}
+/* v2.25 cascade: nav as 3-col grid — links sit on the true page centerline (space-between read as uneven).
+   Explicit column placement so the layout holds when .nav-links is display:none on mobile */
+.nav-inner{display:grid;grid-template-columns:1fr auto 1fr;}
+.nav-brand{grid-column:1;justify-self:start;}
+.nav-links{grid-column:2;justify-self:center;}
+.nav-inner > div:last-child{grid-column:3;justify-self:end;}
+
+/* breadcrumb */
+.crumb{border-bottom:1px solid var(--hairline);}
+.crumb .in{padding:14px 0;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);}
+.crumb a{color:var(--green);}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:560px;border-bottom:1px solid var(--hairline);} /* v1.1: true 50/50 (matches story-band convention) */
+.hero .copy{display:flex;flex-direction:column;justify-content:center;padding:72px 72px 72px max(48px,calc((100vw - 1200px)/2 + 48px));background:var(--oat);} /* v1.1b: gutter-aligned like homepage — centering experiment reverted (unevenness was the nav) */
+.hero .copy .cwrap{max-width:520px;}
+.hero h1{font-size:clamp(40px,4.6vw,62px);line-height:1.04;margin:18px 0 8px;}
+.hero .addr{font-size:16.5px;color:var(--muted);line-height:1.6;}
+.hero .addr b{color:var(--ink);font-weight:600;}
+.hero .meta{display:flex;gap:34px;margin-top:22px;flex-wrap:wrap;font-family:var(--body);font-size:15.5px;color:var(--ink);} /* v1.1: body font for data values — mono was reading as code */
+.hero .meta .lb{display:block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:3px;}
+.hero .meta .tbd{color:#8a4a1f;}
+.hero .ctas{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap;}
+.hero .sub-ctas{display:flex;gap:24px;margin-top:22px;flex-wrap:wrap;}
+.hero .media{overflow:hidden;}
+.hero .media img{width:100%;height:100%;object-fit:cover;}
+
+/* store section — v1.2c: three aligned rows (copy+photo · full-width order strip · interior pair) */
+.section{padding:96px 0;}
+.intro{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;} /* v1.2d: flipped — photo left, copy right (counterweights the hero's copy-left) */
+.intro > div:first-child{order:2;}
+.intro .lead{order:1;}
+.intro h2{font-size:clamp(30px,3.2vw,42px);line-height:1.08;margin-top:12px;}
+.intro p{font-size:16px;color:var(--muted);line-height:1.7;margin-top:16px;max-width:480px;}
+.intro .lead{overflow:hidden;}
+.intro .lead img{width:100%;aspect-ratio:16/10;object-fit:cover;}
+.orders{margin-top:64px;}
+.orders .lbl{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--green);}
+.orders .hd{font-family:var(--display);font-weight:500;letter-spacing:-.01em;color:var(--ink);font-size:clamp(34px,3.6vw,48px);line-height:1.08;margin:12px 0 28px;}
+.orders .hd em{font-style:italic;}
+.ordersgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.orow{display:flex;flex-direction:column;gap:6px;border:1px solid var(--hairline);padding:24px 26px;transition:background .2s;background:var(--paper);}
+.orow:hover{background:var(--green-tint);}
+.orow .t{font-family:var(--display);font-weight:600;font-size:23px;} /* v2.31 cascade */
+.orow .via{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);}
+.orow .go{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-top:10px;}
+.interiors{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px;}
+.interiors .ph{overflow:hidden;}
+.interiors img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .5s ease;}
+.interiors .ph:hover img{transform:scale(1.03);}
+
+
+/* visit strip */
+/* v1.2e: tightened — store section bottom + strip head/columns pulled in */
+.section:has(.interiors){padding-bottom:48px;}
+.visit{border-bottom:1px solid var(--hairline);}
+.visit .vhead{padding-top:40px;}
+.visit .vhead .nm{font-family:var(--display);font-weight:500;font-size:26px;color:var(--ink);margin-top:6px;} /* binds CMS Name */
+.visit .inner{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;padding:24px 0 52px;}
+.visit .cell .lb{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:12px;}
+.visit .cell .v{font-size:16px;color:var(--ink);line-height:1.6;}
+.visit .cell .v a{color:var(--green);border-bottom:1px solid var(--green);}
+.visit .cell .tbd{font-family:var(--mono);font-size:12px;color:#8a4a1f;}
+
+/* other locations */
+.others .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px;}
+.others h2{font-size:clamp(28px,3vw,38px);margin-top:12px;}
+/* v1.1 cascade: centered bordered cards (homepage §5 convention) */
+.loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.loc-card{background:var(--paper);border:1px solid var(--hairline);padding:28px 20px 26px;text-align:center;transition:background .2s;}
+.loc-card:hover{background:var(--oat);}
+.loc-card .nm{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.15;} /* v2.31 cascade */
+.loc-card .ad{font-size:12.5px;color:var(--soft);margin-top:5px;line-height:1.5;}
+.loc-card .go{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);}
+
+/* footer */
+footer{background:var(--paper);padding:80px 0 0;}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:48px;padding-bottom:64px;}
+.foot-grid .h{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:16px;}
+.foot-grid a{display:block;font-size:14.5px;color:var(--muted);padding:5px 0;}
+.foot-grid a:hover{color:var(--ink);}
+.foot-brand img{height:132px;margin-bottom:20px;} /* v1.1 cascade */
+.foot-brand p{font-family:var(--display);font-style:italic;font-size:19px;color:var(--muted);}
+/* v2.32 cascade: social icons — real client URLs (allowed live-link exception, see cascade log) */
+.foot-vip .social{display:flex;gap:16px;margin-top:24px;} /* v2.32c: moved under VIP signup */
+.foot-vip .social a{color:var(--muted);transition:color .2s;}
+.foot-vip .social a:hover{color:var(--green);}
+.foot-vip .social svg{width:40px;height:40px;display:block;fill:currentColor;} /* v2.32b: 40px */
+.foot-vip .row{display:flex;gap:8px;margin-top:4px;}
+.foot-vip input{flex:1;border:1px solid rgba(26,26,23,.3);background:transparent;padding:12px 14px;font-size:13px;font-family:var(--body);outline:none;min-width:0;}
+.foot-vip .btn{padding:12px 20px;font-size:12px;}
+.legal{border-top:1px solid var(--hairline);padding:22px 0;display:flex;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);flex-wrap:wrap;}
+.legal a{color:var(--soft);}
+.legal a:hover{color:var(--ink);}
+
+
+/* ---------- responsive ----------
+   SYSTEM (identical across all templates — see cascade-log.html):
+   · Breakpoints: desktop >960 · tablet 561-960 · mobile ≤560
+   · Nav, 3 tiers: desktop seal+wordmark+links · tablet seal+links (no wordmark) · mobile seal+burger (64px bar, sticky offset 65px)
+   · Fixed/parallax bgs → scroll ≤960 · hover-only → always visible ≤960 · decorative layers scale down */
+@media (max-width:960px){
+  .container{padding:0 28px;}
+  .nav-inner{padding:0 28px;gap:24px;}
+  .nav-brand img.wordmark{display:none;} /* v1.1 cascade: tablet drops wordmark, keeps links */
+  .nav-links{gap:22px;}
+  .nav-cta{padding:11px 16px;}
+  .hero{grid-template-columns:1fr;min-height:0;}
+  .hero .media{order:1;height:340px;}
+  .hero .copy{order:2;padding:56px 28px;}
+  .section{padding:64px 0;}
+  .intro{grid-template-columns:1fr;gap:36px;}
+  .ordersgrid{grid-template-columns:1fr;}
+  .interiors{grid-template-columns:1fr;}
+  .visit .inner{grid-template-columns:1fr;gap:32px;padding:48px 0;}
+  .loc-grid{grid-template-columns:1fr;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:560px){
+  /* v1.1 cascade: mobile nav */
+  .nav-inner{padding:0 20px;height:64px;gap:16px;}
+  .nav-brand img.seal{height:44px;width:44px;}
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  .foot-brand img{height:104px;}
+  .hero .ctas .btn{width:100%;}
+  .foot-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- Comp status strip — not part of the page design -->
+
+<!-- §0 · Announcement strip -->
+<div class="announce">Now open in Palm Beach Gardens — Alton &nbsp;·&nbsp; <b>Join the VIP list ↓</b></div>
+
+<!-- Global nav -->
+<nav class="site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="homepage-hifi.html">
+      <img class="seal" src="assets/FieldOfGreens_FullSeal_color.svg" alt="Field of Greens seal">
+      <img class="wordmark" src="assets/Wordmark.svg" alt="Field of Greens">
+    </a>
+    <div class="nav-links">
+      <a href="#" class="current">Locations</a>
+      <a href="menu-hifi.html">Menu</a>
+      <a href="#">Catering</a>
+      <a href="#">About</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;">
+      <a class="btn solid nav-cta" href="#">Order Online</a>
+      <a class="burger" href="#" aria-label="Open menu"><span></span><span></span><span></span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="crumb">
+  <div class="container"><div class="in"><a href="#">← All locations</a> &nbsp;/&nbsp; Boynton Beach</div></div>
+</div>
+
+<!-- §1 · Hero — CMS fields: Name · Status · VenueType · Address · Phone · Hours · HeroImage -->
+<header class="hero">
+  <div class="copy">
+   <div class="cwrap">
+    <!-- v1.1: Status/VenueType eyebrow removed from the default state — rendered ONLY for exceptional values (coming-soon banner · office/airport context badge), per W16 conditional pattern -->
+    <h1>Boynton Beach</h1>
+    <p class="addr">1500 Gateway Blvd, Ste 150A<br>Boynton Beach, FL 33426</p>
+    <div class="meta">
+      <div><span class="lb">Phone</span>(561) 200-0620</div>
+      <!-- v1.2: hours removed from hero — the Hours field may expand to a multi-row table; visit strip (§4) is its single home -->
+    </div>
+    <div class="ctas">
+      <a class="btn solid" href="#">Order Pickup</a>
+      <a class="btn ghost" href="#">Get Delivery</a>
+    </div>
+    <div class="sub-ctas">
+      <a class="textlink" href="#">Directions</a>
+      <a class="textlink" href="#">Catering from this store</a>
+    </div>
+   </div>
+  </div>
+  <div class="media"><img src="assets/loc-facade-fog.jpg" alt="Field of Greens storefront"></div>
+</header>
+
+<!-- §2 · Local intro + gallery — CMS fields: IntroText · Gallery ×3 -->
+<section class="section">
+  <div class="container">
+    <div class="intro">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;">
+        <span class="kicker">The Store</span>
+        <h2>Your neighborhood <em>Field of Greens.</em></h2>
+        <p>Everything here is made from scratch, every morning — the same promise we've kept since 2003. Grab a table on the patio, or order ahead and take it to go.</p>
+      </div>
+      <div class="lead"><img src="assets/loc-patio-tables.jpg" alt="Patio tables outside the store"></div>
+    </div>
+    <!-- v1.2: order options — CMS fields ToastURL · UberEatsURL · EZCaterURL; EZCater card hides when field empty (W16) -->
+    <div class="orders">
+      <span class="lbl">Order</span>
+      <!-- heading binds the CMS Name field -->
+      <div class="hd">Order from <em>Boynton Beach.</em></div>
+      <div class="ordersgrid">
+        <a class="orow" href="#"><span class="t">Pickup</span><span class="via">via Toast</span><span class="go">Start an order →</span></a>
+        <a class="orow" href="#"><span class="t">Delivery</span><span class="via">via Uber Eats</span><span class="go">Get delivery →</span></a>
+        <a class="orow" href="#"><span class="t">Catering</span><span class="via">via EZCater</span><span class="go">Plan an event →</span></a>
+      </div>
+    </div>
+    <div class="interiors">
+      <div class="ph"><img src="assets/loc-banquette.jpg" alt="Green banquette dining room"></div>
+      <div class="ph"><img src="assets/loc-counter-mural.jpg" alt="Order counter beneath the mural"></div>
+    </div>
+  </div>
+</section>
+
+<!-- §4 · Visit strip — CMS fields: Address · DirectionsURL · Phone · Hours -->
+<section class="visit">
+  <div class="container">
+    <div class="vhead">
+      <span class="kicker">Visit</span>
+      <div class="nm">Boynton Beach</div>
+    </div>
+    <div class="inner">
+      <div class="cell">
+        <div class="lb">Address</div>
+        <div class="v">1500 Gateway Blvd, Ste 150A<br>Boynton Beach, FL 33426<br><a href="#">Open in Google Maps</a></div>
+      </div>
+      <div class="cell">
+        <div class="lb">Hours</div>
+        <div class="v">Sunday – Saturday<br>10:00 AM – 4:00 PM</div>
+      </div>
+      <div class="cell">
+        <div class="lb">Contact</div>
+        <div class="v"><a href="#">(561) 200-0620</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §5 · Other locations — CMS repeater, excludes current entry -->
+<section class="section others">
+  <div class="container">
+    <div class="head">
+      <div>
+        <span class="kicker">Nearby</span>
+        <h2>More <em>Fields of Greens.</em></h2>
+      </div>
+      <a class="textlink" href="#">All locations</a>
+    </div>
+    <div class="loc-grid">
+      <a class="loc-card" href="#"><div class="nm">Wellington</div><div class="ad">10140 Forest Hill Blvd</div><span class="go">Visit →</span></a>
+      <a class="loc-card" href="#"><div class="nm">West Palm Beach (Dixie Highway)</div><div class="ad">4802 S. Dixie Highway</div><span class="go">Visit →</span></a>
+      <a class="loc-card" href="#"><div class="nm">Alton, Palm Beach Gardens</div><div class="ad">5320 Donald Ross Ave, Suite 105</div><span class="go">Visit →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/FieldOfGreens_FullSeal_color.svg" alt="Field of Greens">
+        <p>Where greens come true.™</p>
+      </div>
+      <div>
+        <div class="h">Visit</div>
+        <a href="menu-hifi.html">Menu</a>
+        <a href="#">Locations</a>
+        <a href="#">Catering</a>
+        <a href="#">About</a>
+      </div>
+      <div>
+        <div class="h">Company</div>
+        <a href="#">Careers</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Contact</a>
+        <a href="licensing-hifi.html">Licensing Opportunities</a>
+      </div>
+      <div class="foot-vip">
+        <div class="h">Join the VIP list</div>
+        <div class="row">
+          <input type="email" placeholder="Email address" aria-label="Email address">
+          <button class="btn solid" type="button">Join</button>
+        </div>
+
+        <div class="social">
+          <a href="https://www.instagram.com/ilovefog/" aria-label="Field of Greens on Instagram"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg></a>
+          <a href="https://www.facebook.com/FieldOfGreensFL/" aria-label="Field of Greens on Facebook"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Field of Greens · West Palm Beach, FL</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a></span>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
