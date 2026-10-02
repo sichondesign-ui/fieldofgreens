@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field of Greens — Menu · Hi-Fi Design v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"> <!-- v2.12: + Caveat (handwritten, chalk section heads — scoped trial) -->
+<style>
+:root{
+  --paper:#FBFAF7;        /* warm white */
+  --oat:#F3F0E9;          /* oat cream — Pura Vida register */
+  --oat-2:#EBE7DD;
+  --ink:#1A1A17;
+  --muted:#54544D;
+  --soft:#8A8A80;
+  --hairline:rgba(26,26,23,0.12);
+  --green:#2C9646;        /* seal vector — canonical per client call 2026-09-29 */
+  --green-deep:#14381F;   /* derived dark for statement bands */
+  --green-tint:rgba(44,150,70,0.08);
+  --display:'Cormorant Garamond',Garamond,'Palatino Linotype',Palatino,serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ---------- shared ---------- */
+.container{max-width:1200px;margin:0 auto;padding:0 48px;}
+.kicker{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--green);}
+.kicker.neutral{color:var(--soft);}
+h1,h2{font-family:var(--display);font-weight:500;letter-spacing:-.01em;color:var(--ink);}
+/* v2: all buttons — caps · semibold · 8% letter spacing (Sichon 2026-09-29 review) */
+.btn{display:inline-block;font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:15px 28px;transition:all .2s ease;cursor:pointer;border:1px solid transparent;border-radius:6px;text-align:center;white-space:nowrap;} /* v2.8: rebalanced smaller · v2.20: 6px radius */
+.btn.solid{background:var(--green);color:#fff;}
+.btn.solid:hover{background:#237a39;}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink);}
+.btn.ghost:hover{background:var(--ink);color:#fff;}
+.textlink{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);border-bottom:1px solid var(--green);padding-bottom:3px;}
+.textlink:hover{color:#237a39;}
+.btn.light{background:transparent;color:#fff;border-color:rgba(255,255,255,.65);} /* v2.12: for CTAs on green signature cards */
+.btn.light:hover{background:#fff;color:var(--green-deep);}
+
+/* ---------- comp status strip (not part of the design) ---------- */
+
+/* ---------- announcement ---------- */
+.announce{background:var(--green-deep);color:rgba(255,255,255,.92);text-align:center;padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+.announce b{color:#fff;font-weight:500;}
+
+/* ---------- nav ---------- */
+nav.site{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--hairline);} /* v2.11: solid — no frost/see-through (also clears W7) */
+.nav-inner{padding:0 40px;height:80px; /* v2.26: full-width nav — frames the viewport, content stays contained */display:flex;align-items:center;justify-content:space-between;gap:32px;} /* v2.14: 80px to match homepage — was the real source of the sticky gap */
+.nav-brand{display:flex;align-items:center;gap:14px;}
+.nav-brand img.seal{height:58px;width:58px;} /* v2: brand icon enlarged */
+.nav-brand img.wordmark{height:20px;width:auto;}
+/* v2: nav links — 14px · semibold · caps · 8% letter spacing */
+.nav-links{display:flex;gap:32px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;} /* v2.8: rebalanced smaller */
+.nav-links a{color:var(--muted);padding:6px 0;border-bottom:2px solid transparent;transition:color .2s;}
+.nav-links a:hover{color:var(--ink);border-bottom-color:var(--green);}
+.nav-links a.current{color:var(--ink);border-bottom-color:var(--green);}
+.nav-cta{font-size:12px;padding:13px 24px;} /* v2.8: matches nav link type style */
+/* v2.21: mobile hamburger — visual affordance only (dead, like all comp links); Wix supplies its native mobile menu */
+.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:24px;height:24px;flex:0 0 auto;}
+.burger span{display:block;height:2px;background:var(--ink);border-radius:1px;}
+/* v2.25 cascade: nav as 3-col grid — links sit on the true page centerline (space-between read as uneven).
+   Explicit column placement so the layout holds when .nav-links is display:none on mobile */
+.nav-inner{display:grid;grid-template-columns:1fr auto 1fr;}
+.nav-brand{grid-column:1;justify-self:start;}
+.nav-links{grid-column:2;justify-self:center;}
+.nav-inner > div:last-child{grid-column:3;justify-self:end;}
+
+/* ---------- page head ---------- */
+/* v2: full-bleed image background + deep-green overlay; pricing meta removed (Sichon: “remove or format better” → removed; per-category pricing keeps the job) */
+.pagehead{position:relative;background:url("assets/menu-hero-spread.jpg") center 40% / cover no-repeat;border-bottom:1px solid var(--hairline);}
+.pagehead::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(17,28,19,.82),rgba(17,28,19,.52) 55%,rgba(17,28,19,.30));}
+.pagehead .inner{position:relative;z-index:1;padding:116px 0 100px;max-width:640px;}
+.pagehead .kicker{color:#9BD8AC;}
+.pagehead h1{font-size:clamp(44px,5vw,68px);line-height:1.02;margin:18px 0 16px;color:#fff;}
+.pagehead p{font-size:17px;color:rgba(255,255,255,.85);max-width:460px;line-height:1.65;}
+
+/* ---------- sticky category chips (W3: simplified — no scroll-spy active state) ---------- */
+.chips{position:sticky;top:81px;z-index:40;background:var(--paper);border-bottom:1px solid var(--hairline);} /* v2.11: solid, flush under the nav's 1px pinline (80px nav + 1px border) */
+.chips .row{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+.chips .row::-webkit-scrollbar{display:none;}
+.chips a{flex:0 0 auto;font-family:var(--body);font-size:14px;font-weight:500;letter-spacing:.01em;color:var(--muted);padding:14px 14px;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s;} /* v2.8: body font, title case */
+.chips a:hover{color:var(--green);border-bottom-color:var(--green);}
+
+/* ---------- legend ---------- */
+.legend{display:flex;gap:18px;align-items:center;padding:20px 0 0;font-size:12.5px;color:var(--soft);flex-wrap:wrap;}
+.tag{display:inline-block;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--green);color:var(--green);border-radius:2px;padding:1px 6px;vertical-align:2px;}
+.tag.v{border-color:#7a6a1f;color:#7a6a1f;}
+
+/* ---------- chalkboard zone (v2–v2.3) ---------- */
+/* Menu presented on a chalkboard: tiled fixed texture + dark tint, content in dark mode directly on the board, hard edges (no fades). Wix: native section background w/ tile + fixed scroll — see W26/W27 */
+/* v2.2: dark mode — content sits directly on the chalkboard (paper cards removed) */
+/* v2.3: fades removed — clean hard edges top and bottom (Sichon) */
+/* v2.12: tiling abandoned — single fixed cover image, so no seams at any width (Wix: native fixed-bg scroll effect) */
+.chalkzone{position:relative;background:linear-gradient(rgba(14,19,15,.42),rgba(14,19,15,.42)),url("assets/chalkboard-texture.jpg") center / cover no-repeat;background-attachment:fixed,fixed;padding:16px 0 96px;margin-top:0;border-bottom:1px solid rgba(20,56,31,.35);}
+.chalkzone > *{position:relative;z-index:1;}
+/* chalk palette */
+.chalkzone{--chalk:#F6F3EA;--chalk-dim:rgba(246,243,234,.62);--chalk-faint:rgba(246,243,234,.45);--chalk-line:rgba(246,243,234,.16);--chalk-green:#8FD3A0;}
+.chalkzone .legend{color:var(--chalk-dim);padding:26px 0 0;}
+.chalkzone .msec .head{border-bottom-color:rgba(246,243,234,.28);} /* v2.12: pinline dialed down */
+/* v2.12: handwritten section heads — scoped chalk trial (Caveat); all other type unchanged */
+.chalkzone .msec .head h2{color:var(--chalk);font-family:'Caveat','Bradley Hand','Segoe Script',cursive;font-weight:600;font-size:clamp(42px,4.4vw,58px);letter-spacing:.01em;line-height:1;} /* v2.13: Comic Sans purged from the fallback stack */
+/* v2.30: head captions in the italic-serif register (matches "Be first to know…"); pricing stays mono via .pr */
+.chalkzone .msec .head .pricing{font-family:var(--display);font-style:italic;font-weight:400;font-size:21px;letter-spacing:.005em;text-transform:none;color:rgba(246,243,234,.88);} /* v2.30b: 18→21px */
+.chalkzone .msec .head .pricing .pr{font-family:var(--mono);font-style:normal;font-weight:500;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-left:6px;}
+.chalkzone .msec .note{color:var(--chalk-dim);} /* v2.14: notes now carry real pricing (soups cup/bowl) — readable tier */
+.chalkzone .item{border-bottom-color:var(--chalk-line);}
+.chalkzone .item .nm,.chalkzone .item .pr{color:var(--chalk);}
+.chalkzone .item .ds{color:var(--chalk-dim);}
+.chalkzone .tag{border-color:var(--chalk-green);color:var(--chalk-green);}
+.chalkzone .tag.v{border-color:#DCCB7E;color:#DCCB7E;}
+/* v2.9: signature cards — brand green with tonal foliage watermark */
+.chalkzone .feat{background:var(--green);border-color:rgba(255,255,255,.25);}
+.chalkzone .feat .cp{position:relative;overflow:hidden;}
+.chalkzone .feat .cp::after{content:'';position:absolute;right:-24px;bottom:-30px;width:260px;height:200px;background:url("assets/foliage-1.svg") no-repeat right bottom / contain;opacity:.28;pointer-events:none;} /* v2.12: tightened corner motif */
+.chalkzone .feat .cp > *{position:relative;z-index:1;}
+.chalkzone .feat .cp .sig{color:#DFF3E4;}
+.chalkzone .feat .cp .nm,.chalkzone .feat .cp .pr{color:#fff;}
+.chalkzone .feat .cp .ds{color:rgba(255,255,255,.88);}
+.chalkzone .feat .tag{border-color:rgba(255,255,255,.85);color:#fff;}
+.chalkzone .feat .tag.v{border-color:rgba(255,255,255,.85);color:#fff;}
+.chalkzone .combo{background:transparent;border-color:rgba(246,243,234,.5);}
+.chalkzone .combo .h{color:var(--chalk-green);}
+.chalkzone .combo .nm{color:var(--chalk);}
+.chalkzone .combo .ds{color:var(--chalk-dim);}
+.chalkzone .plist .pl{border-bottom-color:var(--chalk-line);}
+.chalkzone .plist .pl span,.chalkzone .plist .pl b{color:var(--chalk);}
+.chalkzone .plist .pl i{color:var(--chalk-faint);}
+.chalkzone .fineprint{color:var(--chalk-faint);}
+
+/* ---------- menu sections ---------- */
+.msec{padding:72px 0 8px;scroll-margin-top:132px;}
+.msec .head{display:flex;justify-content:space-between;align-items:baseline;gap:32px;border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:8px;flex-wrap:wrap;}
+.msec .head h2{font-size:clamp(30px,3.2vw,42px);line-height:1.05;}
+.msec .head .pricing{font-family:var(--mono);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);} /* v2.8: pricing enlarged */
+.msec .head .pricing small{display:block;font-size:10px;color:var(--soft);letter-spacing:.08em;text-align:right;margin-top:3px;text-transform:none;}
+.msec .note{font-size:13.5px;color:var(--soft);font-style:italic;font-family:var(--display);font-size:16px;margin:14px 0 6px;}
+.items{display:grid;grid-template-columns:1fr 1fr;gap:0 56px;}
+.item{padding:22px 0;border-bottom:1px solid var(--hairline);position:relative;}
+/* v2.12: hover-reveal Order Online on every item (comp: CSS pseudo; build: repeater hover element — W29. Always visible on touch breakpoints) */
+.item::after{content:'Order Online →';display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--chalk-green,#2C9646);opacity:0;transition:opacity .2s;}
+.item:hover::after{opacity:1;}
+.item .ln{display:flex;justify-content:space-between;align-items:baseline;gap:16px;}
+.item .nm{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.2;} /* v2.31: re-ranked above the 21px captions */
+.item .pr{font-family:var(--mono);font-size:15px;color:var(--ink);white-space:nowrap;} /* v2.8: pricing enlarged */
+.item .ds{font-size:14px;color:var(--muted);line-height:1.55;margin-top:5px;max-width:440px;} /* v2.31: cream-on-dark reads small — nudged */
+.item .tag{margin-left:8px;}
+
+/* featured (signature, photo-first) — v2: square photos so features don't run tall */
+.feat{display:grid;grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);gap:0;border:1px solid var(--hairline);background:var(--oat);margin:28px 0 20px;}
+.feat .ph{overflow:hidden;aspect-ratio:6/4;min-height:0;} /* v2.12: landscape 6:4 — shorter signature block */
+.feat .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.feat:hover .ph img{transform:scale(1.03);}
+.feat .cp{padding:36px 40px;display:flex;flex-direction:column;justify-content:center;}
+.feat .cp .sig{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
+.feat .cp .ln{display:flex;justify-content:space-between;align-items:baseline;gap:16px;}
+.feat .cp .nm{font-family:var(--display);font-weight:600;font-size:28px;line-height:1.15;}
+.feat .cp .pr{font-family:var(--mono);font-size:16px;} /* v2.8: pricing enlarged */
+.feat .cp .ds{font-size:14.5px;color:var(--muted);line-height:1.6;margin-top:10px;max-width:400px;}
+.feat.flip{grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr);}
+.feat.flip .ph{order:2;}
+.feat.flip .cp{order:1;}
+
+/* combos callout */
+.combo{border:1px solid var(--ink);padding:30px 36px;margin:30px 0 8px;display:grid;grid-template-columns:1fr 1fr;gap:12px 56px;background:var(--paper);}
+.combo .h{grid-column:1/-1;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);}
+.combo .nm{font-family:var(--display);font-weight:600;font-size:23px;} /* v2.31 cascade */
+.combo .ds{font-size:14px;color:var(--muted);margin-top:4px;} /* v2.31 cascade */
+
+/* simple price list (coffee / other bevs) */
+.plist{columns:2;column-gap:56px;}
+.plist .pl{break-inside:avoid;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--hairline);}
+.plist .pl span{font-size:15px;}
+.plist .pl i{font-style:normal;font-size:12px;color:var(--soft);}
+.plist .pl b{font-family:var(--mono);font-weight:400;font-size:15px;} /* v2.8: pricing enlarged */
+
+/* interlude band */
+.band{position:relative;height:440px;overflow:hidden;margin-top:72px;}
+.band img{width:100%;height:100%;object-fit:cover;object-position:center 45%;}
+.band .veil{position:absolute;inset:0;background:rgba(20,56,31,.32);} /* v2.12: even veil behind centered quote */
+.band .quote{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;color:#fff;font-family:var(--display);font-style:italic;font-weight:500;font-size:clamp(40px,5vw,64px);text-shadow:0 2px 24px rgba(0,0,0,.3);} /* v2.16: bigger still */
+
+/* disclaimer + order close */
+.fineprint{padding:40px 0 0;font-size:11.5px;color:var(--soft);line-height:1.6;}
+.orderclose{background:var(--oat);border-top:1px solid var(--hairline);margin-top:0;position:relative;overflow:hidden;} /* v2.6: chalkzone now owns the spacing above */
+.orderclose .foliage{position:absolute;pointer-events:none;opacity:.08;right:0;top:0;width:420px;}
+.orderclose .inner{position:relative;z-index:1;}
+.orderclose .inner{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:56px 0;flex-wrap:wrap;}
+/* v2.12: inset kid photo (print-105) — minor in frame, release gate applies */
+.orderclose .who{display:flex;align-items:center;gap:26px;}
+.orderclose .who img{width:132px;height:132px;border-radius:50%;object-fit:cover;object-position:center 20%;flex:0 0 auto;} /* v2.17: no stroke, sized to match the 132px footer seal */
+.orderclose h2{font-size:clamp(28px,3vw,38px);line-height:1.1;}
+.orderclose p{color:var(--muted);font-size:15px;margin-top:8px;max-width:480px;}
+
+/* mobile sticky order bar */
+.mobilebar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--paper);border-top:1px solid var(--hairline);padding:12px 16px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(20,56,31,.10);}
+.mobilebar .btn{width:100%;padding:15px 20px;}
+
+/* ---------- footer ---------- */
+footer{background:var(--paper);padding:80px 0 0;}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:48px;padding-bottom:64px;}
+.foot-grid .h{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:16px;}
+.foot-grid a{display:block;font-size:14.5px;color:var(--muted);padding:5px 0;}
+.foot-grid a:hover{color:var(--ink);}
+.foot-brand img{height:132px;margin-bottom:20px;} /* v2.7: footer logo enlarged again */
+.foot-brand p{font-family:var(--display);font-style:italic;font-size:19px;color:var(--muted);}
+/* v2.32 cascade: social icons — real client URLs (allowed live-link exception, see cascade log) */
+.foot-vip .social{display:flex;gap:16px;margin-top:24px;} /* v2.32c: moved under VIP signup */
+.foot-vip .social a{color:var(--muted);transition:color .2s;}
+.foot-vip .social a:hover{color:var(--green);}
+.foot-vip .social svg{width:40px;height:40px;display:block;fill:currentColor;} /* v2.32b: 40px */
+.foot-vip .row{display:flex;gap:8px;margin-top:4px;}
+.foot-vip input{flex:1;border:1px solid rgba(26,26,23,.3);background:transparent;padding:12px 14px;font-size:13px;font-family:var(--body);outline:none;min-width:0;}
+.foot-vip .btn{padding:12px 20px;font-size:12px;}
+.legal{border-top:1px solid var(--hairline);padding:22px 0;display:flex;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);flex-wrap:wrap;}
+.legal a{color:var(--soft);}
+.legal a:hover{color:var(--ink);}
+
+
+/* ---------- responsive ----------
+   SYSTEM (identical across all templates — see cascade sheet):
+   · Breakpoints: desktop >960 · tablet/mobile ≤960 · small mobile ≤560
+   · Type: fluid clamp() with explicit max-widths on display headlines
+   · Nav, 3 tiers: desktop >960 seal+wordmark+links · tablet 561-960 seal+links (no wordmark) · mobile ≤560 seal+burger (64px bar, sticky offset 65px)
+   · Fixed/parallax backgrounds → scroll attachment ≤960 (mirrors Wix mobile)
+   · Hover-only affordances become always-visible ≤960
+   · Decorative layers (foliage/watermarks) scale down, never force overflow */
+@media (max-width:960px){
+  .container{padding:0 28px;}
+  /* v2.21: compact mobile nav — 64px, 44px seal, burger visible, tighter CTA */
+  /* v2.23: tablet (561-960) — wordmark drops, text links stay; burger is mobile-only */
+  .nav-inner{padding:0 28px;gap:24px;}
+  .nav-brand img.wordmark{display:none;}
+  .nav-links{gap:22px;}
+  .nav-cta{padding:11px 16px;}
+
+  /* v2.10: mobile/tablet — swipe strip with right-edge fade cue */
+  .chips{overflow:hidden;}
+  .chips::after{content:'';position:absolute;right:0;top:0;bottom:0;width:56px;background:linear-gradient(to right,rgba(251,250,247,0),var(--paper));pointer-events:none;}
+  .chips{position:sticky;}
+  .chips .row{padding:0 28px;}
+  .pagehead .inner{padding:80px 0 64px;}
+  .chalkzone{background-attachment:scroll,scroll;background-size:auto,1600px auto;background-repeat:repeat,repeat;} /* fixed bg unreliable on mobile — tile large on small screens instead (seams off-canvas) */
+  .items{grid-template-columns:1fr;}
+  .item::after{opacity:1;} /* no hover on touch — CTA always visible (W29) */
+  .feat,.feat.flip{grid-template-columns:1fr;}
+  .feat .ph{min-height:0;aspect-ratio:4/3;}
+  .feat.flip .ph{order:1;}
+  .feat.flip .cp{order:2;}
+  .feat .cp{padding:28px 26px;}
+  .combo{grid-template-columns:1fr;padding:24px 26px;}
+  .plist{columns:1;}
+  .msec{padding:56px 0 8px;scroll-margin-top:132px;}
+  .band{height:340px;margin-top:56px;}
+  .band .quote{font-size:clamp(26px,7vw,40px);padding:0 24px;} /* v2.21: quote sized for the 340px mobile band */
+  .orderclose .foliage{width:280px;}
+  .orderclose .inner{flex-direction:column;align-items:flex-start;padding:48px 0;}
+  .mobilebar{display:block;}
+  body{padding-bottom:72px;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:560px){
+  /* v2.23: mobile (≤560) — seal only, links → burger */
+  .nav-inner{padding:0 20px;height:64px;gap:16px;}
+  .nav-brand img.seal{height:44px;width:44px;}
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  .chips{top:65px;}
+  .msec{scroll-margin-top:116px;}
+  .foot-grid{grid-template-columns:1fr;}
+  .orderclose .who{gap:18px;}
+  .orderclose .who img{width:92px;height:92px;} /* v2.21: kid inset scaled for small screens */
+  .feat .cp{padding:24px 22px;}
+  .foot-brand img{height:104px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Comp status strip — not part of the page design -->
+
+<!-- §0 · Announcement strip — carried from homepage for chrome consistency -->
+<div class="announce">Now open in Palm Beach Gardens — Alton &nbsp;·&nbsp; <b>Join the VIP list ↓</b></div>
+
+<!-- Global nav -->
+<nav class="site">
+  <div class="nav-inner">
+    <a class="nav-brand" href="homepage-hifi.html">
+      <img class="seal" src="assets/FieldOfGreens_FullSeal_color.svg" alt="Field of Greens seal">
+      <img class="wordmark" src="assets/Wordmark.svg" alt="Field of Greens">
+    </a>
+    <div class="nav-links">
+      <a href="#">Locations</a>
+      <a href="#" class="current">Menu</a>
+      <a href="#">Catering</a>
+      <a href="#">About</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;">
+      <a class="btn solid nav-cta" href="#">Order Online</a>
+      <a class="burger" href="#" aria-label="Open menu"><span></span><span></span><span></span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- §1 · Page head — v2: image background + overlay; pricing meta removed (per-category pricing carries it) -->
+<header class="pagehead">
+  <div class="container">
+    <div class="inner">
+      <span class="kicker">The Menu · Breakfast &amp; Lunch, All Day</span>
+      <h1>Everything, made from scratch.</h1>
+      <p>Prepped each morning in every kitchen — salads chopped to order, soups from the pot, açaí built by hand. Any salad becomes a wrap.</p>
+    </div>
+  </div>
+</header>
+
+<!-- §2 · Sticky category chips (anchors only — W3 resolved: no scroll-spy state) -->
+<nav class="chips" aria-label="Menu categories">
+  <div class="row">
+    <a href="#breakfast">Breakfast</a>
+    <a href="#salads">Salads</a>
+    <a href="#sandwiches">Sandwiches &amp; Wraps</a>
+    <a href="#acai">Açaí Bowls</a>
+    <a href="#soups">Soups</a>
+    <a href="#shakes">Protein Shakes</a>
+    <a href="#smoothies">Smoothies</a>
+    <a href="#juices">Juices</a>
+    <a href="#beverages">Beverages</a>
+    <a href="#desserts">Desserts</a>
+  </div>
+</nav>
+
+<!-- v2: chalkboard zone — the menu is presented on a chalkboard (client's in-store menu vernacular) -->
+<div class="chalkzone">
+
+<!-- v2.4: legend moved onto the board, chalk-styled; sticky chips stay white -->
+<div class="container">
+  <div class="legend">
+    <span><span class="tag">GF</span>&nbsp; Gluten free</span>
+    <span><span class="tag v">V</span>&nbsp; Vegan</span>
+    <span style="font-style:italic;">Dietary tags per the current takeout menu.</span>
+  </div>
+</div>
+
+<!-- §3 · Breakfast -->
+<section class="msec" id="breakfast">
+  <div class="container">
+    <div class="head">
+      <h2>Breakfast</h2>
+      <div class="pricing">Served all day</div>
+    </div>
+    <div class="feat">
+      <div class="ph"><img src="assets/menu-avocado-toast.jpg" alt="Avocado toast topped with egg and arugula on a branded tray"></div>
+      <div class="cp">
+        <span class="sig">Signature</span>
+        <div class="ln"><span class="nm">Avocado Toast</span><span class="pr">$9</span></div>
+        <p class="ds">Smashed &amp; seasoned avocado topped with egg, arugula, sunflower seeds, red pepper flakes on toasted multigrain bread.</p>
+        <a class="btn light" href="#" style="align-self:flex-start;margin-top:22px;">Order Online</a>
+      </div>
+    </div>
+    <div class="items">
+      <div class="item"><div class="ln"><span class="nm">The Standard</span><span class="pr">$8</span></div><p class="ds">Eggs, cheddar cheese, toasted multigrain bagel.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Power Bagel</span><span class="pr">$13</span></div><p class="ds">Egg whites, roasted turkey, Swiss cheese, toasted multigrain bagel, side of sriracha.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Wake Up Bowl</span><span class="pr">$14</span></div><p class="ds">Turkey chorizo, sweet potato &amp; quinoa hash, scrambled egg, red and green bell peppers, black kale, roasted tomato ezme.</p></div>
+      <div class="item"><div class="ln"><span class="nm">California Wrap</span><span class="pr">$10</span></div><p class="ds">Egg whites, avocado, fresh mozzarella, tomato, spinach wrap.</p></div>
+      <div class="item"><div class="ln"><span class="nm">TexMex Wrap</span><span class="pr">$12</span></div><p class="ds">Eggs, turkey chorizo, avocado, jack cheddar, black beans, salsa, whole wheat wrap.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Norwegian Toast</span><span class="pr">$14</span></div><p class="ds">Cold smoked salmon, dill spread, tomato, cucumber, sprouts, pickled red onion on whole wheat bread.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- §4 · Salads -->
+<section class="msec" id="salads">
+  <div class="container">
+    <div class="head">
+      <h2>Salads</h2>
+      <div class="pricing">Turn any salad into a wrap <span class="pr">+$1.25</span></div>
+    </div>
+    <div class="feat flip">
+      <div class="cp">
+        <span class="sig">Signature</span>
+        <div class="ln"><span class="nm">Vegan Habibi Bowl</span><span class="pr">$14 <span class="tag">GF</span><span class="tag v">V</span></span></div>
+        <p class="ds">Baby field greens, falafel, hummus, Mediterranean salsa, pickled turnips, Mediterranean pickles, tahini sauce.</p>
+        <a class="btn light" href="#" style="align-self:flex-start;margin-top:22px;">Order Online</a>
+      </div>
+      <div class="ph"><img src="assets/menu-signature-bowl.jpg" alt="Grain bowl finished with an avocado rose, sprouts and cashews"></div>
+    </div>
+    <div class="items">
+      <div class="item"><div class="ln"><span class="nm">Chicken Caesar Salad</span><span class="pr">$14</span></div><p class="ds">Romaine, halal-certified roasted chicken, parmesan, croutons, creamy Caesar.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Full of Life Salad <span class="tag">GF</span></span><span class="pr">$14</span></div><p class="ds">Arugula, spinach, halal-certified roasted chicken, feta, quinoa, craisins, almonds, cherry tomato, mint, lemon &amp; olive oil, basil honey.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Market Salad <span class="tag">GF</span></span><span class="pr">$14</span></div><p class="ds">Arugula, field greens, goat cheese, quinoa, roasted beets, roasted butternut squash, Granny Smith apple, candied walnuts, honey drizzle, citrus vinaigrette.</p></div>
+      <div class="item"><div class="ln"><span class="nm">BBQ Chicken Salad</span><span class="pr">$14</span></div><p class="ds">Field greens, romaine, BBQ chicken, jack cheddar, corn salsa, black beans, tomato, crushed tortilla chips, BBQ ranch.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Greek Salad <span class="tag">GF</span></span><span class="pr">$14</span></div><p class="ds">Romaine, halal-certified roasted chicken, feta, garbanzo beans, cherry tomato, cucumber, red onion, kalamata olives, Greek dressing.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Honey Cobb Salad <span class="tag">GF</span></span><span class="pr">$14</span></div><p class="ds">Romaine, turkey, applewood-smoked bacon, egg, gorgonzola, avocado, cherry tomato, honey mustard.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Kale 2 Caesar Salad</span><span class="pr">$14</span></div><p class="ds">Kale, halal-certified roasted chicken, parmesan, roasted almonds, craisins, croutons, creamy Caesar.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Pear Me Up Salad <span class="tag">GF</span></span><span class="pr">$14</span></div><p class="ds">Field greens, halal-certified roasted chicken, applewood-smoked bacon, gorgonzola, pear, candied walnuts, balsamic vinaigrette.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Thai Chicken Salad</span><span class="pr">$14</span></div><p class="ds">Romaine, red cabbage, napa cabbage, carrot, bell pepper, cucumber, edamame, sesame cashew crunch, Thai cilantro dressing, peanut sauce.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- §5 · Sandwiches & Wraps -->
+<section class="msec" id="sandwiches">
+  <div class="container">
+    <div class="head">
+      <h2>Sandwiches &amp; wraps</h2>
+    </div>
+    <div class="feat">
+      <div class="ph"><img src="assets/menu-baguette-pesto.jpg" alt="Pressed baguette sandwiches on a branded tray"></div>
+      <div class="cp">
+        <span class="sig">Signature</span>
+        <div class="ln"><span class="nm">Pesto Chicken</span><span class="pr">$13</span></div>
+        <p class="ds">Halal-certified pesto chicken, crispy prosciutto, fresh mozzarella, tomato, arugula, lemon garlic aioli, pressed hot on French baguette.</p>
+        <a class="btn light" href="#" style="align-self:flex-start;margin-top:22px;">Order Online</a>
+      </div>
+    </div>
+    <div class="items">
+      <div class="item"><div class="ln"><span class="nm">Chicken Caesar Wrap</span><span class="pr">$13</span></div><p class="ds">Halal-certified roasted chicken, parmesan, romaine, croutons, creamy Caesar, spinach wrap.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Buffalo Chicken Wrap</span><span class="pr">$13</span></div><p class="ds">Halal-certified roasted chicken, cheddar, romaine, carrots, red cabbage, onions, croutons, whole wheat wrap.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Grilled Southwest Wrap</span><span class="pr">$13</span></div><p class="ds">Halal-certified roasted chicken, corn salsa, black beans, red and green peppers, red onion, jalapeño, jack cheddar, BBQ ranch, whole wheat wrap.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Country Turkey Club</span><span class="pr">$13</span></div><p class="ds">Sliced turkey, applewood-smoked bacon, avocado, romaine, tomato, cranberry jam, dijonaise, toasted multigrain bread.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Turkey Reuben</span><span class="pr">$13</span></div><p class="ds">Roasted turkey, Swiss cheese, sauerkraut, 1000 island dressing, multigrain bread.</p></div>
+      <div class="item"><div class="ln"><span class="nm">The Carver</span><span class="pr">$13</span></div><p class="ds">Lean roast beef, goat cheese, arugula, tomato, pickled red onion, dijonnaise, toasted multigrain bread.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Tuna Melt</span><span class="pr">$13</span></div><p class="ds">Tuna salad, avocado, tomato, Swiss cheese, alfalfa sprouts, olive oil, everything spice, toasted English muffin.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Falafel Wrap <span class="tag v">V</span></span><span class="pr">$13</span></div><p class="ds">Falafel, Mediterranean salsa, hummus, tahini sauce, pickled turnips, pickles, romaine, pita wrap.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Interlude -->
+<section class="band">
+  <img src="assets/menu-spread-wide.jpg" alt="A table of Field of Greens salads and grain bowls">
+  <div class="veil"></div>
+  <p class="quote">Chopped to order, every order.</p>
+</section>
+
+<!-- §6 · Açaí Bowls -->
+<section class="msec" id="acai">
+  <div class="container">
+    <div class="head">
+      <h2>Açaí bowls</h2>
+      <div class="pricing">Vegan granola available for a charge</div>
+    </div>
+    <div class="feat flip">
+      <div class="cp">
+        <span class="sig">Signature</span>
+        <div class="ln"><span class="nm">Flag Bowl</span><span class="pr">$12</span></div>
+        <p class="ds">Strawberry, banana, blueberry, local granola, Sambazon organic açaí, organic coconut, honey drizzle.</p>
+        <a class="btn light" href="#" style="align-self:flex-start;margin-top:22px;">Order Online</a>
+      </div>
+      <div class="ph"><img src="assets/menu-acai-trio.jpg" alt="Three açaí bowls layered with granola and fresh fruit"></div>
+    </div>
+    <div class="items">
+      <div class="item"><div class="ln"><span class="nm">Reef Road</span><span class="pr">$12</span></div><p class="ds">Strawberry, banana, kiwi, pineapple, local granola, Sambazon organic açaí, organic coconut, honey drizzle.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Root Trail</span><span class="pr">$13</span></div><p class="ds">Strawberry, banana, Nutella, almond butter, local granola, Sambazon organic açaí, organic coconut, honey drizzle.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Lil Reef Road</span><span class="pr">$9</span></div><p class="ds">The Reef Road, sized down.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Lil Flag</span><span class="pr">$9</span></div><p class="ds">The Flag Bowl, sized down.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Lil Root Trail</span><span class="pr">$9</span></div><p class="ds">The Root Trail, sized down.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Add-ons</span><span class="pr">+</span></div><p class="ds">Homemade almond butter, peanut butter, goji berries, chia seeds, bee pollen, cacao nibs, matcha, spirulina, flax seeds — for an extra charge.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- §7 · Soups -->
+<section class="msec" id="soups">
+  <div class="container">
+    <div class="head">
+      <h2>Homemade soups</h2>
+      <div class="pricing"><span class="pr" style="margin-left:0;">Cup $5 · Bowl $6</span></div>
+    </div>
+    <div class="items">
+      <div class="item"><div class="ln"><span class="nm">Vegan Chili <span class="tag v">V</span></span></div></div>
+      <div class="item"><div class="ln"><span class="nm">Vegan Split Pea <span class="tag">GF</span><span class="tag v">V</span></span></div></div>
+      <div class="item"><div class="ln"><span class="nm">Tomato Bisque <span class="tag">GF</span></span></div></div>
+      <div class="item"><div class="ln"><span class="nm">Chicken Noodle</span></div></div>
+    </div>
+    <div class="combo">
+      <div class="h">Pairs well</div>
+      <div>
+        <div class="nm">Avocado Grilled Cheese &amp; Tomato Soup</div>
+        <p class="ds">Cheddar, Swiss, avocado, country white, cup of creamy tomato with basil oil drizzle.</p>
+      </div>
+      <div>
+        <div class="nm">Half Sandwich &amp; Soup</div>
+        <p class="ds">Choice of any sandwich (wraps not included) and cup of soup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §8 · Protein Shakes -->
+<section class="msec" id="shakes">
+  <div class="container">
+    <div class="head">
+      <h2>Plant-based protein shakes</h2>
+      <div class="pricing">All gluten free &amp; vegan</div>
+    </div>
+    <div class="items">
+      <div class="item"><div class="ln"><span class="nm">The Pump</span><span class="pr">$10</span></div><p class="ds">Banana, peanut butter, vegan chocolate protein, maca, almond milk.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Matcha Needed</span><span class="pr">$10</span></div><p class="ds">Kale, banana, dates, organic matcha, flax, homemade almond butter, vegan vanilla protein, vanilla almond milk.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Almond Brothers</span><span class="pr">$10</span></div><p class="ds">Strawberry, blueberry, medjool dates, homemade almond butter, vanilla protein, almond milk.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Java the Nut</span><span class="pr">$10</span></div><p class="ds">Banana, almond butter, medjool dates, flax, cocoa nibs, cold brew, chocolate protein, almond milk.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Post Work-Out</span><span class="pr">$10</span></div><p class="ds">Strawberry, banana, vegan vanilla protein, flax, almond milk.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- §9 · Smoothies -->
+<section class="msec" id="smoothies">
+  <div class="container">
+    <div class="head">
+      <h2>Plant-based smoothies</h2>
+      <div class="pricing">All gluten free &amp; vegan</div>
+    </div>
+    <div class="items">
+      <div class="item"><div class="ln"><span class="nm">Green Goddess</span><span class="pr">$9</span></div><p class="ds">Spinach, kale, pineapple, banana, medjool dates, almond milk.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Sunshine</span><span class="pr">$9</span></div><p class="ds">Mango, pineapple, fresh-squeezed OJ.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Pink Banana</span><span class="pr">$9</span></div><p class="ds">Strawberry, banana, apple juice.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Berry Berry Sunny</span><span class="pr">$9</span></div><p class="ds">Strawberry, blueberry, pineapple, fresh-squeezed OJ.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- §10 · Cold Pressed Juices -->
+<section class="msec" id="juices">
+  <div class="container">
+    <div class="head">
+      <h2>Cold pressed juices</h2>
+    </div>
+    <div class="feat">
+      <div class="ph"><img src="assets/menu-juice-immune.jpg" alt="A bottle of Immune Booster cold pressed juice"></div>
+      <div class="cp">
+        <span class="sig">Signature</span>
+        <div class="ln"><span class="nm">Immune Booster</span><span class="pr">12oz · $9</span></div>
+        <p class="ds">Orange, grapefruit, lemon, ginger.</p>
+        <a class="btn light" href="#" style="align-self:flex-start;margin-top:22px;">Order Online</a>
+      </div>
+    </div>
+    <div class="items">
+      <div class="item"><div class="ln"><span class="nm">Quencher</span><span class="pr">12oz · $9</span></div><p class="ds">Watermelon, mint.</p></div>
+      <div class="item"><div class="ln"><span class="nm">F.O.G.</span><span class="pr">12oz · $9</span></div><p class="ds">Spinach, kale, cucumber, apple, celery, lemon, ginger.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Defender</span><span class="pr">2oz · $5</span></div><p class="ds">Turmeric, lemon, ginger, black pepper.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Metabolic Bomb</span><span class="pr">4oz · $6</span></div><p class="ds">Lemon, celery, Granny Smith apple, ginger, cayenne pepper.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- §11 · Coffee + Other Beverages -->
+<section class="msec" id="beverages">
+  <div class="container">
+    <div class="head">
+      <h2>Coffee &amp; beverages</h2>
+      <div class="pricing">Iced available · milks: whole, almond, oat <span class="pr">+$1</span></div>
+    </div>
+    <div class="plist">
+      <div class="pl"><span>Americano</span><b>$4</b></div>
+      <div class="pl"><span>Espresso <i>double shot</i></span><b>$4</b></div>
+      <div class="pl"><span>Cappuccino</span><b>$5</b></div>
+      <div class="pl"><span>Latte</span><b>$5</b></div>
+      <div class="pl"><span>Dirty Chai Latte</span><b>$6</b></div>
+      <div class="pl"><span>Matcha Latte</span><b>$6</b></div>
+      <div class="pl"><span>El Chapo <i>double espresso, cacao, cinnamon, cayenne, coconut sugar</i></span><b>$6</b></div>
+      <div class="pl"><span>Homemade Ginger Lemonade</span><b>$5</b></div>
+      <div class="pl"><span>Kombucha <i>assorted flavors</i></span><b>$5</b></div>
+      <div class="pl"><span>Chlorophyll Water</span><b>$6</b></div>
+      <div class="pl"><span>Coconut Water</span><b>$5</b></div>
+      <div class="pl"><span>Celsius <i>assorted flavors</i></span><b>$4</b></div>
+      <div class="pl"><span>Poppi</span><b>$4.50</b></div>
+      <div class="pl"><span>Tiger Seed <i>assorted flavors</i></span><b>$4.75</b></div>
+      <div class="pl"><span>Saint James Teas <i>assorted flavors</i></span><b>$4</b></div>
+      <div class="pl"><span>Martinelli’s Apple Juice</span><b>$4</b></div>
+      <div class="pl"><span>Vellamo <i>sparkling or still, glass bottle 330ml</i></span><b>$3</b></div>
+      <div class="pl"><span>Vitamin Water <i>assorted flavors</i></span><b>$3</b></div>
+      <div class="pl"><span>La Croix <i>assorted flavors</i></span><b>$2</b></div>
+      <div class="pl"><span>Coke / Diet Coke / Sprite</span><b>$3</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- §12 · Desserts -->
+<section class="msec" id="desserts">
+  <div class="container">
+    <div class="head">
+      <h2>Desserts</h2>
+    </div>
+    <div class="items">
+      <div class="item"><div class="ln"><span class="nm">Ballers <span class="tag">GF</span><span class="tag v">V</span></span><span class="pr">$7</span></div><p class="ds">Rolled oats, almond butter, coconut, pumpkin seeds, raisins, apples, chocolate chips, flaxseed, chia seed, vanilla, cinnamon, stevia, agave, sea salt.</p></div>
+      <div class="item"><div class="ln"><span class="nm">BFO Cookie <span class="tag">GF</span><span class="tag v">V</span></span><span class="pr">$5</span></div><p class="ds">Cacao, almond milk, vegan butter, vanilla extract, brown sugar, flour, salt.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Birthday Cake <span class="tag v">V</span></span><span class="pr">$7</span></div><p class="ds">Flour, cane sugar, brown sugar, cashew milk, canola oil, vegan butter, confection sugar, egg replacer, vanilla, naturally dyed sprinkles, baking soda, baking powder, sea salt.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Carrot Cake <span class="tag v">V</span></span><span class="pr">$7</span></div><p class="ds">Carrots, flour, cane sugar, pecans, raisins, vegan cream cheese, cashew milk, confectioner sugar, canola oil, egg replacer, vanilla, baking soda, cinnamon, sea salt.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Chocolate Chip Cookies</span><span class="pr">Pack of 2 · $4</span></div><p class="ds">Homemade &amp; delicious. Not vegan.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Granola Bites <span class="tag">GF</span></span><span class="pr">$6</span></div><p class="ds">Almond butter &amp; chocolate: organic rolled oats, organic pure maple syrup, organic sugar, canola oil, almond butter, coconut, cinnamon, chia seeds, chocolate chips.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Muffin</span><span class="pr">$6</span></div><p class="ds">Homemade &amp; delicious. Not vegan.</p></div>
+      <div class="item"><div class="ln"><span class="nm">Dirty Potato Chips</span><span class="pr">$2.50</span></div><p class="ds">Assorted flavors.</p></div>
+    </div>
+    <p class="fineprint">Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness.</p>
+  </div>
+</section>
+
+</div><!-- /chalkzone -->
+
+<!-- §13 · Order close -->
+<section class="orderclose">
+  <img class="foliage" src="assets/foliage-3.svg" alt="" aria-hidden="true">
+  <div class="container">
+    <div class="inner">
+      <div class="who">
+        <img src="assets/orderclose-kid.jpg" alt="A grinning kid holding a Field of Greens sandwich">
+        <div>
+          <h2>Hungry yet?</h2>
+          <p>Order ahead for pickup or delivery from your nearest Field of Greens.</p>
+        </div>
+      </div>
+      <a class="btn solid" href="#">Order Online</a>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile sticky order bar -->
+<div class="mobilebar"><a class="btn solid" href="#">Order Online</a></div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/FieldOfGreens_FullSeal_color.svg" alt="Field of Greens">
+        <p>Where greens come true.™</p>
+      </div>
+      <div>
+        <div class="h">Visit</div>
+        <a href="menu-hifi.html">Menu</a>
+        <a href="#">Locations</a>
+        <a href="#">Catering</a>
+        <a href="#">About</a>
+      </div>
+      <div>
+        <div class="h">Company</div>
+        <a href="#">Careers</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Contact</a>
+        <a href="licensing-hifi.html">Licensing Opportunities</a>
+      </div>
+      <div class="foot-vip">
+        <div class="h">Join the VIP list</div>
+        <div class="row">
+          <input type="email" placeholder="Email address" aria-label="Email address">
+          <button class="btn solid" type="button">Join</button>
+        </div>
+
+        <div class="social">
+          <a href="https://www.instagram.com/ilovefog/" aria-label="Field of Greens on Instagram"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg></a>
+          <a href="https://www.facebook.com/FieldOfGreensFL/" aria-label="Field of Greens on Facebook"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Field of Greens · West Palm Beach, FL</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a></span>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>

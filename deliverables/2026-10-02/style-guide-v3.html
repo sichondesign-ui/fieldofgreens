@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field of Greens — Brand Guidelines · Version 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF7;
+  --oat:#F3F0E9;
+  --oat-2:#EBE7DD;
+  --ink:#1A1A17;
+  --muted:#54544D;
+  --soft:#8A8A80;
+  --hairline:rgba(26,26,23,0.12);
+  --green:#2C9646;
+  --green-deep:#14381F;
+  --green-tint:rgba(44,150,70,0.08);
+  --display:'Cormorant Garamond',Garamond,'Palatino Linotype',Palatino,serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+  --hand:'Caveat','Bradley Hand','Segoe Script',cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+.container{max-width:1200px;margin:0 auto;padding:0 48px;}
+.kicker{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--green);}
+.kicker.light{color:#9BD8AC;}
+h1,h2,h3.serif{font-family:var(--display);font-weight:500;letter-spacing:-.01em;color:var(--ink);}
+h2{font-size:clamp(36px,3.8vw,54px);line-height:1.06;margin:16px 0 18px;}
+h2 em{font-style:italic;}
+.lede{font-size:17px;color:var(--muted);max-width:560px;line-height:1.7;}
+.section{padding:120px 0;}
+.num{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--soft);display:block;margin-bottom:18px;}
+
+/* cover */
+.cover{position:relative;min-height:92vh;display:flex;align-items:center;background:url("assets/hero-bowls-flatlay.jpg") center 40% / cover no-repeat;color:#fff;}
+.cover::before{content:'';position:absolute;top:0;right:0;bottom:0;left:0;background:rgba(13,28,17,.9);}
+.cover .container{position:relative;z-index:1;}
+.cover .seal{width:150px;height:150px;margin-bottom:44px;}
+.cover h1{color:#fff;font-size:clamp(54px,6.5vw,96px);line-height:1.0;max-width:900px;}
+.cover h1 em{font-style:italic;}
+.cover p{color:rgba(255,255,255,.8);font-size:17px;margin-top:26px;}
+.cover .vtag{position:absolute;right:48px;bottom:40px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);}
+
+/* interlude photo bands */
+.band{height:520px;background-position:center;background-size:cover;background-repeat:no-repeat;}
+
+/* logos */
+.markgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:56px;}
+.markcell{border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;min-height:360px;padding:48px;position:relative;}
+.markcell.cream{background:var(--paper);}
+.markcell.oatbg{background:var(--oat);}
+.markcell.deep{background:var(--green-deep);}
+.markcell.photo{background:url("assets/loc-counter-mural.jpg") center/cover;}
+.markcell .lb{position:absolute;left:20px;bottom:16px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);}
+.markcell.deep .lb,.markcell.photo .lb{color:rgba(255,255,255,.75);}
+.markcell img{max-width:62%;max-height:240px;}
+.markrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin-top:22px;}
+.markrow .markcell{min-height:260px;}
+.markrow .markcell img{max-width:72%;}
+
+/* usage */
+.usage{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:64px;}
+.usage h3{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px;}
+.usage .do h3{color:var(--green);}
+.usage .dont h3{color:#8a4a1f;}
+.usage ul{list-style:none;}
+.usage li{padding:16px 0;border-bottom:1px solid var(--hairline);font-size:16px;color:var(--muted);line-height:1.6;}
+.usage li b{color:var(--ink);font-weight:600;}
+
+/* color */
+.palette{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px;}
+.swatch{border:1px solid var(--hairline);}
+.swatch .chip{height:170px;}
+.swatch .meta{padding:18px 20px 20px;background:var(--paper);}
+.swatch .nm{font-family:var(--display);font-weight:600;font-size:21px;}
+.swatch .hx{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);margin-top:3px;}
+.swatch .rl{font-size:13px;color:var(--soft);margin-top:8px;line-height:1.5;}
+.propbar{display:flex;height:64px;margin-top:64px;border:1px solid var(--hairline);}
+.propbar div{height:100%;}
+.propnote{font-family:var(--display);font-style:italic;font-size:19px;color:var(--muted);margin-top:18px;}
+
+/* typography */
+.typo{border-top:1px solid var(--hairline);padding-top:56px;margin-top:56px;display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start;}
+.typo:first-of-type{margin-top:64px;}
+.typo .role{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);}
+.typo .fam{font-family:var(--display);font-weight:600;font-size:26px;margin-top:10px;}
+.typo .note{font-size:14.5px;color:var(--muted);margin-top:12px;line-height:1.65;max-width:320px;}
+.spec-display{font-family:var(--display);font-weight:500;font-size:clamp(44px,4.6vw,64px);line-height:1.05;}
+.spec-display em{font-style:italic;}
+.spec-body{font-size:17px;color:var(--muted);line-height:1.7;max-width:560px;}
+.spec-mono{font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--ink);line-height:2;}
+.spec-mono .k{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green);}
+.spec-hand{font-family:var(--hand);font-weight:600;font-size:56px;line-height:1;color:var(--ink);}
+.abc{margin-top:16px;font-size:15px;color:var(--soft);letter-spacing:.02em;word-break:break-all;}
+
+/* photography */
+.photo-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:56px;}
+.photo-principles .p h3{font-family:var(--display);font-weight:600;font-size:23px;margin-bottom:10px;}
+.photo-principles .p p{font-size:14.5px;color:var(--muted);line-height:1.65;}
+.mood{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:14px;margin-top:64px;}
+.mood .m{overflow:hidden;}
+.mood img{width:100%;height:100%;object-fit:cover;}
+.mood .tall{grid-row:span 2;}
+.mood .wide{grid-column:span 2;}
+.mood .quote{background:var(--green-deep);display:flex;align-items:center;justify-content:center;padding:28px;text-align:center;}
+.mood .quote p{font-family:var(--display);font-style:italic;font-size:24px;line-height:1.3;color:#fff;}
+.mood .mark{background:var(--oat);display:flex;align-items:center;justify-content:center;padding:28px;}
+.mood .mark img{width:70%;height:auto;object-fit:contain;}
+
+/* closing */
+.closing{position:relative;background:var(--green-deep);color:#fff;padding:140px 0;overflow:hidden;}
+.closing .foliage{position:absolute;right:0;top:0;width:560px;opacity:.1;pointer-events:none;}
+.closing .container{position:relative;z-index:1;}
+.closing h2{color:#fff;}
+.closing p{color:rgba(255,255,255,.75);max-width:520px;font-size:16.5px;line-height:1.7;}
+.closing .legal{margin-top:72px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);}
+
+@media (max-width:960px){
+  .container{padding:0 28px;}
+  .section{padding:80px 0;}
+  .markgrid,.usage,.typo{grid-template-columns:1fr;gap:28px;}
+  .markrow{grid-template-columns:1fr;}
+  .palette{grid-template-columns:1fr 1fr;}
+  .photo-principles{grid-template-columns:1fr;gap:28px;}
+  .mood{grid-template-columns:1fr 1fr;grid-auto-rows:200px;}
+  .band{height:340px;}
+  .cover .vtag{position:static;display:block;margin-top:40px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<header class="cover">
+  <div class="container">
+    <img class="seal" src="assets/FieldOfGreens_FullSeal_white.svg" alt="Field of Greens seal">
+    <span class="kicker light">Brand Guidelines</span>
+    <h1>Where greens <em>come true.</em></h1>
+    <p>The Field of Greens brand system — marks, color, typography and photography. West Palm Beach, since 2003.</p>
+  </div>
+  <span class="vtag">Version 3 · 2026</span>
+</header>
+
+<!-- 01 · Logos & marks -->
+<section class="section">
+  <div class="container">
+    <span class="num">01</span>
+    <span class="kicker">Logos &amp; Marks</span>
+    <h2>One seal, worn <em>proudly.</em></h2>
+    <p class="lede">The seal is the brand. It appears in kelly green on cream and white surfaces, and reversed in white over green or photography. The wordmark carries horizontal applications; the mantra is the brand's voice made visible.</p>
+
+    <div class="markgrid">
+      <div class="markcell cream"><img src="assets/FieldOfGreens_FullSeal_color.svg" alt="Seal — kelly on cream"><span class="lb">Primary · kelly on paper</span></div>
+      <div class="markcell deep"><img src="assets/FieldOfGreens_FullSeal_white.svg" alt="Seal — white on deep green"><span class="lb">Reversed · white on deep green</span></div>
+    </div>
+    <div class="markrow">
+      <div class="markcell oatbg"><img src="assets/Wordmark.svg" alt="Field of Greens wordmark"><span class="lb">Wordmark · horizontal lockups</span></div>
+      <div class="markcell cream"><img src="assets/EverythingIsGoingToBeOkay.svg" alt="Everything is going to be OK voice mark"><span class="lb">Voice mark · the mantra</span></div>
+      <div class="markcell photo"><span class="lb">In the world · murals &amp; signage</span></div>
+    </div>
+
+    <div class="usage">
+      <div class="do">
+        <h3>The seal, used well</h3>
+        <ul>
+          <li><b>Two colorways only.</b> Kelly <span style="font-family:var(--mono);font-size:13px;">#2C9646</span> on light surfaces; white reversed on deep green or photography.</li>
+          <li><b>Clear space</b> equal to half the seal's radius on all sides — company it keeps at that distance or farther.</li>
+          <li><b>It may overlap seams.</b> Panel edges and photo boundaries are the seal's signature perch.</li>
+          <li><b>The wordmark pairs with the seal</b> in navigation and horizontal lockups; alone, it carries footers and small applications.</li>
+          <li><b>The mantra is a moment, not a logo.</b> Murals, quiet interludes, packaging interiors — places where reassurance reads as intended.</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h3>Never</h3>
+        <ul>
+          <li>Never recolor the marks — no other greens, no black, no accent colors.</li>
+          <li>Never stretch, outline, add effects, or rotate any mark.</li>
+          <li>Never tile the mantra as a repeating pattern, or shrink it below comfortable legibility.</li>
+          <li>Never set the seal over busy photography without the deep-green overlay carrying it.</li>
+          <li>Never fake marks that don't exist as vectors — if it isn't in the brand folder, it isn't the brand.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band" style="background-image:url('assets/story-mural-wide.jpg');"></div>
+
+<!-- 02 · Color -->
+<section class="section">
+  <div class="container">
+    <span class="num">02</span>
+    <span class="kicker">Color</span>
+    <h2>Cream canvas, <em>one true green.</em></h2>
+    <p class="lede">Warm paper surfaces do the hosting; kelly green arrives as the accent — never the wallpaper. Deep green is the brand's formal register, and ink does the everyday talking.</p>
+
+    <div class="palette">
+      <div class="swatch"><div class="chip" style="background:#2C9646;"></div><div class="meta"><div class="nm">Kelly</div><div class="hx">#2C9646</div><div class="rl">The brand green. Marks, buttons, kickers, links — the one kelly moment every view earns.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#14381F;"></div><div class="meta"><div class="nm">Deep Green</div><div class="hx">#14381F</div><div class="rl">The formal register — statement bands, photo overlays, announcement strip.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#1A1A17;"></div><div class="meta"><div class="nm">Ink</div><div class="hx">#1A1A17</div><div class="rl">Headlines and body. The brand's black — warm, never pure.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#FBFAF7;border-bottom:1px solid var(--hairline);"></div><div class="meta"><div class="nm">Paper</div><div class="hx">#FBFAF7</div><div class="rl">The default page. A warm white that feels like a set table.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#F3F0E9;"></div><div class="meta"><div class="nm">Oat</div><div class="hx">#F3F0E9</div><div class="rl">The first surface shift — hero panels, alternating sections.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#EBE7DD;"></div><div class="meta"><div class="nm">Oat Deep</div><div class="hx">#EBE7DD</div><div class="rl">The second shift — forms, bands that need a touch more weight.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#54544D;"></div><div class="meta"><div class="nm">Stone</div><div class="hx">#54544D</div><div class="rl">Secondary text — descriptions, supporting copy.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#8A8A80;"></div><div class="meta"><div class="nm">Driftwood</div><div class="hx">#8A8A80</div><div class="rl">Captions, labels, the quietest tier.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#4C9851;"></div><div class="meta"><div class="nm">Foliage</div><div class="hx">#4C9851</div><div class="rl">Decorative only — palm watermarks and illustration. Never text, never buttons.</div></div></div>
+    </div>
+
+    <div class="propbar">
+      <div style="width:46%;background:#FBFAF7;"></div>
+      <div style="width:22%;background:#F3F0E9;"></div>
+      <div style="width:12%;background:#EBE7DD;"></div>
+      <div style="width:11%;background:#14381F;"></div>
+      <div style="width:6%;background:#2C9646;"></div>
+      <div style="width:3%;background:#1A1A17;"></div>
+    </div>
+    <p class="propnote">The proportions in practice — green does not need to be the background to own the page.</p>
+  </div>
+</section>
+
+<div class="band" style="background-image:url('assets/menu-spread-wide.jpg');"></div>
+
+<!-- 03 · Typography -->
+<section class="section">
+  <div class="container">
+    <span class="num">03</span>
+    <span class="kicker">Typography</span>
+    <h2>A serif that talks <em>like a person.</em></h2>
+    <p class="lede">Three voices, strictly cast: a warm serif for display, a clean sans for reading, and a monospace reserved for hard data. Every display headline carries one italic phrase — the brand's wink.</p>
+
+    <div class="typo">
+      <div>
+        <span class="role">Display</span>
+        <div class="fam">Cormorant Garamond</div>
+        <p class="note">Medium for headlines, semibold for item and card titles. Italic carries the emphasis phrase — one per headline, always.</p>
+      </div>
+      <div>
+        <div class="spec-display">Made from scratch, <em>every day.</em></div>
+        <div class="abc">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789</div>
+      </div>
+    </div>
+
+    <div class="typo">
+      <div>
+        <span class="role">Body</span>
+        <div class="fam">DM Sans</div>
+        <p class="note">Paragraphs, addresses, interface copy, buttons. Semibold caps with 8% tracking is the button and navigation register.</p>
+      </div>
+      <div>
+        <p class="spec-body">Everything here is made from scratch, every morning — the same promise we've kept since 2003. Grab a table on the patio, or order ahead and take it to go.</p>
+        <div class="abc">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789</div>
+      </div>
+    </div>
+
+    <div class="typo">
+      <div>
+        <span class="role">Data</span>
+        <div class="fam">JetBrains Mono</div>
+        <p class="note">Labels, prices, badges and kickers only. Contact details and editorial asides belong to the other two voices.</p>
+      </div>
+      <div>
+        <p class="spec-mono"><span class="k">The Menu · Breakfast &amp; Lunch, All Day</span><br>$14 &nbsp;·&nbsp; GF &nbsp;·&nbsp; V &nbsp;·&nbsp; CUP $5 · BOWL $6<br>EST. 2003 · WEST PALM BEACH, FL</p>
+      </div>
+    </div>
+
+    <div class="typo">
+      <div>
+        <span class="role">Accent · menu only</span>
+        <div class="fam">Caveat</div>
+        <p class="note">The chalkboard hand. Scoped to menu section headings on the dark board — nowhere else.</p>
+      </div>
+      <div>
+        <div class="spec-hand">Salads &nbsp; Açaí bowls &nbsp; Breakfast</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band" style="background-image:url('assets/loc-facade-fog.jpg');background-position:center 55%;"></div>
+
+<!-- 04 · Photography & mood -->
+<section class="section">
+  <div class="container">
+    <span class="num">04</span>
+    <span class="kicker">Photography</span>
+    <h2>Real food, real light, <em>real Florida.</em></h2>
+    <p class="lede">The brand photographs what is actually true: scratch cooking on wood and steel, hospitality handed across the counter, and the particular brightness of a Palm Beach morning.</p>
+
+    <div class="photo-principles">
+      <div class="p"><h3>Food, up close</h3><p>Overhead and three-quarter angles on wood tables and branded trays. Color comes from the ingredients — the photography never filters toward a palette.</p></div>
+      <div class="p"><h3>People &amp; hospitality</h3><p>The handoff, the shared table, the first bite. Guests and staff photographed mid-moment, never posed stiff.</p></div>
+      <div class="p"><h3>Florida light</h3><p>Hard sun, deep sky, palms and painted facades. Exteriors shot looking up; interiors bright, white and green.</p></div>
+    </div>
+
+    <div class="mood">
+      <div class="m tall"><img src="assets/hero-model-bowl.jpg" alt=""></div>
+      <div class="m"><img src="assets/menu-avocado-toast.jpg" alt=""></div>
+      <div class="m"><img src="assets/loc-sign-palm.jpg" alt=""></div>
+      <div class="m tall"><img src="assets/hero-avocado-salad.jpg" alt=""></div>
+      <div class="m quote"><img src="assets/EverythingIsGoingToBeOkay.svg" alt="Everything is going to be OK" style="width:78%;height:auto;object-fit:contain;filter:brightness(0) invert(1);"></div>
+      <div class="m"><img src="assets/ig-smoothie-cheers.jpg" alt=""></div>
+      <div class="m wide"><img src="assets/interior-counter-wide.jpg" alt=""></div>
+      <div class="m"><img src="assets/menu-acai-trio.jpg" alt=""></div>
+      <div class="m"><img src="assets/loc-banquette.jpg" alt=""></div>
+      <div class="m mark"><img src="assets/FieldOfGreens_FullSeal_color.svg" alt=""></div>
+      <div class="m wide"><img src="assets/lifestyle-patio.jpg" alt=""></div>
+      <div class="m"><img src="assets/menu-juice-immune.jpg" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- Closing -->
+<section class="closing">
+  <img class="foliage" src="assets/foliage-2.svg" alt="">
+  <div class="container">
+    <span class="kicker light">Field of Greens</span>
+    <h2>Growing — <em>thoughtfully.</em></h2>
+    <p>These guidelines govern every expression of the Field of Greens brand: the website, the stores, the deck, and whatever comes next. When in doubt, choose the quieter option — the brand earns attention by being certain, not loud.</p>
+    <div class="legal">© 2026 Field of Greens · West Palm Beach, FL · Brand Guidelines Version 3</div>
+  </div>
+</section>
+
+</body>
+</html>
