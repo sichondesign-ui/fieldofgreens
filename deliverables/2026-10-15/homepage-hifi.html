@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field of Greens — Homepage · Hi-Fi Design v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF7;        /* warm white */
+  --oat:#F3F0E9;          /* oat cream — Pura Vida register */
+  --oat-2:#EBE7DD;
+  --ink:#1A1A17;
+  --muted:#54544D;
+  --soft:#8A8A80;
+  --hairline:rgba(26,26,23,0.12);
+  --green:#2C9646;        /* seal vector — canonical per client call 2026-09-29 */
+  --green-deep:#14381F;   /* derived dark for the licensing band */
+  --green-tint:rgba(44,150,70,0.08);
+  --display:'Cormorant Garamond',Garamond,'Palatino Linotype',Palatino,serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ---------- shared ---------- */
+.container{max-width:1200px;margin:0 auto;padding:0 48px;}
+.kicker{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--green);}
+.kicker.neutral{color:var(--soft);}
+h1,h2{font-family:var(--display);font-weight:500;letter-spacing:-.01em;color:var(--ink);}
+/* v2: all buttons — caps · semibold · 8% letter spacing (Sichon 2026-09-29 review) */
+.btn{display:inline-block;font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:15px 28px;transition:all .2s ease;cursor:pointer;border:1px solid transparent;border-radius:6px;text-align:center;white-space:nowrap;} /* v2.8: rebalanced smaller · v2.20: 6px radius */
+.btn.solid{background:var(--green);color:#fff;}
+.btn.solid:hover{background:#237a39;}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink);}
+.btn.ghost:hover{background:var(--ink);color:#fff;}
+.btn.light{background:transparent;color:#fff;border-color:rgba(255,255,255,.6);}
+.btn.light:hover{background:#fff;color:var(--green-deep);}
+.textlink{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);border-bottom:1px solid var(--green);padding-bottom:3px;}
+.textlink:hover{color:#237a39;}
+
+/* v2.6: foliage watermark — client-supplied deck SVGs (supplied-assets/foliage-1..4), replaces the interim line-art */
+.foliage{position:absolute;pointer-events:none;opacity:.08;}
+
+/* ---------- comp status strip (not part of the design) ---------- */
+.compnote{background:#E9E7E0;border-bottom:1px dashed rgba(26,26,23,.35);text-align:center;padding:7px 16px;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#54544D;}
+
+/* ---------- announcement ---------- */
+.announce{background:var(--green-deep);color:rgba(255,255,255,.92);text-align:center;padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+.announce b{color:#fff;font-weight:500;}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--hairline);} /* v2.11: solid — no frost/see-through (also clears W7) */
+.nav-inner{padding:0 40px;height:80px; /* v2.26: full-width nav — frames the viewport, content stays contained */display:flex;align-items:center;justify-content:space-between;gap:32px;}
+.nav-brand{display:flex;align-items:center;gap:14px;}
+.nav-brand img.seal{height:58px;width:58px;} /* v2: brand icon enlarged */
+.nav-brand img.wordmark{height:20px;width:auto;}
+/* v2: nav links — 14px · semibold · caps · 8% letter spacing */
+.nav-links{display:flex;gap:32px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;} /* v2.8: rebalanced smaller */
+.nav-links a{color:var(--muted);padding:6px 0;border-bottom:2px solid transparent;transition:color .2s;}
+.nav-links a:hover{color:var(--ink);border-bottom-color:var(--green);}
+.nav-cta{font-size:12px;padding:13px 24px;} /* v2.8: matches nav link type style */
+/* v2.21: mobile hamburger — visual affordance only (dead, like all comp links); Wix supplies its native mobile menu */
+.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:24px;height:24px;flex:0 0 auto;}
+.burger span{display:block;height:2px;background:var(--ink);border-radius:1px;}
+/* v2.25 cascade: nav as 3-col grid — links sit on the true page centerline (space-between read as uneven).
+   Explicit column placement so the layout holds when .nav-links is display:none on mobile */
+.nav-inner{display:grid;grid-template-columns:1fr auto 1fr;}
+.nav-brand{grid-column:1;justify-self:start;}
+.nav-links{grid-column:2;justify-self:center;}
+.nav-inner > div:last-child{grid-column:3;justify-self:end;}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:640px;border-bottom:1px solid var(--hairline);} /* v2.24: true 50/50 · v2.27: full-viewport height tried and reverted — fixed 640px min */
+.hero .copy{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:96px 72px 96px max(48px,calc((100vw - 1200px)/2 + 48px));background:var(--oat);}
+/* v2: faint monochrome seal watermark behind the headline */
+.hero .wm{position:absolute;left:-160px;top:50%;transform:translateY(-50%);width:680px;height:680px;opacity:.07;filter:grayscale(1);pointer-events:none;}
+.hero .copy > *:not(.wm){position:relative;z-index:1;}
+.hero h1{font-size:clamp(44px,5.2vw,72px);font-weight:500;line-height:1.02;margin:22px 0 20px;max-width:520px;} /* v2: medium weight locked */
+.hero h1 em{font-style:italic;} /* v2: “come true” italicized */
+.hero h1 .tm{font-size:.35em;vertical-align:super;letter-spacing:0;font-style:normal;}
+.hero p{font-size:18px;color:var(--muted);max-width:440px;line-height:1.65;}
+.hero .ctas{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+/* v2: hero media — 3-frame crossfade rotator (Wix: native Slideshow w/ autoplay — see W23) */
+.hero .media{position:relative;overflow:hidden;}
+.hero .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:0;animation:heroFade 15s infinite;}
+.hero .media img:nth-child(1){animation-delay:0s;}
+.hero .media img:nth-child(2){animation-delay:5s;}
+.hero .media img:nth-child(3){animation-delay:10s;}
+@keyframes heroFade{0%{opacity:0;}5%{opacity:1;}33.33%{opacity:1;}41%{opacity:0;}100%{opacity:0;}}
+
+/* ---------- menu categories ---------- */
+.section{padding:104px 0;}
+.section.menu-sec{position:relative;overflow:hidden;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:48px;}
+.section-head h2{font-size:clamp(34px,3.6vw,48px);line-height:1.06;margin-top:14px;max-width:560px;}
+.section-head .side{font-size:15px;color:var(--muted);max-width:340px;line-height:1.6;padding-bottom:6px;}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 22px;} /* v2: 6 categories, 3-across */
+.cat .ph{overflow:hidden;aspect-ratio:4/5;background:var(--oat);}
+.cat .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.cat:hover .ph img{transform:scale(1.04);}
+/* v2: graphic tile for Soups — no soup photography in library yet */
+.cat .ph.gfx{display:flex;align-items:center;justify-content:center;background:var(--green-deep);}
+.cat .ph.gfx img{width:62%;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.9;transition:transform .5s ease;}
+.cat h3{font-family:var(--display);font-weight:600;font-size:24px;margin:16px 0 4px;}
+.cat p{font-size:14px;color:var(--muted);line-height:1.55;}
+.cat .go{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);}
+.menu-more{margin-top:40px;display:flex;align-items:center;justify-content:space-between;gap:24px;border-top:1px solid var(--hairline);padding-top:28px;flex-wrap:wrap;}
+.menu-more p{color:var(--soft);font-style:italic;font-family:var(--display);font-size:17px;}
+
+/* ---------- story ---------- */
+.story{background:var(--oat);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);}
+.story .inner{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;} /* v2: true 50/50 */
+.story .media{overflow:hidden;min-height:520px;}
+.story .media img{width:100%;height:100%;object-fit:cover;}
+.story .copy{padding:96px 72px;display:flex;flex-direction:column;justify-content:center;}
+.story h2{font-size:clamp(32px,3vw,44px);line-height:1.08;margin:18px 0 22px;font-style:italic;font-weight:500;max-width:480px;text-wrap:balance;} /* v2.1: was overflowing the copy column at wide viewports */
+.story p{font-size:16.5px;color:var(--muted);max-width:460px;line-height:1.7;}
+.story .textlink{margin-top:32px;align-self:flex-start;}
+
+/* ---------- press ---------- */
+.press{border-bottom:1px solid var(--hairline);}
+.press .inner{display:flex;align-items:baseline;gap:40px;padding:34px 0;flex-wrap:wrap;}
+.press .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);flex:0 0 auto;}
+.press .names{display:flex;gap:36px;flex-wrap:wrap;align-items:baseline;}
+.press .names span{font-family:var(--display);font-style:italic;font-size:19px;color:var(--muted);white-space:nowrap;}
+
+/* ---------- lifestyle band ---------- */
+/* v2: quote removed; parallax via fixed background (Wix: native scroll effect — see W24) */
+.band{height:520px;background:url("assets/lifestyle-patio.jpg") center 35% / cover no-repeat fixed;}
+
+/* ---------- locations ---------- */
+/* v2: fully centered pattern — lockup mark, centered head, 10 centered cards (sticky side image removed → clears W2) */
+.loc .lochead{text-align:center;max-width:640px;margin:0 auto 56px;}
+.loc .locmark{width:222px;margin:0 auto 26px;} /* v2.18: rebuilt lockup — seal disc renders ≈133px, matches the 132px footer seal */
+.loc h2{font-size:clamp(34px,3.6vw,46px);line-height:1.06;margin:14px 0 10px;}
+.loc .sub{font-size:15px;color:var(--muted);}
+/* v2.1: 4-per-row grid; 10 cards = 4/4/2 with the last pair centered. Bordered cards replace the hairline mosaic (empty grid slots would have shown through) */
+.loc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.loc-card{background:var(--paper);border:1px solid var(--hairline);padding:0;overflow:hidden;transition:background .2s;display:flex;flex-direction:column;} /* v2.28: thumbnails added (CMS Thumbnail field) */
+.loc-card .th{aspect-ratio:3/2;overflow:hidden;}
+.loc-card .th img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.loc-card:hover .th img{transform:scale(1.04);}
+.loc-card .bd{padding:20px 18px 22px;text-align:left;display:flex;flex-direction:column;gap:5px;flex:1;}
+.loc-card .nm{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.15;} /* v2.31 cascade */
+.loc-card .nm .area{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;font-weight:400;}
+.loc-card .ad{font-size:13px;color:var(--soft);line-height:1.5;}
+.loc-card .acts{display:flex;flex-direction:column;gap:12px;margin-top:auto;padding-top:16px;}
+.loc-card .acts .btn{padding:12px 14px;font-size:11px;width:100%;}
+.loc-card .acts .tl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);text-align:center;}
+.loc-card .acts .tl:hover{color:#237a39;}
+.loc-card:nth-child(9){grid-column:2;}
+.loc-card:hover{background:var(--oat);}
+.loc .cta{text-align:center;margin-top:44px;}
+
+/* ---------- catering ---------- */
+/* v2: repatterned — contained 50/50 CTA block, copy + 2 buttons left, image right (ref: Relume CTA-1) */
+.catering{border-top:1px solid var(--hairline);}
+.catering .inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;} /* v2.24 */
+.catering h2{font-size:clamp(36px,3.8vw,50px);line-height:1.05;margin:18px 0 20px;}
+.catering p{font-size:16.5px;color:var(--muted);max-width:440px;line-height:1.7;}
+.catering .ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+.catering .media{overflow:hidden;}
+.catering .media img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+
+/* ---------- instagram ---------- */
+.ig .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:36px;}
+.ig h2{font-size:clamp(30px,3vw,40px);margin-top:12px;}
+.ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;}
+.ig-grid a{display:block;overflow:hidden;aspect-ratio:1;}
+.ig-grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,opacity .3s;}
+.ig-grid a:hover img{transform:scale(1.05);opacity:.92;}
+
+/* ---------- vip ---------- */
+.vip{background:var(--oat-2);border-top:1px solid var(--hairline);position:relative;overflow:hidden;}
+.vip .inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:88px 0;position:relative;z-index:1;}
+.vip h2{font-size:clamp(32px,3.4vw,44px);line-height:1.08;margin-top:14px;}
+.vip p{font-size:15.5px;color:var(--muted);margin-top:14px;max-width:420px;line-height:1.65;}
+.vip form{display:grid;grid-template-columns:1fr;gap:12px;}
+.vip .row{display:flex;gap:12px;}
+.vip input{flex:1;border:1px solid rgba(26,26,23,.3);background:var(--paper);padding:16px 18px;font-family:var(--body);font-size:14px;color:var(--ink);outline:none;min-width:0;}
+.vip input::placeholder{color:var(--soft);}
+.vip input:focus{border-color:var(--green);}
+.vip .btn{width:100%;}
+.vip small{font-size:11.5px;color:var(--soft);line-height:1.5;display:block;}
+
+/* ---------- footer ---------- */
+footer{background:var(--paper);padding:80px 0 0;}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:48px;padding-bottom:64px;}
+.foot-grid .h{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:16px;}
+.foot-grid a{display:block;font-size:14.5px;color:var(--muted);padding:5px 0;}
+.foot-grid a:hover{color:var(--ink);}
+.foot-brand img{height:132px;margin-bottom:20px;} /* v2.7: footer logo enlarged again */
+.foot-brand p{font-family:var(--display);font-style:italic;font-size:19px;color:var(--muted);}
+/* v2.32 cascade: social icons — real client URLs (allowed live-link exception, see cascade log) */
+.foot-vip .social{display:flex;gap:16px;margin-top:24px;} /* v2.32c: moved under VIP signup */
+.foot-vip .social a{color:var(--muted);transition:color .2s;}
+.foot-vip .social a:hover{color:var(--green);}
+.foot-vip .social svg{width:40px;height:40px;display:block;fill:currentColor;} /* v2.32b: 40px */
+.foot-vip .row{display:flex;gap:8px;margin-top:4px;}
+.foot-vip input{flex:1;border:1px solid rgba(26,26,23,.3);background:transparent;padding:12px 14px;font-size:13px;font-family:var(--body);outline:none;min-width:0;}
+.foot-vip .btn{padding:12px 20px;font-size:12px;}
+.legal{border-top:1px solid var(--hairline);padding:22px 0;display:flex;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);flex-wrap:wrap;}
+.legal a{color:var(--soft);}
+.legal a:hover{color:var(--ink);}
+
+/* ---------- internal notes (below the comp) ---------- */
+.internal{background:#E9E7E0;border-top:3px solid var(--ink);padding:72px 0 96px;}
+.internal .container{max-width:1080px;}
+.internal .tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;background:var(--ink);color:#fff;padding:6px 12px;margin-bottom:20px;}
+.internal h2{font-size:30px;margin-bottom:8px;}
+.internal .lede{font-size:14.5px;color:var(--muted);max-width:760px;margin-bottom:40px;}
+.internal h3{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:44px 0 14px;border-bottom:1px solid rgba(26,26,23,.25);padding-bottom:10px;}
+.internal table{width:100%;border-collapse:collapse;font-size:13px;}
+.internal th{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);text-align:left;font-weight:500;padding:8px 12px;border-bottom:1px solid rgba(26,26,23,.25);}
+.internal td{padding:10px 12px;border-bottom:1px solid rgba(26,26,23,.14);vertical-align:top;line-height:1.55;color:var(--muted);}
+.internal td:first-child{font-weight:600;color:var(--ink);white-space:nowrap;}
+.internal td .m{font-family:var(--mono);font-size:11px;}
+.internal ul{padding-left:18px;font-size:13.5px;color:var(--muted);line-height:1.8;}
+.internal ul b{color:var(--ink);}
+.internal .confirm{color:#8a4a1f;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;}
+
+/* ---------- responsive ----------
+   SYSTEM (identical across all templates — see cascade sheet):
+   · Breakpoints: desktop >960 · tablet/mobile ≤960 · small mobile ≤560
+   · Type: fluid clamp() with explicit max-widths on display headlines
+   · Nav, 3 tiers: desktop >960 seal+wordmark+links · tablet 561-960 seal+links (no wordmark) · mobile ≤560 seal+burger (64px bar, sticky offset 65px)
+   · Fixed/parallax backgrounds → scroll attachment ≤960 (mirrors Wix mobile)
+   · Hover-only affordances become always-visible ≤960
+   · Decorative layers (foliage/watermarks) scale down, never force overflow */
+@media (max-width:960px){
+  .container{padding:0 28px;}
+  /* v2.21: compact mobile nav — 64px, 44px seal, burger visible, tighter CTA */
+  /* v2.23: tablet (561-960) — wordmark drops, text links stay; burger is mobile-only */
+  .nav-inner{padding:0 28px;gap:24px;}
+  .nav-brand img.wordmark{display:none;}
+  .nav-links{gap:22px;}
+  .nav-cta{padding:11px 16px;}
+  .hero{grid-template-columns:1fr;min-height:0;}
+  .hero .copy{padding:72px 28px;order:2;}
+  .hero .media{order:1;height:420px;}
+  .hero .wm{width:420px;left:-120px;}
+  .menu-sec > .foliage{width:400px !important;}
+  .vip > .foliage{width:440px !important;}
+  .cat-grid{grid-template-columns:repeat(2,1fr);}
+  .story .inner{grid-template-columns:1fr;}
+  .story .media{min-height:380px;}
+  .story .copy{padding:64px 28px;}
+  .band{background-attachment:scroll;} /* fixed bg unreliable on mobile — mirrors Wix behavior */
+  .catering .inner{grid-template-columns:1fr;gap:36px;}
+  .loc-grid{grid-template-columns:repeat(2,1fr);}
+  .loc-card:nth-child(9){grid-column:auto;} /* centering only applies to the 4-col layout */
+  .ig-grid{grid-template-columns:repeat(3,1fr);}
+  .vip .inner{grid-template-columns:1fr;gap:36px;padding:64px 0;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+  .section{padding:72px 0;}
+  .section-head{flex-direction:column;align-items:flex-start;gap:14px;}
+}
+@media (max-width:560px){
+  /* v2.23: mobile (≤560) — seal only, links → burger */
+  .nav-inner{padding:0 20px;height:64px;gap:16px;}
+  .nav-brand img.seal{height:44px;width:44px;}
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  .cat-grid{grid-template-columns:1fr;}
+  .loc-grid{grid-template-columns:1fr;}
+  .band{height:400px;}
+  .hero .ctas .btn{width:100%;}
+  .foot-grid{grid-template-columns:1fr;}
+  .foot-brand img{height:104px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Comp status strip — not part of the page design -->
+<!-- §0 · Announcement strip — seasonal use; day-one: VIP list -->
+<div class="announce">Now open in Palm Beach Gardens — Alton &nbsp;·&nbsp; <b>Join the VIP list ↓</b></div>
+
+<!-- Global nav — v2: Locations first · caps/semibold/8% tracking · larger seal -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">
+      <img class="seal" src="assets/FieldOfGreens_FullSeal_color.svg" alt="Field of Greens seal">
+      <img class="wordmark" src="assets/Wordmark.svg" alt="Field of Greens">
+    </a>
+    <div class="nav-links">
+      <a href="locations-index-hifi.html">Locations</a>
+      <a href="menu-hifi.html">Menu</a>
+      <a href="catering-hifi.html">Catering</a>
+      <a href="about-hifi.html">About</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;">
+      <a class="btn solid nav-cta" href="#locations">Order Online</a>
+      <a class="burger" href="#" aria-label="Open menu"><span></span><span></span><span></span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- §1 · Hero — v2: seal watermark on oat panel · medium headline w/ italic “come true” · 3-frame crossfade rotator -->
+<header class="hero" id="top">
+  <div class="copy">
+    <img class="wm" src="assets/FieldOfGreens_FullSeal_color.svg" alt="" aria-hidden="true">
+    <span class="kicker">West Palm Beach · Since 2003</span>
+    <h1>Where greens<br><em>come true</em><span class="tm">™</span></h1> <!-- v2.1: fixed 2-line break before “come true” -->
+    <p>Scratch-made salads, bowls, sandwiches and açaí — made fresh every morning, in every kitchen, across Palm Beach County.</p>
+    <div class="ctas">
+      <a class="btn solid" href="#locations">Order Online</a>
+      <a class="btn ghost" href="menu-hifi.html">View the Menu</a>
+    </div>
+  </div>
+  <div class="media" aria-label="Rotating photographs of Field of Greens food and guests">
+    <img src="assets/hero-model-bowl.jpg" alt="A guest smiling over a fresh grain bowl at a Field of Greens table">
+    <img src="assets/hero-bowls-flatlay.jpg" alt="A table of colorful salads and bowls shot from above">
+    <img src="assets/hero-avocado-salad.jpg" alt="A chopped salad finished with an avocado rose">
+  </div>
+</header>
+
+<!-- §2 · Menu categories — v2: expanded to 6 cards, 3-across -->
+<section class="section menu-sec" id="menu">
+  <img class="foliage" src="assets/foliage-3.svg" alt="" aria-hidden="true" style="right:0;top:0;width:680px;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">The Menu</span>
+        <h2>Made from scratch, <em>every day.</em></h2>
+      </div>
+      <p class="side">No freezers doing the work, no shortcuts on the line — just whole ingredients, prepped each morning.</p>
+    </div>
+    <div class="cat-grid">
+      <a class="cat" href="menu-hifi.html#salads">
+        <div class="ph"><img src="assets/cat-salads.jpg" alt="Chopped salad with avocado, feta and tomato"></div>
+        <h3>Salads</h3>
+        <p>Crisp, colorful, chopped to order.</p>
+        <span class="go">Explore →</span>
+      </a>
+      <a class="cat" href="menu-hifi.html#sandwiches">
+        <div class="ph"><img src="assets/cat-wraps.jpg" alt="Grilled spinach wrap on a branded tray"></div>
+        <h3>Sandwiches &amp; Wraps</h3>
+        <p>Pressed on the griddle, built to travel.</p>
+        <span class="go">Explore →</span>
+      </a>
+      <a class="cat" href="menu-hifi.html#acai">
+        <div class="ph"><img src="assets/cat-acai.jpg" alt="Açaí bowl layered with granola, blueberries and coconut"></div>
+        <h3>Açaí Bowls</h3>
+        <p>Layered with granola and fresh fruit.</p>
+        <span class="go">Explore →</span>
+      </a>
+      <a class="cat" href="menu-hifi.html#breakfast">
+        <div class="ph"><img src="assets/cat-breakfast.jpg" alt="Breakfast sandwich on a seeded bagel"></div>
+        <h3>Breakfast</h3>
+        <p>Scratch-made and served all day.</p>
+        <span class="go">Explore →</span>
+      </a>
+      <a class="cat" href="menu-hifi.html#soups">
+        <div class="ph"><img src="assets/cat-soups.jpg" alt="A bowl of chicken noodle soup with shredded carrot, beside a Quencher juice"></div>
+        <h3>Soups</h3>
+        <p>Homemade daily — cup or bowl.</p>
+        <span class="go">Explore →</span>
+      </a>
+      <a class="cat" href="menu-hifi.html#shakes">
+        <div class="ph"><img src="assets/hero-handoff-mural.jpg" alt="A team member handing smoothies across the counter"></div>
+        <h3>Shakes &amp; Smoothies</h3>
+        <p>Plant-based, blended to order.</p>
+        <span class="go">Explore →</span>
+      </a>
+    </div>
+    <div class="menu-more">
+      <p>Plus cold pressed juices, coffee and homemade desserts.</p>
+      <a class="btn ghost" href="menu-hifi.html">View Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- §3 · Story — v2: new headline · mantra mark removed (lives in §2 soup tile + mural photo) · true 50/50 -->
+<section class="story" id="story">
+  <div class="inner">
+    <div class="media"><img src="assets/story-mural-wide.jpg" alt="Field of Greens interior with the ‘Everything is going to be OK’ mural"></div>
+    <div class="copy">
+      <span class="kicker">Our Story</span>
+      <h2>From one kitchen in West Palm Beach.</h2>
+      <p>Field of Greens opened its first kitchen in West Palm Beach in 2003 with a simple promise: cook everything from scratch, every day, no exceptions. Two decades — and ten locations across South Florida — later, the mantra painted on our wall is still exactly how we make your lunch.</p>
+      <a class="textlink" href="about-hifi.html">Read our story</a>
+    </div>
+  </div>
+</section>
+
+<!-- §3b · Press proof band (from FTK deck, slide 2) -->
+<section class="press">
+  <div class="container">
+    <div class="inner">
+      <span class="lbl">As seen in</span>
+      <div class="names">
+        <span>Avenir Magazine</span>
+        <span>Palm Beach Illustrated</span>
+        <span>Hometown News</span>
+        <span>The Palm Beach Post</span>
+        <span>The Wellington Edit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §4 · Lifestyle band — v2: headline removed · parallax fixed background (W24) -->
+<section class="band" role="img" aria-label="Two friends sharing lunch on the patio"></section>
+
+<!-- §5 · Locations — v2: centered pattern · lockup mark · 10 open stores per licensing deck naming/order -->
+<section class="section loc" id="locations">
+  <div class="container">
+    <div class="lochead">
+      <img class="locmark" src="assets/locations-mark.png" alt="Field of Greens seal beside a photograph of palm trees">
+      <span class="kicker">Locations</span>
+      <h2>Find your <em>Field of Greens.</em></h2>
+      <p class="sub">Ten locations across South Florida — order ahead for pickup, or get it delivered.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <div class="th"><img src="assets/loc-facade-fog.jpg" alt=""></div>
+        <div class="bd">
+          <div class="nm"><span class="area">West Palm Beach</span>Dixie Highway · SoSo</div>
+          <div class="ad">4802 S. Dixie Highway</div>
+          <div class="acts">
+            <a class="btn ghost" href="order-hifi.html">Order From Here</a>
+            <a class="tl" href="location-detail-hifi.html">Location Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="th"><img src="assets/loc-sign-palm.jpg" alt=""></div>
+        <div class="bd">
+          <div class="nm"><span class="area">West Palm Beach</span>Downtown · Clematis</div>
+          <div class="ad">412 Clematis St</div>
+          <div class="acts">
+            <a class="btn ghost" href="order-hifi.html">Order From Here</a>
+            <a class="tl" href="location-detail-hifi.html">Location Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="th"><img src="assets/loc-patio-tables.jpg" alt=""></div>
+        <div class="bd">
+          <div class="nm"><span class="area">North Palm Beach</span>US-1</div>
+          <div class="ad">11940 US-1, #110</div>
+          <div class="acts">
+            <a class="btn ghost" href="order-hifi.html">Order From Here</a>
+            <a class="tl" href="location-detail-hifi.html">Location Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="th"><img src="assets/loc-banquette.jpg" alt=""></div>
+        <div class="bd">
+          <div class="nm"><span class="area">Palm Beach</span>Royal Poinciana</div>
+          <div class="ad">253A Royal Poinciana Way</div>
+          <div class="acts">
+            <a class="btn ghost" href="order-hifi.html">Order From Here</a>
+            <a class="tl" href="location-detail-hifi.html">Location Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="th"><img src="assets/loc-counter-mural.jpg" alt=""></div>
+        <div class="bd">
+          <div class="nm"><span class="area">Wellington</span>Forest Hill</div>
+          <div class="ad">10140 Forest Hill Blvd, #110</div>
+          <div class="acts">
+            <a class="btn ghost" href="order-hifi.html">Order From Here</a>
+            <a class="tl" href="location-detail-hifi.html">Location Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="th"><img src="assets/interior-counter-wide.jpg" alt=""></div>
+        <div class="bd">
+          <div class="nm"><span class="area">West Palm Beach</span>Phillips Point</div>
+          <div class="ad">777 S Flagler Dr, Ste 108</div>
+          <div class="acts">
+            <a class="btn ghost" href="order-hifi.html">Order From Here</a>
+            <a class="tl" href="location-detail-hifi.html">Location Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="th"><img src="assets/loc-facade-seal.jpg" alt=""></div>
+        <div class="bd">
+          <div class="nm"><span class="area">Boynton Beach</span>Gateway</div>
+          <div class="ad">1500 Gateway Blvd, Ste 150A</div>
+          <div class="acts">
+            <a class="btn ghost" href="order-hifi.html">Order From Here</a>
+            <a class="tl" href="location-detail-hifi.html">Location Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="th"><img src="assets/catering-pickup-door.jpg" alt=""></div>
+        <div class="bd">
+          <div class="nm"><span class="area">Palm Beach Gardens</span>Alton</div>
+          <div class="ad">5320 Donald Ross Ave, Suite 105</div>
+          <div class="acts">
+            <a class="btn ghost" href="order-hifi.html">Order From Here</a>
+            <a class="tl" href="location-detail-hifi.html">Location Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="th"><img src="assets/story-mural-wide.jpg" alt=""></div>
+        <div class="bd">
+          <div class="nm"><span class="area">West Palm Beach</span>Clearlake</div>
+          <div class="ad">250 S. Australian Ave, Suite 100</div>
+          <div class="acts">
+            <a class="btn ghost" href="order-hifi.html">Order From Here</a>
+            <a class="tl" href="location-detail-hifi.html">Location Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="th"><img src="assets/lifestyle-patio.jpg" alt=""></div>
+        <div class="bd">
+          <div class="nm"><span class="area">Port St. Lucie</span>Tradition</div>
+          <div class="ad">10400 SW Discovery Way, Suite 10124</div>
+          <div class="acts">
+            <a class="btn ghost" href="order-hifi.html">Order From Here</a>
+            <a class="tl" href="location-detail-hifi.html">Location Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cta"><a class="btn ghost" href="locations-index-hifi.html">All Locations</a></div>
+  </div>
+</section>
+
+<!-- §6 · Catering — v2: contained CTA pattern (ref: Relume CTA-1) — copy + two buttons left, image right -->
+<section class="section catering" id="catering">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <span class="kicker">Catering</span>
+        <h2><em>Lettuce cater</em> your next event.</h2>
+        <p>Platters, bowls and boxed lunches for offices, gatherings and everything in between — ordered through EZCater, or arranged directly with your nearest store.</p>
+        <div class="ctas">
+          <a class="btn solid" href="catering-hifi.html">Explore Catering</a>
+          <a class="btn ghost" href="#">Order on EZCater</a>
+        </div>
+      </div>
+      <div class="media"><img src="assets/catering-doorway.jpg" alt="A guest carrying a catering pickup box of wrapped sandwiches out the front door"></div>
+    </div>
+  </div>
+</section>
+
+<!-- §7 · Instagram — third-party feed widget in build (W5); grid = intent -->
+<section class="section ig">
+  <div class="container">
+    <div class="head">
+      <div>
+        <span class="kicker neutral">On Instagram</span>
+        <h2>@ilovefog</h2>
+      </div>
+      <a class="textlink iglink" href="https://www.instagram.com/ilovefog/" style="display:inline-flex;align-items:center;gap:9px;"><svg style="width:16px;height:16px;fill:currentColor;display:block;" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>Follow along</a>
+    </div>
+    <div class="ig-grid">
+      <a href="#"><img src="assets/ig-smoothie-cheers.jpg" alt=""></a>
+      <a href="#"><img src="assets/ig-table-flatlay.jpg" alt=""></a>
+      <a href="#"><img src="assets/ig-sandwich-hold.jpg" alt=""></a>
+      <a href="#"><img src="assets/ig-smoothie-photo.jpg" alt=""></a>
+      <a href="#"><img src="assets/ig-family.jpg" alt=""></a>
+      <a href="#"><img src="assets/ig-takeout-exit.jpg" alt=""></a>
+    </div>
+  </div>
+</section>
+
+<!-- §8 · VIP signup -->
+<section class="vip">
+  <img class="foliage" src="assets/foliage-4.svg" alt="" aria-hidden="true" style="left:0;bottom:0;width:760px;">
+  <div class="container">
+    <div class="inner">
+      <div>
+        <span class="kicker">The VIP List</span>
+        <h2>A little something on <em>your birthday.</em></h2>
+        <p>Join the list for a birthday treat on us, first word on new store openings — and nothing you don’t need.</p>
+      </div>
+      <form onsubmit="return false;">
+        <div class="row">
+          <input type="email" placeholder="Email address" aria-label="Email address">
+          <input type="text" placeholder="Birthday (MM/DD)" aria-label="Birthday" style="flex:0 0 42%;">
+        </div>
+        <button class="btn solid" type="submit">Join the VIP List</button>
+        <small>By joining you agree to receive email from Field of Greens. Unsubscribe anytime.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer — v2: larger brand seal -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/FieldOfGreens_FullSeal_color.svg" alt="Field of Greens">
+        <p>Where greens come true.™</p>
+      </div>
+      <div>
+        <div class="h">Visit</div>
+        <a href="locations-index-hifi.html">Locations</a>
+        <a href="menu-hifi.html">Menu</a>
+        <a href="catering-hifi.html">Catering</a>
+        <a href="about-hifi.html">About</a>
+      </div>
+      <div>
+        <div class="h">Company</div>
+        <a href="careers-hifi.html">Careers</a>
+        <a href="gift-cards-hifi.html">Gift Cards</a>
+        <a href="contact-hifi.html">Contact</a>
+        <a href="licensing-hifi.html">Licensing Opportunities</a>
+      </div>
+      <div class="foot-vip">
+        <div class="h">Join the VIP list</div>
+        <div class="row">
+          <input type="email" placeholder="Email address" aria-label="Email address">
+          <button class="btn solid" type="button">Join</button>
+        </div>
+
+        <div class="social">
+          <a href="https://www.instagram.com/ilovefog/" aria-label="Field of Greens on Instagram"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg></a>
+          <a href="https://www.facebook.com/FieldOfGreensFL/" aria-label="Field of Greens on Facebook"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Field of Greens · West Palm Beach, FL</span>
+      <span><a href="legal-template-hifi.html">Privacy</a> · <a href="legal-template-hifi.html">Terms</a> · <a href="legal-template-hifi.html">Accessibility</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
