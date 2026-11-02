@@ -116,6 +116,12 @@ nav.site{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:
 .route .inner{padding:96px 0;}
 .route-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hairline);border:1px solid var(--hairline);margin-top:8px;}
 .route-card{background:var(--paper);padding:24px 22px;transition:background .2s;}
+/* pending state — store caters, EZCater page not yet live */
+.route-card.pending{background:var(--oat-2,#EBE7DD);opacity:.68;cursor:default;pointer-events:none;}
+.route-card.pending .nm{color:var(--muted);}
+.route-card.pending .go{color:var(--soft);border-color:var(--soft);}
+.route-card.pending:hover{background:var(--oat-2,#EBE7DD);}
+
 .route-card:hover{background:var(--oat);}
 .route-card .nm{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.2;} /* v2.31 cascade */
 .route-card .ad{font-size:12px;color:var(--soft);margin-top:4px;line-height:1.5;}
@@ -370,11 +376,11 @@ footer{background:var(--paper);padding:80px 0 0;}
         <a class="route-card" href="https://www.ezcater.com/catering/pvt/field-of-greens-west-palm-beach-clematis-st" target="_blank" rel="noopener"><div class="nm">WPB · Clematis</div><div class="ad">412 Clematis St</div><span class="go">Order catering →</span></a>
         <a class="route-card" href="https://www.ezcater.com/catering/pvt/field-of-greens-north-palm-beach" target="_blank" rel="noopener"><div class="nm">North Palm Beach</div><div class="ad">11940 US-1, #110</div><span class="go">Order catering →</span></a>
         <a class="route-card" href="https://www.ezcater.com/catering/pvt/field-of-greens-wellington-forest-hill-blvd" target="_blank" rel="noopener"><div class="nm">Wellington</div><div class="ad">10140 Forest Hill Blvd</div><span class="go">Order catering →</span></a>
-        <a class="route-card" href="#"><div class="nm">Palm Beach</div><div class="ad">253A Royal Poinciana Way</div><span class="go">EZCater page coming →</span></a>
-        <a class="route-card" href="#"><div class="nm">Boynton Beach</div><div class="ad">1500 Gateway Blvd</div><span class="go">EZCater page coming →</span></a>
-        <a class="route-card" href="#"><div class="nm">PBG · Alton</div><div class="ad">5320 Donald Ross Rd</div><span class="go">EZCater page coming →</span></a>
-        <a class="route-card" href="#"><div class="nm">PBG · Avenir</div><div class="ad">12485 Northlake Blvd</div><span class="go">EZCater page coming →</span></a>
-        <a class="route-card" href="#"><div class="nm">Tradition · PSL</div><div class="ad">10400 SW Discovery Way</div><span class="go">EZCater page coming →</span></a>
+        <a class="route-card pending" href="#" aria-disabled="true"><div class="nm">Palm Beach</div><div class="ad">253A Royal Poinciana Way</div><span class="go">EZCater page coming soon</span></a>
+        <a class="route-card pending" href="#" aria-disabled="true"><div class="nm">Boynton Beach</div><div class="ad">1500 Gateway Blvd</div><span class="go">EZCater page coming soon</span></a>
+        <a class="route-card pending" href="#" aria-disabled="true"><div class="nm">PBG · Alton</div><div class="ad">5320 Donald Ross Rd</div><span class="go">EZCater page coming soon</span></a>
+        <a class="route-card pending" href="#" aria-disabled="true"><div class="nm">PBG · Avenir</div><div class="ad">12485 Northlake Blvd</div><span class="go">EZCater page coming soon</span></a>
+        <a class="route-card pending" href="#" aria-disabled="true"><div class="nm">Tradition · PSL</div><div class="ad">10400 SW Discovery Way</div><span class="go">EZCater page coming soon</span></a>
       </div>
       <p class="fine">Ordering for somewhere new? We'll point you to the right kitchen — just ask below.</p>
     </div>
